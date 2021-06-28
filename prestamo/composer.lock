@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b3a5ff78b6fdd1fa298f0a998e4116de",
+    "content-hash": "97dcedd88d11a7204e10239adfed4a69",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -479,6 +479,65 @@
                 "source": "https://github.com/fideloper/TrustedProxy/tree/4.4.1"
             },
             "time": "2020-10-22T13:48:01+00:00"
+        },
+        {
+            "name": "flightsadmin/livewire-crud",
+            "version": "0.0.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/flightsadmin/livewire-crud.git",
+                "reference": "ab3c84f89fe74845395bf538e63b9b8bd760a83e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/flightsadmin/livewire-crud/zipball/ab3c84f89fe74845395bf538e63b9b8bd760a83e",
+                "reference": "ab3c84f89fe74845395bf538e63b9b8bd760a83e",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0|^7.0|^8.0",
+                "laravel/ui": "^2|^3",
+                "livewire/livewire": "^2",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Flightsadmin\\LivewireCrud\\LivewireCrudServiceProvider"
+                    ],
+                    "aliases": {
+                        "LivewireCrud": "Flightsadmin\\LivewireCrud\\LivewireCrudFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Flightsadmin\\LivewireCrud\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "George Chitechi",
+                    "email": "george@flightsadmin.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Scaffold Livewire Components, migrations, factory and crud in one command based on database tables",
+            "homepage": "https://github.com/flightsadmin/livewire-crud",
+            "keywords": [
+                "flightsadmin",
+                "livewire-crud"
+            ],
+            "support": {
+                "issues": "https://github.com/flightsadmin/livewire-crud/issues",
+                "source": "https://github.com/flightsadmin/livewire-crud/tree/0.0.14"
+            },
+            "time": "2021-01-08T20:30:03+00:00"
         },
         {
             "name": "fruitcake/laravel-cors",
