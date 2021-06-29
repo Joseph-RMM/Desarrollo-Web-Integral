@@ -18,6 +18,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!--Estilos-->
     <link href="{{ asset('css/estilo-login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/inicioadmin.css') }}" rel="stylesheet">
+    <!-- Bootstrap y Fontawesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- GRAFICAS-->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @livewireStyles
@@ -47,15 +53,21 @@
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
+                        <!--
+                            Boton de entrar
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
+                        -->
                         @endif
 
                         @if (Route::has('register'))
+                        <!-- 
+                            BOTON DE REGISTRAR
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
+                        -->
                         @endif
                         @else
                         <li class="nav-item dropdown">
@@ -91,6 +103,7 @@
         });
     </script>
     <script src="{{ asset('js/estilo-login.js') }}"></script>
+    <script src="{{ asset('js/inicioadmin.js') }}"></script>
 </body>
 
 </html>
