@@ -13,20 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
+Route::get('/usuario', [App\Http\Controllers\HomeController::class, 'usuario'])->name('usuario');
 
 /*
-Route::get('/', function () {
-    return view('/home');
+Route::get('/usuario', function () {
+    return view('usuario');
 });
-*/ 
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+*/
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route Hooks - Do not delete//
