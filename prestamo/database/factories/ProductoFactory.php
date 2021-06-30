@@ -13,6 +13,8 @@ class ProductoFactory extends Factory
     public function definition()
     {
         return [
+            'nombre' => $this->faker->name,
+            'categoria' => $this->faker->name,
 			'Descripcion' => $this->faker->name,
 			'foto' => $this->faker->name,
 			'Estado_actual_del_producto' => $this->faker->name,
