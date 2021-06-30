@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        //Storage::makeDirectory('posts');
+        Storage::makeDirectory('posts');
         // \App\Models\User::factory(10)->create();
+        $this->call(RoleAdmin::class);
     }
 }
