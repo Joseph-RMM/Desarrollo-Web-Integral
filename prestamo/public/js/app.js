@@ -538,8 +538,8 @@ eval("// removed by extract-text-webpack-plugin//# sourceURL=[module]\n//# sourc
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\conch\Documents\GitHub\Desarrollo-Web-Integral\prestamo\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\conch\Documents\GitHub\Desarrollo-Web-Integral\prestamo\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\Desarrollo-Web-Integral2\prestamo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Desarrollo-Web-Integral2\prestamo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
