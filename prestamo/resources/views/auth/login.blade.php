@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="imagenlogin ">
+    <img src="{{asset('img/sinfondo.png')}}" class="rounded float-right lol">
+</div>
 <br>
 <!--Formulario-->
 <div class="row">
