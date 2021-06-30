@@ -27,14 +27,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route Hooks - Do not delete//
+	Route::view('producto', 'livewire.productos.index')->middleware('auth');
 	Route::view('users', 'livewire.users.index')->middleware('auth');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+//Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
