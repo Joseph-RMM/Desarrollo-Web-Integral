@@ -18,20 +18,20 @@ class RoleAdmin extends Seeder
         $admin  = Role::create(["name"=>"Admin"]);
         $seller = Role::create(["name"=>"Seller"]);
 
-        Permission::create(["name"=>'admin.home']);
-        Permission::create(["name"=>'admin.users.index']);
-        Permission::create(["name"=>'admin.users.create']);
-        Permission::create(["name"=>'admin.users.edit']);
-        Permission::create(["name"=>'admin.users.destroy']);
+        Permission::create(["name"=>'admin.home'])->assignRole($admin);
+        Permission::create(["name"=>'admin.users.index'])->assignRole($admin);
+        Permission::create(["name"=>'admin.users.create'])->assignRole($admin);
+        Permission::create(["name"=>'admin.users.edit'])->assignRole($admin);
+        Permission::create(["name"=>'admin.users.destroy'])->assignRole($admin);
+        //$permission->syncRoles([$role1,$role2]);
+        Permission::create(["name"=>'admin.products.index'])->assignRole($admin);
+        Permission::create(["name"=>'admin.products.create'])->assignRole($admin);
+        Permission::create(["name"=>'admin.products.edit'])->assignRole($admin);
+        Permission::create(["name"=>'admin.products.destroy'])->assignRole($admin);
 
-        Permission::create(["name"=>'admin.products.index']);
-        Permission::create(["name"=>'admin.products.create']);
-        Permission::create(["name"=>'admin.products.edit']);
-        Permission::create(["name"=>'admin.products.destroy']);
-
-        Permission::create(["name"=>'admin.api.index']);
-        Permission::create(["name"=>'admin.api.create']);
-        Permission::create(["name"=>'admin.api.edit']);
-        Permission::create(["name"=>'admin.api.destroy']);
+        Permission::create(["name"=>'admin.api.index'])->assignRole($admin);
+        Permission::create(["name"=>'admin.api.create'])->assignRole($admin);
+        Permission::create(["name"=>'admin.api.edit'])->assignRole($admin);
+        Permission::create(["name"=>'admin.api.destroy'])->assignRole($admin);
     }
 }
