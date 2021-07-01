@@ -30,4 +30,12 @@ class HomeController extends Controller
     {
         return view('usuario');
     }
+    public function update()
+    {
+        return view('update');
+    }
+    public function create()
+    {
+        return view('create');
+    }
 }

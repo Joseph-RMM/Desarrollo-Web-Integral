@@ -24,6 +24,10 @@ Route::get('/usuario', function () {
 */
 
 
+//Auth::routes();
+
+//Route::get('users/update', [App\Http\Controllers\HomeController::class, 'index'])->name('update');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -35,11 +39,14 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Auth::routes();
 
 
+
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route Hooks - Do not delete//
 	Route::view('producto', 'livewire.productos.index')->middleware('auth');
 	Route::view('users', 'livewire.users.index')->middleware('auth');
+	Route::view('update', 'livewire.users.update')->middleware('auth');
+	Route::view('create', 'livewire.users.create')->middleware('auth');
 Auth::routes();
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

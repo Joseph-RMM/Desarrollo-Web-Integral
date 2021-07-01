@@ -1,39 +1,76 @@
-<!-- Modal -->
-<div wire:ignore.self class="modal fade" id="updateModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update User</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span wire:click.prevent="cancel()" aria-hidden="true">×</span>
-                </button>
+@extends('layouts.app')
+@section('content')
+<div class="container">
+    <div class="alert colordark" role="alert">
+        <div class="row">
+            <div class="col-lg-9 col-md-6 col-sm-2">
+                <div class="usuario-white">
+                    Actializar usuario
+                </div>
             </div>
-            <div class="modal-body">
-                <form>
-					<input type="hidden" wire:model="selected_id">
-            <div class="form-group">
-                <label for="name"></label>
-                <input wire:model="name" type="text" class="form-control" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
-                <label for="lastname"></label>
-                <input wire:model="lastname" type="text" class="form-control" id="lastname" placeholder="Lastname">@error('lastname') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
-                <label for="tel"></label>
-                <input wire:model="tel" type="text" class="form-control" id="tel" placeholder="Tel">@error('tel') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
-                <label for="email"></label>
-                <input wire:model="email" type="text" class="form-control" id="email" placeholder="Email">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" wire:click.prevent="update()" class="btn btn-primary" data-dismiss="modal">Save</button>
-            </div>
-       </div>
+        </div>
     </div>
 </div>
+<div class="container">
+    <center>
+
+        <!--Formulario Registrar-->
+
+        <div class="wrapper-agregarusuario">
+            <div class="form-container">
+                <div class="form-inner">
+                    <form action="#" class="signup">
+                        <label>Ingresa los datos por favor.</label>
+                        <div class="field">
+                            <label>Nombre <b class="rojo">*</b></label>
+                            <input type="text" required>
+                            <input class="rojo" type="hidden" name="nombre">
+                        </div>
+                        <div class="field">
+                            <label>Apellido Paterno <b class="rojo">*</b></label>
+                            <input type="text" required>
+                            <input class="rojo" type="hidden" name="apellidop">
+                        </div>
+                        <div class="field">
+                            <label>Apellido Materno <b class="rojo">*</b></label>
+                            <input type="text" required>
+                            <input class="rojo" type="hidden" name="apellidom">
+                        </div>
+                        <div class="field">
+                            <label>Teléfono <b class="rojo">*</b></label>
+                            <input type="text" required>
+                            <input class="rojo" type="hidden" name="telefono">
+                        </div>
+                        <div class="field">
+                            <label>Correo electronico <b class="rojo">*</b></label>
+                            <input type="email" required>
+                            <input class="rojo" type="hidden" name="correo">
+                        </div>
+                        <div class="field">
+                            <label>Contraseña <b class="rojo">*</b></label>
+                            <input type="password" required>
+                            <input class="rojo" type="hidden" name="contraseña">
+                        </div>
+                        <!--BOTONES DE ACEPTAR Y CANCELAR-->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="field">
+                                    <button class="cancelar" type="button"> <a class="cancelar" href="{{ url('/users') }}">Cancelar</a></button>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="field">
+                                    <button class="btn btn-primary" type="submit">Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--BOTONES DE ACEPTAR Y CANCELAR-->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </center>
+</div>
+
+
+@endsection
