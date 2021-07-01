@@ -15,6 +15,8 @@ class TipoProductos extends Migration
     {
         Schema::create('tipo_productos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_producto');
+            $table->foreign('id_producto')->references('id')->on('productos');
             $table->string('clasificacion');
             $table->timestamps();
         });
