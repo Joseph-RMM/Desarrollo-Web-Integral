@@ -45,22 +45,20 @@
                     <!-- Left Side Of Navbar -->
                     @auth()
                     <ul class="navbar-nav mr-auto">
+                        @can("admin.home")
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/inicio') }}">Inicio</a>
+                            <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
                         </li>
 						<li class="nav-item">
-<<<<<<< HEAD
                             <a href="{{ url('/productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
-=======
-                            <a href="{{ url('/tipo_productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Tipo_productos</a> 
                         </li>
-						<li class="nav-item">
-                            <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Producto</a> 
->>>>>>> ef477fb89c46d4a5570781b74d615096e0d75308
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
+                            </li>
+                        @endcan
                     </ul>
                     @endauth()
 
@@ -96,6 +94,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @can("admin.home")
+                                <a class="dropdown-item" href="{{ url('/Dashboard') }}" >
+                                    {{ __('Dashboard') }}
+                                </a>
+                                @endcan
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

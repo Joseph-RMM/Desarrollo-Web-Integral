@@ -11,7 +11,7 @@
       <h5 class="negro">Ultimas Noticias</h5>
       <div class="alert alert-light" role="alert">
         <h6 class="negro"> <i class="fas fa-user-friends"></i> Usuarios registrados</h6>
-        10k
+        {{$UserRegister}}
       </div>
       <div class="alert alert-light" role="alert">
         <h6 class="negro"><i class="fas fa-check-circle"></i> Préstamos realizados</h6>

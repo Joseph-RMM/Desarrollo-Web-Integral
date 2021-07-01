@@ -14,8 +14,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Auth::routes();
 
 
-<<<<<<< HEAD
-=======
+
+
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route Hooks - Do not delete//
@@ -23,12 +23,12 @@ Auth::routes();
 	Route::view('producto', 'livewire.productos.index')->middleware('auth');
 	Route::view('users', 'livewire.users.index')->middleware('auth');
 Auth::routes();
->>>>>>> ef477fb89c46d4a5570781b74d615096e0d75308
 
 
-Auth::routes();
 
 //Rutas del Admin
-Route::view('usuarios', 'livewire.users.index')->middleware('auth');
-Route::view('productos', 'livewire.productos.index')->middleware('auth');
-Route::view('inicio', 'Admin.index')->middleware('auth');
+Route::view('usuarios', 'livewire.users.index')->middleware('can:admin.home');
+Route::view('productos', 'livewire.productos.index')->middleware('can:admin.home');
+Route::view('Categorias', 'livewire.tipoProductos.index')->middleware('can:admin.home');
+Auth::routes();
+Route::get('Dashboard', [App\Http\Controllers\Admin\DashBoardController::class, 'index'])->middleware('can:admin.home');

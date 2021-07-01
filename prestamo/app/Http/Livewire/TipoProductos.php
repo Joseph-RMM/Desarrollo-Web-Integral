@@ -17,21 +17,21 @@ class TipoProductos extends Component
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
-        return view('livewire.tipoProductos.view', [
+        return view('livewire.tipoproductos.view', [
             'tipoProductos' => TipoProducto::latest()
 						->orWhere('clasificacion', 'LIKE', $keyWord)
 						->paginate(10),
         ]);
     }
-	
+
     public function cancel()
     {
         $this->resetInput();
         $this->updateMode = false;
     }
-	
+
     private function resetInput()
-    {		
+    {
 		$this->clasificacion = null;
     }
 
@@ -41,10 +41,10 @@ class TipoProductos extends Component
 		'clasificacion' => 'required',
         ]);
 
-        TipoProducto::create([ 
+        TipoProducto::create([
 			'clasificacion' => $this-> clasificacion
         ]);
-        
+
         $this->resetInput();
 		$this->emit('closeModal');
 		session()->flash('message', 'TipoProducto Successfully created.');
@@ -54,9 +54,9 @@ class TipoProductos extends Component
     {
         $record = TipoProducto::findOrFail($id);
 
-        $this->selected_id = $id; 
+        $this->selected_id = $id;
 		$this->clasificacion = $record-> clasificacion;
-		
+
         $this->updateMode = true;
     }
 
@@ -68,7 +68,7 @@ class TipoProductos extends Component
 
         if ($this->selected_id) {
 			$record = TipoProducto::find($this->selected_id);
-            $record->update([ 
+            $record->update([
 			'clasificacion' => $this-> clasificacion
             ]);
 

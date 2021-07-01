@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\User;
@@ -11,7 +12,7 @@ class Users extends Component
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $name, $lastname, $tel, $email;
+    public $selected_id, $keyWord, $name, $lastname, $tel, $email,$password,$password_confirmation;
     public $updateMode = false;
 
     public function render()
@@ -26,15 +27,15 @@ class Users extends Component
 						->paginate(10),
         ]);
     }
-	
+
     public function cancel()
     {
         $this->resetInput();
         $this->updateMode = false;
     }
-	
+
     private function resetInput()
-    {		
+    {
 		$this->name = null;
 		$this->lastname = null;
 		$this->tel = null;
@@ -44,19 +45,22 @@ class Users extends Component
     public function store()
     {
         $this->validate([
-		'name' => 'required',
-		'lastname' => 'required',
-		'tel' => 'required',
-		'email' => 'required',
+            'name' => ['required', 'string', 'max:50'],
+            'lastname' => ['required', 'string', 'max:51'],
+            'tel' => ['required', 'string', 'max:13'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+            'password_confirmation'=> ['required', 'string', 'min:8','same:password'],
         ]);
 
-        User::create([ 
+        User::create([
 			'name' => $this-> name,
 			'lastname' => $this-> lastname,
 			'tel' => $this-> tel,
-			'email' => $this-> email
+			'email' => $this-> email,
+            'password' =>Hash::make( $this-> password)
         ]);
-        
+
         $this->resetInput();
 		$this->emit('closeModal');
 		session()->flash('message', 'User Successfully created.');
@@ -66,12 +70,12 @@ class Users extends Component
     {
         $record = User::findOrFail($id);
 
-        $this->selected_id = $id; 
+        $this->selected_id = $id;
 		$this->name = $record-> name;
 		$this->lastname = $record-> lastname;
 		$this->tel = $record-> tel;
 		$this->email = $record-> email;
-		
+
         $this->updateMode = true;
     }
 
@@ -86,7 +90,7 @@ class Users extends Component
 
         if ($this->selected_id) {
 			$record = User::find($this->selected_id);
-            $record->update([ 
+            $record->update([
 			'name' => $this-> name,
 			'lastname' => $this-> lastname,
 			'tel' => $this-> tel,

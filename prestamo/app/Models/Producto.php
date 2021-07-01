@@ -22,7 +22,7 @@ class Producto extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\Models\User', 'id', 'id_usuario');
+        //return $this->hasOne('App\Models\User', 'id', 'id_usuario');
         return $this->hasOne('App\Models\TipoProductos', 'id', 'id_tipo_producto');
     }
 
