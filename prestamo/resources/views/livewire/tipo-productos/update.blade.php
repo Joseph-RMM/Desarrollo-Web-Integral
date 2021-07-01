@@ -11,10 +11,7 @@
             <div class="modal-body">
                 <form>
 					<input type="hidden" wire:model="selected_id">
-            <div class="form-group">
-                <label for="id_producto"></label>
-                <input wire:model="id_producto" type="text" class="form-control" id="id_producto" placeholder="Id Producto">@error('id_producto') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
+
             <div class="form-group">
                 <label for="clasificacion"></label>
                 <input wire:model="clasificacion" type="text" class="form-control" id="clasificacion" placeholder="Clasificacion">@error('clasificacion') <span class="error text-danger">{{ $message }}</span> @enderror

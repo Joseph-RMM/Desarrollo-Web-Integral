@@ -32,7 +32,6 @@
 						<thead class="thead">
 							<tr> 
 								<td>#</td> 
-								<th>Id Producto</th>
 								<th>Clasificacion</th>
 								<td>ACTIONS</td>
 							</tr>
@@ -41,7 +40,6 @@
 							@foreach($tipoProductos as $row)
 							<tr>
 								<td>{{ $loop->iteration }}</td> 
-								<td>{{ $row->id_producto }}</td>
 								<td>{{ $row->clasificacion }}</td>
 								<td width="90">
 								<div class="btn-group">

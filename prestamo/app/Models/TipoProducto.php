@@ -13,14 +13,14 @@ class TipoProducto extends Model
 
     protected $table = 'tipo_productos';
 
-    protected $fillable = ['id_producto','clasificacion'];
+    protected $fillable = ['clasificacion'];
 	
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function producto()
     {
-        return $this->hasOne('App\Models\Producto', 'id', 'id_producto');
+        //return $this->hasOne('App\Models\Producto', 'id', 'id_producto');
     }
     
 }

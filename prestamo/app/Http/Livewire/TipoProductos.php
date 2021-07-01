@@ -11,7 +11,7 @@ class TipoProductos extends Component
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $id_producto, $clasificacion;
+    public $selected_id, $keyWord, $clasificacion;
     public $updateMode = false;
 
     public function render()
@@ -19,7 +19,7 @@ class TipoProductos extends Component
 		$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.tipo-productos.view', [
             'tipoProductos' => TipoProducto::latest()
-						->orWhere('id_producto', 'LIKE', $keyWord)
+						
 						->orWhere('clasificacion', 'LIKE', $keyWord)
 						->paginate(10),
         ]);
@@ -33,19 +33,19 @@ class TipoProductos extends Component
 	
     private function resetInput()
     {		
-		$this->id_producto = null;
+		
 		$this->clasificacion = null;
     }
 
     public function store()
     {
         $this->validate([
-		'id_producto' => 'required',
+		
 		'clasificacion' => 'required',
         ]);
 
         TipoProducto::create([ 
-			'id_producto' => $this-> id_producto,
+			
 			'clasificacion' => $this-> clasificacion
         ]);
         
@@ -59,7 +59,7 @@ class TipoProductos extends Component
         $record = TipoProducto::findOrFail($id);
 
         $this->selected_id = $id; 
-		$this->id_producto = $record-> id_producto;
+		
 		$this->clasificacion = $record-> clasificacion;
 		
         $this->updateMode = true;
@@ -68,14 +68,14 @@ class TipoProductos extends Component
     public function update()
     {
         $this->validate([
-		'id_producto' => 'required',
+		
 		'clasificacion' => 'required',
         ]);
 
         if ($this->selected_id) {
 			$record = TipoProducto::find($this->selected_id);
             $record->update([ 
-			'id_producto' => $this-> id_producto,
+			
 			'clasificacion' => $this-> clasificacion
             ]);
 
