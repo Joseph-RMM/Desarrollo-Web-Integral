@@ -39,7 +39,8 @@
 					<td>{{ $row->tel }}</td>
 					<td>{{ $row->email }}</td>
 					<td>
-						<a href="#"><button type="submit" class="button-rojo button5"><i class="fas fa-trash-alt"></i></button></a>
+					    
+						<a onclick="confirm('Confirm Delete User id {{$row->id}}? \nDeleted Users cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"> <button type="submit" class="button-rojo button5"><i class="fas fa-trash-alt"></i></button></a>
 						<a href="{{ url('/update') }}"><button type="submit" class="button-verde button5"><i class="fas fa-pencil-alt"></i></button></a>
 					</td>
 				</tr>

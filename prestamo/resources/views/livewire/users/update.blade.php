@@ -19,38 +19,29 @@
         <div class="wrapper-agregarusuario">
             <div class="form-container">
                 <div class="form-inner">
-                    <form action="#" class="signup">
+                    <form  class="signup">
+                    <input type="hidden" wire:model="selected_id">
+
                         <label>Ingresa los datos por favor.</label>
                         <div class="field">
-                            <label>Nombre <b class="rojo">*</b></label>
-                            <input type="text" required>
-                            <input class="rojo" type="hidden" name="nombre">
+                            <label for="name">Nombre <b class="rojo">*</b></label>
+                            <input wire:model="name" type="text"  id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
+                        
+                        <div class="field">
+                            <label for="lastname">Apellido Materno <b class="rojo">*</b></label>
+                            <input wire:model="lastname" type="text"  id="lastname" placeholder="Lastname">@error('lastname') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="field">
-                            <label>Apellido Paterno <b class="rojo">*</b></label>
-                            <input type="text" required>
-                            <input class="rojo" type="hidden" name="apellidop">
+                            <label for="tel">Teléfono <b class="rojo">*</b></label>
+                            <input wire:model="tel" type="text"  id="tel" placeholder="Tel">@error('tel') <span class="error text-danger">{{ $message }}</span> @enderror
+
                         </div>
                         <div class="field">
-                            <label>Apellido Materno <b class="rojo">*</b></label>
-                            <input type="text" required>
-                            <input class="rojo" type="hidden" name="apellidom">
+                            <label for="email">Correo electronico <b class="rojo">*</b></label>
+                            <input wire:model="email" type="text"  id="email" placeholder="Email">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
-                        <div class="field">
-                            <label>Teléfono <b class="rojo">*</b></label>
-                            <input type="text" required>
-                            <input class="rojo" type="hidden" name="telefono">
-                        </div>
-                        <div class="field">
-                            <label>Correo electronico <b class="rojo">*</b></label>
-                            <input type="email" required>
-                            <input class="rojo" type="hidden" name="correo">
-                        </div>
-                        <div class="field">
-                            <label>Contraseña <b class="rojo">*</b></label>
-                            <input type="password" required>
-                            <input class="rojo" type="hidden" name="contraseña">
-                        </div>
+                        
                         <!--BOTONES DE ACEPTAR Y CANCELAR-->
                         <div class="row">
                             <div class="col-sm-6">
@@ -60,7 +51,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="field">
-                                    <button class="btn btn-primary" type="submit">Aceptar</button>
+                                    <button class="btn btn-primary" wire:click.prevent="update()" type="button">Aceptar</button>
                                 </div>
                             </div>
                         </div>
