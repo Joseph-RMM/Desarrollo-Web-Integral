@@ -49,10 +49,17 @@
                             <a class="nav-link" href="{{ url('/inicio') }}">Inicio</a>
                         </li>
 						<li class="nav-item">
+<<<<<<< HEAD
                             <a href="{{ url('/productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
+=======
+                            <a href="{{ url('/tipo_productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Tipo_productos</a> 
+                        </li>
+						<li class="nav-item">
+                            <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Producto</a> 
+>>>>>>> ef477fb89c46d4a5570781b74d615096e0d75308
                         </li>
                     </ul>
                     @endauth()
