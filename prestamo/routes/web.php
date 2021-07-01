@@ -29,6 +29,6 @@ Auth::routes();
 //Rutas del Admin
 Route::view('usuarios', 'livewire.users.index')->middleware('can:admin.home');
 Route::view('productos', 'livewire.productos.index')->middleware('can:admin.home');
-Route::view('Categorias', 'livewire.tipoProductos.index')->middleware('can:admin.home');
+Route::view('Categorias', 'livewire.tipo-productos.index')->middleware('can:admin.home');
 Auth::routes();
 Route::get('Dashboard', [App\Http\Controllers\Admin\DashBoardController::class, 'index'])->middleware('can:admin.home');
