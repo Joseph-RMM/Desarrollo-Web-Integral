@@ -10,6 +10,7 @@
             </div>
            <div class="modal-body">
 				<form>
+
             <div class="form-group">
                 <label for="clasificacion"></label>
                 <input wire:model="clasificacion" type="text" class="form-control" id="clasificacion" placeholder="Clasificacion">@error('clasificacion') <span class="error text-danger">{{ $message }}</span> @enderror
