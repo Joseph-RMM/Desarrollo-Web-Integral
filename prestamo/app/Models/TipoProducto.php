@@ -11,8 +11,16 @@ class TipoProducto extends Model
 	
     public $timestamps = true;
 
-    protected $table = 'tipoProductos';
+    protected $table = 'tipo_productos';
 
-    protected $fillable = ['clasificacion'];
+    protected $fillable = ['id_producto','clasificacion'];
 	
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function producto()
+    {
+        return $this->hasOne('App\Models\Producto', 'id', 'id_producto');
+    }
+    
 }

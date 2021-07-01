@@ -13,6 +13,7 @@ class TipoProductoFactory extends Factory
     public function definition()
     {
         return [
+			'id_producto' => $this->faker->name,
 			'clasificacion' => $this->faker->name,
         ];
     }
