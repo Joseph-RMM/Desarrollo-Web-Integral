@@ -45,9 +45,14 @@
                     <!-- Left Side Of Navbar -->
                     @auth()
                     <ul class="navbar-nav mr-auto">
-                        <!--Nav Bar Hooks - Do not delete!!-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/inicio') }}">Inicio</a>
+                        </li>
 						<li class="nav-item">
-                            <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Producto</a> 
+                            <a href="{{ url('/productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
                         </li>
                     </ul>
                     @endauth()
@@ -66,7 +71,7 @@
                         @endif
 
                         @if (Route::has('register'))
-                        <!-- 
+                        <!--
                             BOTON DE REGISTRAR
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -74,10 +79,9 @@
                         -->
                         @endif
                         @else
-                        <!-- Productos -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/usuario') }}">Usuario</a>
-                        </li>
+
+
+
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

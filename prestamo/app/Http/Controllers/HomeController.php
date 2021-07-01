@@ -28,6 +28,6 @@ class HomeController extends Controller
 
     public function usuario()
     {
-        return view('usuario');
+        return view('Admin.index');
     }
 }
