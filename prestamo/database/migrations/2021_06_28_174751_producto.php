@@ -24,8 +24,8 @@ class Producto extends Migration
             $table->unsignedBigInteger('id_usuario');
             $table->foreign('id_usuario')->references('id')->on('users');
             //union tipo tabla
-            $table->unsignedBigInteger('id_tipo_producto');
-            $table->foreign('id_tipo_producto')->references('id')->on('productos');
+            $table->unsignedBigInteger('id_tiposdeproductos');
+            $table->foreign('id_tiposdeproductos')->references('id')->on('tiposdeproductos');
         });
     }
 

@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\TipoProducto;
+use App\Models\Tiposdeproducto;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class TipoProductoFactory extends Factory
+class TiposdeproductoFactory extends Factory
 {
-    protected $model = TipoProducto::class;
+    protected $model = Tiposdeproducto::class;
 
     public function definition()
     {
         return [
-			'id_producto' => $this->faker->name,
 			'clasificacion' => $this->faker->name,
         ];
     }
