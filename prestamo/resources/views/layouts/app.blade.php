@@ -47,6 +47,9 @@
                     <ul class="navbar-nav mr-auto">
                         <!--Nav Bar Hooks - Do not delete!!-->
 						<li class="nav-item">
+                            <a href="{{ url('/tipo_productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Tipo_productos</a> 
+                        </li>
+						<li class="nav-item">
                             <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Producto</a> 
                         </li>
                     </ul>

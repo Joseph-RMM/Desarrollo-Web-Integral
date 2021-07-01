@@ -14,7 +14,7 @@ class Productos extends Component
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $nombre, $categoria, $Descripcion, $foto, $Estado_actual_del_producto, $id_usuario;
+    public $selected_id, $keyWord, $nombre, $categoria, $Descripcion, $foto, $Estado_actual_del_producto, $id_usuario,$id_tipo_producto;
     public $updateMode = false;
 
     public function render()
@@ -28,6 +28,7 @@ class Productos extends Component
 						->orWhere('foto', 'LIKE', $keyWord)
 						->orWhere('Estado_actual_del_producto', 'LIKE', $keyWord)
 						->orWhere('id_usuario', 'LIKE', $keyWord)
+                        ->orWhere('id_tipo_producto', 'LIKE', $keyWord)
 						->paginate(10),
         ]);
     }
@@ -46,6 +47,7 @@ class Productos extends Component
 		$this->foto = null;
 		$this->Estado_actual_del_producto = null;
 		$this->id_usuario = null;
+        $this->id_tipo_producto = null;
     }
 
     public function store()
@@ -57,6 +59,7 @@ class Productos extends Component
 		'foto' => 'required',
 		'Estado_actual_del_producto' => 'required',
 		'id_usuario' => 'required',
+        'id_tipo_producto' => 'required'
         ]);
 
         Producto::create([ 
@@ -65,7 +68,7 @@ class Productos extends Component
 			'Descripcion' => $this-> Descripcion,
 			'foto' => $this-> foto,
 			'Estado_actual_del_producto' => $this-> Estado_actual_del_producto,
-			'id_usuario' => $this-> id_usuario
+			'id_tipo_producto' => $this-> id_usuario
         ]);
         
         $this->resetInput();
@@ -84,6 +87,7 @@ class Productos extends Component
 		$this->foto = $record-> foto;
 		$this->Estado_actual_del_producto = $record-> Estado_actual_del_producto;
 		$this->id_usuario = $record-> id_usuario;
+        $this->id_tipo_producto = $record-> id_tipo_producto;
 		
         $this->updateMode = true;
     }
@@ -97,6 +101,7 @@ class Productos extends Component
 		'foto' => 'required',
 		'Estado_actual_del_producto' => 'required',
 		'id_usuario' => 'required',
+        'id_tipo_producto' => 'required'
         ]);
 
         if ($this->selected_id) {
@@ -107,7 +112,8 @@ class Productos extends Component
 			'Descripcion' => $this-> Descripcion,
 			'foto' => $this-> foto,
 			'Estado_actual_del_producto' => $this-> Estado_actual_del_producto,
-			'id_usuario' => $this-> id_usuario
+			'id_usuario' => $this-> id_usuario,
+            'id_tipo_producto' => $this-> id_tipo_producto
             ]);
 
             $this->resetInput();
