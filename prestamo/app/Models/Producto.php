@@ -15,14 +15,14 @@ class Producto extends Model
 
     protected $table = 'productos';
 
-    protected $fillable = ['nombre','categoria','Descripcion','foto','Estado_actual_del_producto','id_usuario'];
+    protected $fillable = ['nombre','categoria','Descripcion','foto','Estado_actual_del_producto','id_usuario','id_tiposdeproductos'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user()
     {
-        //return $this->hasOne('App\Models\User', 'id', 'id_usuario');
+        return $this->hasOne('App\Models\User', 'id', 'id_usuario');
         return $this->hasOne('App\Models\Tiposdeproductos', 'id', 'id_tiposdeproductos');
     }
 
