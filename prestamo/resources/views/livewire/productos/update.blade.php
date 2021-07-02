@@ -33,7 +33,10 @@
             </div>
             <div class="form-group">
                 <label for="Estado_actual_del_producto"></label>
-                <input wire:model="Estado_actual_del_producto" type="text" class="form-control" id="Estado_actual_del_producto" placeholder="Estado Actual Del Producto">@error('Estado_actual_del_producto') <span class="error text-danger">{{ $message }}</span> @enderror
+                <select wire:model="Estado_actual_del_producto" class='form-control'>
+                <option value="">Estado del producto</option>
+                    <option value="P">Prestado</option>
+                    <option value="D">Disponible</option>
             </div>
             <div class="form-group">
                 <label for="id_usuario"></label>
@@ -41,8 +44,12 @@
             </div>
 
             <div class="form-group">
-                <label for="id_tipo_producto"></label>
-                <input wire:model="id_tipo_producto" type="text" class="form-control" id="id_tipo_producto" placeholder="Id tipo_producto">@error('id_tipo_producto') <span class="error text-danger">{{ $message }}</span> @enderror
+            <select wire:model='id_tiposdeproductos' class='form-control'>
+                    <option value="">Clasificacion de producto</option>
+                    @foreach($tiposdeproductos as $tiposdeproductos)
+                    <option value="{{$tiposdeproductos->id}}">{{$tiposdeproductos->clasificacion}} </option>
+                    @endforeach
+            </select>
             </div>
 
                 </form>

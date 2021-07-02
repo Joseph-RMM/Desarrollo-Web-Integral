@@ -5,9 +5,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Producto;
+use App\Models\Tiposdeproducto;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use WithFileUploads;
+use Livewire\WithFileUploads;
+use \Illuminate\Http\Request;
+use App\Models\User;
 
 class Productos extends Component
 {
@@ -16,6 +19,9 @@ class Productos extends Component
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $nombre, $categoria, $Descripcion, $foto, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
     public $updateMode = false;
+    public $selectedtiposdeproductos=null;
+    public $tipos_deproductos=null;
+    public $usuario=null;
 
     public function render()
     {
@@ -30,6 +36,8 @@ class Productos extends Component
 						->orWhere('id_usuario', 'LIKE', $keyWord)
                         ->orWhere('id_tiposdeproductos', 'LIKE', $keyWord)
 						->paginate(10),
+            'tiposdeproductos' => Tiposdeproducto::all(),
+            'users' => User::all()
         ]);
     }
 	
@@ -50,17 +58,21 @@ class Productos extends Component
         $this->id_tiposdeproductos = null;
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        if($request->hasFile('foto')){
+            $product['foto']=$request->file(key:'foto')->store(path:'fotos');
+        }
         $this->validate([
         'nombre' => 'required',
         'categoria' => 'required',    
 		'Descripcion' => 'required',
-		'foto' => 'required',
+		'foto' => 'image|max:1024',
 		'Estado_actual_del_producto' => 'required',
 		'id_usuario' => 'required',
         'id_tiposdeproductos' => 'required',
         ]);
+
 
         Producto::create([ 
             'nombre' => $this-> nombre,
