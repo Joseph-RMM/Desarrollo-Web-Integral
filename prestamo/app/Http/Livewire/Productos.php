@@ -24,6 +24,14 @@ class Productos extends Component
     public $usuario=null;
 
 
+    public function upload(){
+        //dd('Rad');
+        $this->validate([
+            'foto' => 'image|max:1024', // 1MB Max
+        ]);
+
+        $this->foto->store('fotos','public');
+    }
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
@@ -40,8 +48,8 @@ class Productos extends Component
             'tiposdeproductos' => Tiposdeproducto::all(),
             'users' => User::all()
         ]);
-    }
-	
+
+}
     public function cancel()
     {
         $this->resetInput();
