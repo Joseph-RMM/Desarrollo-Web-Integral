@@ -23,10 +23,16 @@
                     @auth()
                     <ul class="navbar-nav mr-auto">
                        
-						<li class="nav-item">
-                            <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
-                        </li>
 
+						<li class="nav-item">
+                            <a href="{{ url('/productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
+                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
+                            </li>
                       
                     </ul>
                     @endauth()

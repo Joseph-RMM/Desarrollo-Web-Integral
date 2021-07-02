@@ -23,6 +23,9 @@ Auth::routes();
 	Route::view('tipo_productos', 'livewire.tipoProductos.index')->middleware('auth');
 	Route::view('producto', 'livewire.productos.index')->middleware('auth');
 	Route::view('users', 'livewire.users.index')->middleware('auth');
+	
+	Route::view('image-upload', 'livewire.image-upload')->middleware('auth');
+	
 Auth::routes();
 
 

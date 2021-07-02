@@ -26,8 +26,12 @@
             </div>
 
             <div class="form-group">
+                @livewireStyles
                 <label for="foto"></label>
-                <input wire:model="foto" type="file" class="form-control" id="foto" placeholder="Foto" enctype="multipart/form-data">@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
+                @livewire('image-upload')
+                @livewireScripts
+
+
             </div>
             <div class="form-group">
                 <label for="Estado_actual_del_producto"></label>
@@ -41,7 +45,7 @@
             <div class="form-group">
                 <label for="id_usuario"></label>
                {{auth()->user()->id}}
-                <input wire:model="id_usuario" type="" class="form-control" id="id_usuario" 
+                <input wire:model="id_usuario" type="text" class="form-control" id="id_usuario" 
                 placeholder="Id Usuario" >
                 @error('id_usuario')<span class="error text-danger">{{ $message }}</span> @enderror
                  

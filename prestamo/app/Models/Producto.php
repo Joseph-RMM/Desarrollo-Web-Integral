@@ -15,7 +15,7 @@ class Producto extends Model
 
     protected $table = 'productos';
 
-    protected $fillable = ['nombre','categoria','Descripcion','foto','Estado_actual_del_producto','id_usuario','id_tiposdeproductos'];
+    protected $fillable = ['nombre','Descripcion','foto','Estado_actual_del_producto','id_usuario','id_tiposdeproductos'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
