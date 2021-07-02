@@ -12,7 +12,12 @@ class Producto extends Migration
      * @return void
      */
     public function up()
-    {
+    {    
+        Schema::create('tiposdeproductos', function (Blueprint $table) {
+            $table->id();
+            $table->string('clasificacion');
+            $table->timestamps();
+        });
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
@@ -20,13 +25,13 @@ class Producto extends Migration
             $table->string('Descripcion');
             $table->string('foto');
             $table->timestamps();
-            $table->string('Estado_actual_del_producto');
-            $table->unsignedBigInteger('id_usuario');
-            $table->foreign('id_usuario')->references('id')->on('users');
-            //union tipo tabla
-            $table->unsignedBigInteger('id_tipo_producto');
-            $table->foreign('id_tipo_producto')->references('id')->on('productos');
+            $table->string('Estado_actual_del_producto');            
+            $table->unsignedBigInteger('id_usuario')->index();            
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');        
+            $table->unsignedBigInteger('id_tiposdeproductos')->unsigned();
+            $table->foreign('id_tiposdeproductos')->references('id')->on('tiposdeproductos');          
         });
+        
     }
 
     /**
@@ -37,5 +42,6 @@ class Producto extends Migration
     public function down()
     {
         Schema::dropIfExists('productos');
+        Schema::dropIfExists('tiposdeproductos');
     }
 }

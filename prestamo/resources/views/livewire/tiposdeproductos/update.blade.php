@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
        <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Tipo Producto</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Update Tiposdeproducto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span wire:click.prevent="cancel()" aria-hidden="true">×</span>
                 </button>
@@ -11,7 +11,6 @@
             <div class="modal-body">
                 <form>
 					<input type="hidden" wire:model="selected_id">
-
             <div class="form-group">
                 <label for="clasificacion"></label>
                 <input wire:model="clasificacion" type="text" class="form-control" id="clasificacion" placeholder="Clasificacion">@error('clasificacion') <span class="error text-danger">{{ $message }}</span> @enderror

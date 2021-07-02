@@ -3,14 +3,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Create New Tipo Producto</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Create New Tiposdeproducto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true close-btn">×</span>
                 </button>
             </div>
            <div class="modal-body">
 				<form>
-
             <div class="form-group">
                 <label for="clasificacion"></label>
                 <input wire:model="clasificacion" type="text" class="form-control" id="clasificacion" placeholder="Clasificacion">@error('clasificacion') <span class="error text-danger">{{ $message }}</span> @enderror
