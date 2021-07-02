@@ -13,7 +13,7 @@ class Producto extends Migration
      */
     public function up()
     {
-        
+
         Schema::create('tiposdeproductos', function (Blueprint $table) {
             $table->id();
             $table->string('clasificacion');
@@ -44,7 +44,6 @@ class Producto extends Migration
     {
         Schema::dropIfExists('tiposdeproductos');
 
-        
         Schema::dropIfExists('productos');
         Schema::dropIfExists('tiposdeproductos');
     }
