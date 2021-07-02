@@ -75,7 +75,7 @@ chart.render();
 
 //GRAFICA DE DONA
 var options = {
-    series: [44, 55, 13, 43, 22],
+    series: [44, 80, 13, 43, 22],
     chart: {
     width: 380,
     type: 'pie',

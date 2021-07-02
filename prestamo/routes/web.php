@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\DashBoardController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 
 Route::resource('Admin',UserController::class)->names('admin.users');
 
@@ -31,5 +34,6 @@ Route::view('update', 'livewire.users.update')->middleware('can:admin.home');
 Route::view('create', 'livewire.users.create')->middleware('can:admin.home');
 Route::view('productos', 'livewire.productos.index')->middleware('can:admin.home');
 Route::view('Categorias', 'livewire.tiposdeproductos.index')->middleware('can:admin.home');
+Route::get('graficdonut', [DashBoardController::class,'graficdonut'])->middleware('can:admin.home');
 Auth::routes();
-Route::get('Dashboard', [App\Http\Controllers\Admin\DashBoardController::class, 'index'])->middleware('can:admin.home');
+Route::get('Dashboard', [DashBoardController::class, 'index'])->middleware('can:admin.home');
