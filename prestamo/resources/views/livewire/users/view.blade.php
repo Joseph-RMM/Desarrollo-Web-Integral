@@ -1,70 +1,51 @@
 @section('title', __('Users'))
-<div class="container-fluid">
-	<div class="row justify-content-center">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="card-header">
-					<div style="display: flex; justify-content: space-between; align-items: center;">
-						<div class="float-left">
-							<h4><i class="fab fa-laravel text-info"></i>
-							User Listing </h4>
-						</div>
-						<div wire:poll.60s>
-							<code><h5>{{ now()->format('H:i:s') }} UTC</h5></code>
-						</div>
-						@if (session()->has('message'))
-						<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
-						@endif
-						<div>
-							<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Users">
-						</div>
-						<div class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">
-						<i class="fa fa-plus"></i>  Add Users
-						</div>
-					</div>
+
+<br><br>
+<div class="container">
+	<div class="alert colordark" role="alert">
+		<div class="row">
+			<div class="col-lg-10 col-md-10 col-sm-2">
+				<div class="usuario-white">
+					<b>Usuarios</b>
 				</div>
-				
-				<div class="card-body">
-						@include('livewire.users.create')
-						@include('livewire.users.update')
-				<div class="table-responsive">
-					<table class="table table-bordered table-sm">
-						<thead class="thead">
-							<tr> 
-								<td>#</td> 
-								<th>Name</th>
-								<th>Lastname</th>
-								<th>Tel</th>
-								<th>Email</th>
-								<td>ACTIONS</td>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach($users as $row)
-							<tr>
-								<td>{{ $loop->iteration }}</td> 
-								<td>{{ $row->name }}</td>
-								<td>{{ $row->lastname }}</td>
-								<td>{{ $row->tel }}</td>
-								<td>{{ $row->email }}</td>
-								<td width="90">
-								<div class="btn-group">
-									<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Actions
-									</button>
-									<div class="dropdown-menu dropdown-menu-right">
-									<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a>							 
-									<a class="dropdown-item" onclick="confirm('Confirm Delete User id {{$row->id}}? \nDeleted Users cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a>   
-									</div>
-								</div>
-								</td>
-							@endforeach
-						</tbody>
-					</table>						
-					{{ $users->links() }}
-					</div>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2">
+				<div class="usuario-white">
+					<a class="btn btn-primary btn-sm" href="{{ url('/create') }}" role="button"> <i class="fas fa-user"></i> Agregar usuario</a>
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div class="table-responsive">
+					
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Apellido Materno</th>
+					<th scope="col">Telefono</th>
+					<th scope="col">Correo</th>
+					<th scope="col">Acción</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($users as $row)
+				<tr>
+					<td>{{ $loop->iteration }}</td>
+					<td>{{ $row->name }}</td>
+					<td>{{ $row->lastname }}</td>
+					<td>{{ $row->tel }}</td>
+					<td>{{ $row->email }}</td>
+					<td>
+					    
+						<a onclick="confirm('Confirm Delete User id {{$row->id}}? \nDeleted Users cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"> <button type="submit" class="button-rojo button5"><i class="fas fa-trash-alt"></i></button></a>
+						<a href="{{ url('/update') }}"><button type="submit" class="button-verde button5"><i class="fas fa-pencil-alt"></i></button></a>
+					</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
 	</div>
 </div>
