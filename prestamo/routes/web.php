@@ -27,6 +27,8 @@ Auth::routes();
 
 //Rutas del Admin
 Route::view('usuarios', 'livewire.users.index')->middleware('can:admin.home');
+Route::view('update', 'livewire.users.update')->middleware('can:admin.home');
+Route::view('create', 'livewire.users.create')->middleware('can:admin.home');
 Route::view('productos', 'livewire.productos.index')->middleware('can:admin.home');
 Route::view('Categorias', 'livewire.tiposdeproductos.index')->middleware('can:admin.home');
 Auth::routes();

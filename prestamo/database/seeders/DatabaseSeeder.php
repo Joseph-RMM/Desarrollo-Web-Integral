@@ -20,10 +20,10 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(RoleAdmin::class);
         User::create([
-            'name'=>'equipo2',
-            "lastname"=>"equipo2",
+            'name'=>'puebauser',
+            "lastname"=>"puebauser",
             "tel"=>"2225102004",
-            "email"=>"equipo2@equipo.com",
+            "email"=>"normal@equipo.com",
             "password"=>Hash::make('equipo22')
         ])->assignRole('Admin');
     }

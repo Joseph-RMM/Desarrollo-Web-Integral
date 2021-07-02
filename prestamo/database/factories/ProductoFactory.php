@@ -19,6 +19,7 @@ class ProductoFactory extends Factory
 			'foto' => $this->faker->name,
 			'Estado_actual_del_producto' => $this->faker->name,
 			'id_usuario' => $this->faker->name,
+            'id_tiposdeproductos' => $this->faker->name,
         ];
     }
 }
