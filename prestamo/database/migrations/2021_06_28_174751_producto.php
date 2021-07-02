@@ -13,6 +13,13 @@ class Producto extends Migration
      */
     public function up()
     {
+        
+        Schema::create('tiposdeproductos', function (Blueprint $table) {
+            $table->id();
+            $table->string('clasificacion');
+            $table->timestamps();
+        });
+
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
@@ -36,6 +43,9 @@ class Producto extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('tiposdeproductos');
+
+        
         Schema::dropIfExists('productos');
     }
 }

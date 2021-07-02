@@ -19,13 +19,12 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('posts');
         // \App\Models\User::factory(10)->create();
         $this->call(RoleAdmin::class);
-        $this->call(RoleSeller::class);
         User::create([
             'name'=>'puebauser',
             "lastname"=>"puebauser",
             "tel"=>"2225102004",
             "email"=>"normal@equipo.com",
             "password"=>Hash::make('equipo22')
-        ])->assignRole('Seller');
+        ])->assignRole('Admin');
     }
 }

@@ -30,4 +30,16 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function update()
+    {
+        return view('update');
+    }
+    public function create()
+    {
+        return view('create');
+    }
+    public function Categorias()
+    {
+        return view('Categorias');
+    }
 }
