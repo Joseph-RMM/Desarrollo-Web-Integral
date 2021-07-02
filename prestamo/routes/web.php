@@ -16,17 +16,12 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Auth::routes();
 
-
-
-
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route Hooks - Do not delete//
 	Route::view('producto', 'livewire.productos.index')->middleware('auth');
 	Route::view('users', 'livewire.users.index')->middleware('auth');
 Auth::routes();
-
-
 
 //Rutas del Admin
 Route::view('usuarios', 'livewire.users.index')->middleware('can:admin.home');

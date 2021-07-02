@@ -73,6 +73,30 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#chart-line"), options);
 chart.render();
 
+async function getUser()
+{
+    let response = await fetch(`http://127.0.0.1:8000/graficdonut`);
+    let data = await response.json()
+    return data;
+}
+
+/*function getData(){
+    var resp;
+    fetch(`http://127.0.0.1:8000/graficdonut`).then(res=>res.json()).then(data=>
+        resp=data
+    )
+    return resp;
+}*/
+var Categorias={};
+const Http = new XMLHttpRequest();
+const url='http://127.0.0.1:8000/graficdonut';
+Http.open("GET", url);
+Http.send();
+
+Http.onreadystatechange = (e) => {
+    Categorias.categorias=Http.responseText
+}
+console.log(Categorias);
 //GRAFICA DE DONA
 var options = {
     series: [44, 80, 13, 43, 22],
@@ -84,7 +108,7 @@ var options = {
     text: 'Categorias',
     align: 'left'
 },
-  labels: ['Ropa Mujer', 'Ropa Hombre', 'Electronicos', 'Juguetes', 'Libros'],
+  labels:  ["44", "80", "13", "43", "22"],
   responsive: [{
     breakpoint: 480,
     options: {

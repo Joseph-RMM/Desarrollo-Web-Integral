@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-9 col-md-6 col-sm-2">
                 <div class="usuario-white">
-                    Actializar usuario
+                    Actualizar usuario
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
                             <label for="name">Nombre <b class="rojo">*</b></label>
                             <input wire:model="name" type="text"  id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
-                        
+
                         <div class="field">
                             <label for="lastname">Apellido Materno <b class="rojo">*</b></label>
                             <input wire:model="lastname" type="text"  id="lastname" placeholder="Lastname">@error('lastname') <span class="error text-danger">{{ $message }}</span> @enderror
@@ -41,7 +41,7 @@
                             <label for="email">Correo electronico <b class="rojo">*</b></label>
                             <input wire:model="email" type="text"  id="email" placeholder="Email">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
-                        
+
                         <!--BOTONES DE ACEPTAR Y CANCELAR-->
                         <div class="row">
                             <div class="col-sm-6">

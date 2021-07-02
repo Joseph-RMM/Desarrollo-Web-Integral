@@ -15,7 +15,7 @@
       </div>
       <div class="alert alert-light" role="alert">
         <h6 class="negro"><i class="fas fa-check-circle"></i> Préstamos realizados</h6>
-        20k
+          {{$Loans}}
       </div>
       <div class="alert alert-light" role="alert">
         <h6 class="negro"><i class="fas fa-bell"></i> Productos por revisar</h6>
