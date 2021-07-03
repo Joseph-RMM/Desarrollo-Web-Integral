@@ -14,7 +14,7 @@ use App\Models\User;
 
 class Productos extends Component
 {
-    use WithPagination;
+ 
 
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $nombre, $Descripcion, $foto, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
@@ -22,15 +22,21 @@ class Productos extends Component
     public $selectedtiposdeproductos=null;
     public $tipos_deproductos=null;
     public $usuario=null;
-
+    use WithPagination;
 
     public function upload(){
-        //dd('Rad');
-        $this->validate([
-            'foto' => 'image|max:1024', // 1MB Max
+        //dd('Rad');=
+        $validatedData=$this->validate([
+            'foto' => 'required',
         ]);
 
-        $this->foto->store('fotos','public');
+        $foto=$this->foto->store('fotos','public');
+        $validatedData['foto']=$foto;
+        Producto::create($validatedData);
+        $this->emit('fotosubida');
+		session()->flash('message', 'no estoy funcionando'); 
+
+
     }
     public function render()
     {

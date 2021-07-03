@@ -17,10 +17,6 @@
                 <input wire:model="nombre" type="text" class="form-control" id="nombre" placeholder="nombre">@error('nombre') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <div class="form-group">
-                <label for="categoria"></label>
-                <input wire:model="categoria" type="text" class="form-control" id="categoria" placeholder="categoria">@error('Descripcion') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
 
             <div class="form-group">
                 <label for="Descripcion"></label>
@@ -29,7 +25,7 @@
 
             <div class="form-group">
                 <label for="foto"></label>
-                <input wire:model="foto" type="file" class="form-control" id="foto" placeholder="Foto">@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model="foto" type="text" class="form-control" id="foto" placeholder="Foto">@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="Estado_actual_del_producto"></label>
@@ -40,7 +36,14 @@
             </div>
             <div class="form-group">
                 <label for="id_usuario"></label>
-                <input wire:model="id_usuario" type="text" class="form-control" id="id_usuario" placeholder="Id Usuario">@error('id_usuario') <span class="error text-danger">{{ $message }}</span> @enderror
+                <select>
+                <option value="">usuario</option>
+                    @foreach($users as $users)
+                    <option value="{{auth()->user()->id}}">{{auth()->user()->id}} </option>
+                    @endforeach
+                </select>
+                
+                <input wire:model="id_usuario" type="text"  value="{{auth()->user()->id}}"  class="form-control" id="id_usuario" placeholder="Id Usuario">@error('id_usuario') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
             <div class="form-group">

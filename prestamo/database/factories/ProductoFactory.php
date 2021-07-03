@@ -14,9 +14,8 @@ class ProductoFactory extends Factory
     {
         return [
             'nombre' => $this->faker->name,
-            'categoria' => $this->faker->name,
 			'Descripcion' => $this->faker->name,
-			'foto' => 'fotos/'.$this->faker->image('public/storage/fotos',640,480,false),
+			'foto' =>  $this->faker->name,
 			'Estado_actual_del_producto' => $this->faker->name,
 			'id_usuario' => $this->faker->name,
             'id_tiposdeproductos' => $this->faker->name,
