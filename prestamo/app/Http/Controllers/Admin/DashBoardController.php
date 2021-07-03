@@ -22,9 +22,9 @@ class DashBoardController extends Controller
     public function graficdonut(){
         $categories=Tiposdeproducto::pluck('clasificacion');
         //$Produ=Producto::count();
-        $resp=array([
+        $resp=[
           "Categoria"=>$categories
-        ]);
+        ];
         return $categories;
     }
 }

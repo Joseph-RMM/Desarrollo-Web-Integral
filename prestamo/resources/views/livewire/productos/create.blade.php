@@ -21,20 +21,20 @@
                 <input wire:model="Descripcion" type="text" class="form-control" id="Descripcion" placeholder="Descripcion">@error('Descripcion') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <div  wire:submit.prevent='upload' class="form-group" enctype="multipart/form-data">
+            <div class="form-group" enctype="multipart/form-data">
 
                 <label for="foto"></label>
 
-                <input wire:model="foto" type="text" class="form-control" id="foto" placeholder="Foto" accept='image/x-png,image/gif,image/jpg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror   
-                   
+                <input wire:model="foto" type="file" class="form-control" id="foto" placeholder="Sube aqui tu foto" accept='image/x-png,image/gif,image/jpg,image/jpeg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
+
 
 
             </div>
             <div class="form-group">
                 <label for="Estado_actual_del_producto"></label>
-                
+
             <select wire:model="Estado_actual_del_producto" class='form-control'>
-                <option value="">Estado del producto</option>
+                <option value="D">Estado del producto</option>
                     <option value="P">Prestado</option>
                     <option value="D">Disponible</option>
             </select>
@@ -47,9 +47,9 @@
                     <option value="{{auth()->user()->id}}">{{auth()->user()->id}} </option>
                     @endforeach
                 </select>
-                
-                
-                 
+
+
+
             </div>
 
             <div class="form-group">

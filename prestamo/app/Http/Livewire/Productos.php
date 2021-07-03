@@ -14,7 +14,7 @@ use App\Models\User;
 
 class Productos extends Component
 {
- 
+
 
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $nombre, $Descripcion, $foto, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
@@ -23,20 +23,21 @@ class Productos extends Component
     public $tipos_deproductos=null;
     public $usuario=null;
     use WithPagination;
+    use WithFileUploads;
 
     public function upload(){
         //dd('Rad');=
+
         $validatedData=$this->validate([
-            'foto' => 'required',
+            'foto' => 'image|max:1024'
         ]);
 
-        $foto=$this->foto->store('fotos','public');
+
+        $foto=$this->foto->store('foto','public');
         $validatedData['foto']=$foto;
         Producto::create($validatedData);
         $this->emit('fotosubida');
-		session()->flash('message', 'no estoy funcionando'); 
-
-
+		session()->flash('message', 'no estoy funcionando');
     }
     public function render()
     {
@@ -44,7 +45,7 @@ class Productos extends Component
         return view('livewire.productos.view', [
             'productos' => Producto::latest()
                         ->orWhere('nombre', 'LIKE', $keyWord)
-                        
+
 						->orWhere('Descripcion', 'LIKE', $keyWord)
 						->orWhere('foto', 'LIKE', $keyWord)
 						->orWhere('Estado_actual_del_producto', 'LIKE', $keyWord)
@@ -61,11 +62,11 @@ class Productos extends Component
         $this->resetInput();
         $this->updateMode = false;
     }
-	
+
     private function resetInput()
-    {	
+    {
         $this->nombre = null;
-       
+
 		$this->Descripcion = null;
 		$this->foto = null;
 		$this->Estado_actual_del_producto = null;
@@ -81,7 +82,7 @@ class Productos extends Component
             //$product['foto']=$request->file(key:'foto')->store(path:'fotos');
         //}
         $this->validate([
-        'nombre' => 'required',         
+        'nombre' => 'required',
 		'Descripcion' => 'required',
 		'foto' => 'image|max:1024',
 		'Estado_actual_del_producto' => 'required',
@@ -89,17 +90,18 @@ class Productos extends Component
         'id_tiposdeproductos' => 'required',
         ]);
 
-
-        Producto::create([ 
+        $foto=$this->foto->store('foto','public');
+        
+        Producto::create([
             'nombre' => $this-> nombre,
-            
 			'Descripcion' => $this-> Descripcion,
+            'Estado_actual_del_producto'=> $this-> Estado_actual_del_producto,
 			'foto' => $this-> foto,
 			'id_usuario' => $this-> id_usuario,
             'id_tiposdeproductos' => $this-> id_tiposdeproductos,
-			
+
         ]);
-        
+
         $this->resetInput();
 		$this->emit('closeModal');
 		session()->flash('message', 'Producto Successfully created.');
@@ -109,21 +111,21 @@ class Productos extends Component
     {
         $record = Producto::findOrFail($id);
 
-        $this->selected_id = $id; 
-        $this->nombre = $record-> nombre; 
+        $this->selected_id = $id;
+        $this->nombre = $record-> nombre;
 		$this->Descripcion = $record-> Descripcion;
 		$this->foto = $record-> foto;
 		$this->Estado_actual_del_producto = $record-> Estado_actual_del_producto;
 		$this->id_usuario = $record-> id_usuario;
         $this->id_tiposdeproductos = $record-> id_tiposdeproductos;
-		
+
         $this->updateMode = true;
     }
 
     public function update()
     {
         $this->validate([
-        'nombre' => 'required',    
+        'nombre' => 'required',
 		'Descripcion' => 'required',
 		'foto' => 'required',
 		'Estado_actual_del_producto' => 'required',
@@ -133,7 +135,7 @@ class Productos extends Component
 
         if ($this->selected_id) {
 			$record = Producto::find($this->selected_id);
-            $record->update([ 
+            $record->update([
             'nombre' => $this-> nombre,
 			'Descripcion' => $this-> Descripcion,
 			'foto' => $this-> foto,
