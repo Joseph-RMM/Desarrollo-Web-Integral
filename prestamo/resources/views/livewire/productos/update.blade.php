@@ -1,66 +1,43 @@
-<!-- Modal -->
-<div wire:ignore.self class="modal fade" id="updateModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-       <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Producto</h5>
+<div wire:ignore.self class="modal fade bd-example-modal-lg" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header mx">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span wire:click.prevent="cancel()" aria-hidden="true">×</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-					<input type="hidden" wire:model="selected_id">
-            
-            <div class="form-group">
-                <label for="nombre"></label>
-                <input wire:model="nombre" type="text" class="form-control" id="nombre" placeholder="nombre">@error('nombre') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-
-
-            <div class="form-group">
-                <label for="Descripcion"></label>
-                <input wire:model="Descripcion" type="text" class="form-control" id="Descripcion" placeholder="Descripcion">@error('Descripcion') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="form-group">
-                <label for="foto"></label>
-                <input wire:model="foto" type="text" class="form-control" id="foto" placeholder="Foto">@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-            <div class="form-group">
-                <label for="Estado_actual_del_producto"></label>
-                <select wire:model="Estado_actual_del_producto" class='form-control'>
-                <option value="">Estado del producto</option>
-                    <option value="P">Prestado</option>
-                    <option value="D">Disponible</option>
-            </div>
-            <div class="form-group">
-                <label for="id_usuario"></label>
-                <select>
-                <option value="">usuario</option>
-                    @foreach($users as $users)
-                    <option value="{{auth()->user()->id}}">{{auth()->user()->id}} </option>
-                    @endforeach
-                </select>
-                
-                <input wire:model="id_usuario" type="text"  value="{{auth()->user()->id}}"  class="form-control" id="id_usuario" placeholder="Id Usuario">@error('id_usuario') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="form-group">
-            <select wire:model='id_tiposdeproductos' class='form-control'>
-                    <option value="">Clasificacion de producto</option>
-                    @foreach($tiposdeproductos as $tiposdeproductos)
-                    <option value="{{$tiposdeproductos->id}}">{{$tiposdeproductos->clasificacion}} </option>
-                    @endforeach
-            </select>
-            </div>
-
-                </form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100 modalimg" wire:model="foto" src="#" alt="First slide">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only negro">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only negro">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h1 class="modal-title"> <input type="text" wire:model="nombre" disabled> </h1>
+                        <h6 class="rojo"><input type="text" wire:model="Estado_actual_del_producto" disabled></h6>
+                        <p><input type="text" wire:model="Descripcion" disabled> </p>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" wire:click.prevent="cancel()" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" wire:click.prevent="update()" class="btn btn-primary" data-dismiss="modal">Save</button>
+                <button type="button" wire:click.prevent="cancel()" class="btn-eliminar btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
-       </div>
+        </div>
     </div>
 </div>

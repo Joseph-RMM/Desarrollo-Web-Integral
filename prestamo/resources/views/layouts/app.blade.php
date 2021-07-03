@@ -21,6 +21,7 @@
     <link href="{{ asset('css/inicioadmin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilo-usuarios.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilo-agregarusuario.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/productos.css') }}" rel="stylesheet">
 
     <!-- Bootstrap y Fontawesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -34,86 +35,79 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <nav class="navbar navbar-expand-lg navbar-light bg">
+            <a class="navbar-brand" href="{{ url('/home') }}">
+                {{ config('app.name', 'Laravel') }}
+            </a>
+            <button class="navbar-toggler boton-pequeño" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                @auth()
+                <ul class="navbar-nav mr-auto">
+                    @can("admin.home")
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
+                    </li>
+                    @endcan
+                </ul>
+                @endauth()
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    @auth()
-                    <ul class="navbar-nav mr-auto">
-                        @can("admin.home")
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
-                        </li>
-						<li class="nav-item">
-                            <a href="{{ url('/productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
-                        </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
-                            </li>
-                        @endcan
-                    </ul>
-                    @endauth()
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                        @if (Route::has('login'))
-                        <!--
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                    @if (Route::has('login'))
+                    <!--
                             Boton de entrar
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         -->
-                        @endif
+                    @endif
 
-                        @if (Route::has('register'))
-                        <!--
+                    @if (Route::has('register'))
+                    <!--
                             BOTON DE REGISTRAR
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         -->
-                        @endif
-                        @else
+                    @endif
+                    @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                        </a>
 
-
-
-
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @can("admin.home")
+                            <a class="dropdown-item" href="{{ url('/Dashboard') }}">
+                                {{ __('Dashboard') }}
+                            </a>
+                            @endcan
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @can("admin.home")
-                                <a class="dropdown-item" href="{{ url('/Dashboard') }}" >
-                                    {{ __('Dashboard') }}
-                                </a>
-                                @endcan
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        @endguest
-                    </ul>
-                </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endguest
+                </ul>
             </div>
         </nav>
 
