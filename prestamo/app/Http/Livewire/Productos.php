@@ -12,9 +12,11 @@ use Livewire\WithFileUploads;
 use \Illuminate\Http\Request;
 use App\Models\User;
 
+
 class Productos extends Component
 {
-
+    use WithPagination;
+    use WithFileUploads;
 
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $nombre, $Descripcion, $foto, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
@@ -22,8 +24,7 @@ class Productos extends Component
     public $selectedtiposdeproductos=null;
     public $tipos_deproductos=null;
     public $usuario=null;
-    use WithPagination;
-    use WithFileUploads;
+
 
     public function upload(){
         //dd('Rad');=

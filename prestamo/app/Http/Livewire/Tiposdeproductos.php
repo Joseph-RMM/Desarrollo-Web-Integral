@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Tiposdeproducto;
 
+
 class Tiposdeproductos extends Component
 {
     use WithPagination;
