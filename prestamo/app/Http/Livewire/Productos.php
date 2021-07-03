@@ -45,7 +45,6 @@ class Productos extends Component
         return view('livewire.productos.view', [
             'productos' => Producto::latest()
                         ->orWhere('nombre', 'LIKE', $keyWord)
-
 						->orWhere('Descripcion', 'LIKE', $keyWord)
 						->orWhere('foto', 'LIKE', $keyWord)
 						->orWhere('Estado_actual_del_producto', 'LIKE', $keyWord)
