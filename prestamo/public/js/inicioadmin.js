@@ -1,5 +1,4 @@
 
-//GRAFICA DE LINEAS
 
 var options = {
     series: [{
@@ -73,33 +72,73 @@ var options = {
 var chart = new ApexCharts(document.querySelector("#chart-line"), options);
 chart.render();
 
-//GRAFICA DE DONA
-var options = {
-    series: [44, 55, 13, 43, 22],
-    chart: {
-    width: 380,
-    type: 'pie',
-  },
-  title: {
-    text: 'Categorias',
-    align: 'left'
-},
-  labels: ['Ropa Mujer', 'Ropa Hombre', 'Electronicos', 'Juguetes', 'Libros'],
-  responsive: [{
-    breakpoint: 480,
-    options: {
-      chart: {
-        width: 200
-      },
-      legend: {
-        position: 'bottom'
-      }
-    }
-  }]
-  };
+/*async function getUser()
+{
+    let response = await fetch(`http://127.0.0.1:8000/graficdonut`);
+    let data = await response.json()
+    return data;
+}*/
+/*console.log(getData());
+function getData(){
+    fetch(`http://127.0.0.1:8000/graficdonut`).then(res=>res.json()).then(data=>
+        console.log(data[0]['clasificacion'])
+    )
+}*/
+var resp=[];
 
-  var chart = new ApexCharts(document.querySelector("#chart-donus"), options);
-  chart.render();
+
+const Http = new XMLHttpRequest();
+var options2;
+async function getInfo() {
+    const url='http://127.0.0.1:8000/graficdonut';
+    Http.open("GET", url, true);
+    Http.send();
+    Http.onreadystatechange = (e) => {
+        var str = Http.responseText;
+        str = str.replace('[','');
+        str = str.replace(']','');
+        str = str.replace(/"/g,'');
+        resp = str.split(",");
+        console.log(str);
+        console.log(resp);
+        options2 = {
+            series: [44, 80, 13, 43, 22,22,22],
+            chart: {
+                width: 380,
+                type: 'pie',
+            },
+            title: {
+                text: 'Categorias',
+                align: 'left'
+            },
+            labels: resp,
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 200
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+    }
+}
+
+draw();
+
+//setTimeout(draw(),10000);
+function draw () {
+    console.log("Dentro del DRAW!"+resp);
+    getInfo();
+
+    var chart = new ApexCharts(document.querySelector("#chart-donus"), options2);
+    chart.render();
+}
+//GRAFICA DE DONA
+
 
 
 

@@ -15,27 +15,51 @@
                 <input wire:model="nombre" type="text" class="form-control" id="nombre" placeholder="nombre">@error('nombre') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <div class="form-group">
-                <label for="categoria"></label>
-                <input wire:model="categoria" type="text" class="form-control" id="categoria" placeholder="categoria">@error('categoria') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
 
             <div class="form-group">
                 <label for="Descripcion"></label>
                 <input wire:model="Descripcion" type="text" class="form-control" id="Descripcion" placeholder="Descripcion">@error('Descripcion') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group" enctype="multipart/form-data">
+
                 <label for="foto"></label>
-                <input wire:model="foto" type="file" class="form-control" id="foto" placeholder="Foto">@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
+
+                <input wire:model="foto" type="file" class="form-control" id="foto" placeholder="Sube aqui tu foto" accept='image/x-png,image/gif,image/jpg,image/jpeg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
+
+
+
             </div>
             <div class="form-group">
                 <label for="Estado_actual_del_producto"></label>
-                <input wire:model="Estado_actual_del_producto" type="text" class="form-control" id="Estado_actual_del_producto" placeholder="Estado Actual Del Producto">@error('Estado_actual_del_producto') <span class="error text-danger">{{ $message }}</span> @enderror
+
+            <select wire:model="Estado_actual_del_producto" class='form-control'>
+                <option value="D">Estado del producto</option>
+                    <option value="P">Prestado</option>
+                    <option value="D">Disponible</option>
+            </select>
             </div>
             <div class="form-group">
                 <label for="id_usuario"></label>
-                <input wire:model="id_usuario" type="text" class="form-control" id="id_usuario" placeholder="Id Usuario">@error('id_usuario') <span class="error text-danger">{{ $message }}</span> @enderror
+                <select  wire:model="id_usuario" class='form-control'>
+                <option value="">usuario</option>
+                    @foreach($users as $users)
+                    <option value="{{auth()->user()->id}}">{{auth()->user()->id}} </option>
+                    @endforeach
+                </select>
+
+
+
+            </div>
+
+            <div class="form-group">
+                <label for="id_tipo_producto"></label>
+                <select wire:model='id_tiposdeproductos' class='form-control'>
+                    <option value="">Clasificacion de producto</option>
+                    @foreach($tiposdeproductos as $tiposdeproductos)
+                    <option value="{{$tiposdeproductos->id}}">{{$tiposdeproductos->clasificacion}} </option>
+                    @endforeach
+            </select>
             </div>
 
                 </form>

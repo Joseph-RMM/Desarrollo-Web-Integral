@@ -1,5 +1,4 @@
-@section('title', __('Productos'))
-
+@section('title', __('Tiposdeproductos'))
 <div class="container-fluid">
 	<div class="row justify-content-center">
 		<div class="col-md-12">
@@ -8,7 +7,7 @@
 					<div style="display: flex; justify-content: space-between; align-items: center;">
 						<div class="float-left">
 							<h4><i class="fab fa-laravel text-info"></i>
-							Producto Listing </h4>
+							Tiposdeproducto Listing </h4>
 						</div>
 						<div wire:poll.60s>
 							<code><h5>{{ now()->format('H:i:s') }} UTC</h5></code>
@@ -17,41 +16,31 @@
 						<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
 						@endif
 						<div>
-							<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Productos">
+							<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Tiposdeproductos">
 						</div>
 						<div class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">
-						<i class="fa fa-plus"></i>  Add Productos
+						<i class="fa fa-plus"></i>  Add Tiposdeproductos
 						</div>
 					</div>
 				</div>
 				
 				<div class="card-body">
-						@include('livewire.productos.create')
-						@include('livewire.productos.update')
+						@include('livewire.tiposdeproductos.create')
+						@include('livewire.tiposdeproductos.update')
 				<div class="table-responsive">
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
 							<tr> 
-								<td>#</td>
-								<th>Nombre</th>
-								
-								<th>Descripcion</th>
-								<th>Foto</th>
-								<th>Estado Actual Del Producto</th>
-								<th>Id Usuario</th>
+								<td>#</td> 
+								<th>Clasificacion</th>
 								<td>ACTIONS</td>
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($productos as $row)
+							@foreach($tiposdeproductos as $row)
 							<tr>
 								<td>{{ $loop->iteration }}</td> 
-								<td>{{ $row->nombre }}</td>
-								
-								<td>{{ $row->Descripcion }}</td>
-								<td>{{ $row->foto }}</td>
-								<td>{{ $row->Estado_actual_del_producto }}</td>
-								<td>{{ $row->id_usuario }}</td>
+								<td>{{ $row->clasificacion }}</td>
 								<td width="90">
 								<div class="btn-group">
 									<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -59,21 +48,17 @@
 									</button>
 									<div class="dropdown-menu dropdown-menu-right">
 									<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a>							 
-									<a class="dropdown-item" onclick="confirm('Confirm Delete Producto id {{$row->id}}? \nDeleted Productos cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a>   
+									<a class="dropdown-item" onclick="confirm('Confirm Delete Tiposdeproducto id {{$row->id}}? \nDeleted Tiposdeproductos cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a>   
 									</div>
 								</div>
 								</td>
 							@endforeach
 						</tbody>
 					</table>						
-					{{ $productos->links() }}
+					{{ $tiposdeproductos->links() }}
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-  </div>
-
-
-
-
+</div>

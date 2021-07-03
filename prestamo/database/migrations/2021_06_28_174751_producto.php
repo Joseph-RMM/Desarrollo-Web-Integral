@@ -13,17 +13,25 @@ class Producto extends Migration
      */
     public function up()
     {
+
+        Schema::create('tiposdeproductos', function (Blueprint $table) {
+            $table->id();
+            $table->string('clasificacion');
+            $table->timestamps();
+        });
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('categoria');
             $table->string('Descripcion');
             $table->string('foto');
             $table->timestamps();
-            $table->string('Estado_actual_del_producto');
-            $table->unsignedBigInteger('id_usuario');
-            $table->foreign('id_usuario')->references('id')->on('users');
+            $table->string('Estado_actual_del_producto');            
+            $table->unsignedBigInteger('id_usuario')->index();            
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');        
+            $table->unsignedBigInteger('id_tiposdeproductos')->unsigned();
+            $table->foreign('id_tiposdeproductos')->references('id')->on('tiposdeproductos');          
         });
+        
     }
 
     /**
@@ -33,6 +41,9 @@ class Producto extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('producto');
+        Schema::dropIfExists('tiposdeproductos');
+
+        Schema::dropIfExists('productos');
+        Schema::dropIfExists('tiposdeproductos');
     }
 }

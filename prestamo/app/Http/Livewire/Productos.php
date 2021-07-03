@@ -5,69 +5,103 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Producto;
+use App\Models\Tiposdeproducto;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use WithFileUploads;
+use Livewire\WithFileUploads;
+use \Illuminate\Http\Request;
+use App\Models\User;
 
 class Productos extends Component
 {
-    use WithPagination;
+
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $nombre, $categoria, $Descripcion, $foto, $Estado_actual_del_producto, $id_usuario;
+    public $selected_id, $keyWord, $nombre, $Descripcion, $foto, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
     public $updateMode = false;
+    public $selectedtiposdeproductos=null;
+    public $tipos_deproductos=null;
+    public $usuario=null;
+    use WithPagination;
+    use WithFileUploads;
 
+    public function upload(){
+        //dd('Rad');=
+
+        $validatedData=$this->validate([
+            'foto' => 'image|max:1024'
+        ]);
+
+
+        $foto=$this->foto->store('foto','public');
+        $validatedData['foto']=$foto;
+        Producto::create($validatedData);
+        $this->emit('fotosubida');
+		session()->flash('message', 'no estoy funcionando');
+    }
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.productos.view', [
             'productos' => Producto::latest()
                         ->orWhere('nombre', 'LIKE', $keyWord)
-                        ->orWhere('categoria', 'LIKE', $keyWord)
+
 						->orWhere('Descripcion', 'LIKE', $keyWord)
 						->orWhere('foto', 'LIKE', $keyWord)
 						->orWhere('Estado_actual_del_producto', 'LIKE', $keyWord)
 						->orWhere('id_usuario', 'LIKE', $keyWord)
+                        ->orWhere('id_tiposdeproductos', 'LIKE', $keyWord)
 						->paginate(10),
+            'tiposdeproductos' => Tiposdeproducto::all(),
+            'users' => User::all()
         ]);
-    }
-	
+
+}
     public function cancel()
     {
         $this->resetInput();
         $this->updateMode = false;
     }
-	
+
     private function resetInput()
-    {	
+    {
         $this->nombre = null;
-        $this->categoria = null;
+
 		$this->Descripcion = null;
 		$this->foto = null;
 		$this->Estado_actual_del_producto = null;
 		$this->id_usuario = null;
+        $this->id_tiposdeproductos = null;
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        //if($request->hasFile('foto')){
+           // $path = $request->image->store('public');
+          //  Image::create(['path'=>$path]);
+            //$product['foto']=$request->file(key:'foto')->store(path:'fotos');
+        //}
         $this->validate([
         'nombre' => 'required',
-        'categoria' => 'required',    
 		'Descripcion' => 'required',
-		'foto' => 'required',
+		'foto' => 'image|max:1024',
 		'Estado_actual_del_producto' => 'required',
 		'id_usuario' => 'required',
+        'id_tiposdeproductos' => 'required',
         ]);
 
-        Producto::create([ 
-            'nombre' => $this-> nombre,
-            'categoria' => $this-> categoria,
-			'Descripcion' => $this-> Descripcion,
-			'foto' => $this-> foto,
-			'Estado_actual_del_producto' => $this-> Estado_actual_del_producto,
-			'id_usuario' => $this-> id_usuario
-        ]);
+        $foto=$this->foto->store('foto','public');
         
+        Producto::create([
+            'nombre' => $this-> nombre,
+			'Descripcion' => $this-> Descripcion,
+            'Estado_actual_del_producto'=> $this-> Estado_actual_del_producto,
+			'foto' => $this-> foto,
+			'id_usuario' => $this-> id_usuario,
+            'id_tiposdeproductos' => $this-> id_tiposdeproductos,
+
+        ]);
+
         $this->resetInput();
 		$this->emit('closeModal');
 		session()->flash('message', 'Producto Successfully created.');
@@ -77,14 +111,14 @@ class Productos extends Component
     {
         $record = Producto::findOrFail($id);
 
-        $this->selected_id = $id; 
+        $this->selected_id = $id;
         $this->nombre = $record-> nombre;
-        $this->categoria = $record-> categoria;
 		$this->Descripcion = $record-> Descripcion;
 		$this->foto = $record-> foto;
 		$this->Estado_actual_del_producto = $record-> Estado_actual_del_producto;
 		$this->id_usuario = $record-> id_usuario;
-		
+        $this->id_tiposdeproductos = $record-> id_tiposdeproductos;
+
         $this->updateMode = true;
     }
 
@@ -92,22 +126,22 @@ class Productos extends Component
     {
         $this->validate([
         'nombre' => 'required',
-        'categoria' => 'required',
 		'Descripcion' => 'required',
 		'foto' => 'required',
 		'Estado_actual_del_producto' => 'required',
 		'id_usuario' => 'required',
+        'id_tiposdeproductos' => 'required',
         ]);
 
         if ($this->selected_id) {
 			$record = Producto::find($this->selected_id);
-            $record->update([ 
+            $record->update([
             'nombre' => $this-> nombre,
-            'categoria' => $this-> categoria,    
 			'Descripcion' => $this-> Descripcion,
 			'foto' => $this-> foto,
 			'Estado_actual_del_producto' => $this-> Estado_actual_del_producto,
-			'id_usuario' => $this-> id_usuario
+			'id_usuario' => $this-> id_usuario,
+            'id_tiposdeproductos' => $this-> id_tiposdeproductos,
             ]);
 
             $this->resetInput();

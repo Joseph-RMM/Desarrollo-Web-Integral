@@ -21,7 +21,9 @@
     <link href="{{ asset('css/inicioadmin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilo-usuarios.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilo-agregarusuario.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/productos.css') }}" rel="stylesheet">
+
 
     <!-- Bootstrap y Fontawesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -48,10 +50,20 @@
                     <!-- Left Side Of Navbar -->
                     @auth()
                     <ul class="navbar-nav mr-auto">
-                        <!--Nav Bar Hooks - Do not delete!!-->
-						<li class="nav-item">
-                            <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Producto</a> 
+                        @can("admin.home")
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
                         </li>
+						<li class="nav-item">
+                            <a href="{{ url('/productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
+                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
+                            </li>
+                        @endcan
                     </ul>
                     @endauth()
 
@@ -69,7 +81,7 @@
                         @endif
 
                         @if (Route::has('register'))
-                        <!-- 
+                        <!--
                             BOTON DE REGISTRAR
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -77,10 +89,12 @@
                         -->
                         @endif
                         @else
+
                         <!-- Productos -->
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/users') }}">Usuario</a>
                         </li>
+
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -88,6 +102,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @can("admin.home")
+                                <a class="dropdown-item" href="{{ url('/Dashboard') }}" >
+                                    {{ __('Dashboard') }}
+                                </a>
+                                @endcan
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
