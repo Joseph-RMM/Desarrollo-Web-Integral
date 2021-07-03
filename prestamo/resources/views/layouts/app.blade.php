@@ -23,6 +23,9 @@
     <link href="{{ asset('css/estilo-agregarusuario.css') }}" rel="stylesheet">
     <link href="{{ asset('css/productos.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('css/productos.css') }}" rel="stylesheet">
+
+
     <!-- Bootstrap y Fontawesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -83,6 +86,7 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         -->
+<<<<<<< HEAD
                     @endif
                     @else
                     <li class="nav-item dropdown">
@@ -94,6 +98,20 @@
                             @can("admin.home")
                             <a class="dropdown-item" href="{{ url('/Dashboard') }}">
                                 {{ __('Dashboard') }}
+=======
+                        @endif
+                        @else
+
+                        <!-- Productos -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/users') }}">Usuario</a>
+                        </li>
+
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+>>>>>>> 502cce6779d1273b3203593b2728605f6bcedd6f
                             </a>
                             @endcan
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

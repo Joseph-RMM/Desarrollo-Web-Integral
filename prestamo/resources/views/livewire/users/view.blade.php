@@ -1,3 +1,4 @@
+
 <div class="container">
 	<div class="alert colordark" role="alert">
 		<div class="row">
@@ -15,12 +16,14 @@
 			<div class="col-lg-2 col-md-2 col-sm-2">
 				<div class="usuario-white">
 					<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-user"> </i> Agregar usuario</button>
+
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="table-responsive">
+
 		@include('livewire.users.create')
 		@include('livewire.users.update')
 		<table class="table table-hover">
