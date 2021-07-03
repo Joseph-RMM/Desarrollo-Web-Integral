@@ -37,7 +37,6 @@
 								<tr>
 									<td>#</td>
 									<th>Nombre</th>
-									<th>Categoria</th>
 									<th>Descripcion</th>
 									<th>Foto</th>
 									<th>Estado Actual Del Producto</th>
@@ -50,7 +49,6 @@
 								<tr>
 									<td>{{ $loop->iteration }}</td>
 									<td>{{ $row->nombre }}</td>
-									<td>{{ $row->categoria }}</td>
 									<td>{{ $row->Descripcion }}</td>
 									<td>{{ $row->foto }}</td>
 									<td>{{ $row->Estado_actual_del_producto }}</td>
