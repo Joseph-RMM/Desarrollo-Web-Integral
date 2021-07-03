@@ -22,6 +22,9 @@
     <link href="{{ asset('css/estilo-usuarios.css') }}" rel="stylesheet">
     <link href="{{ asset('css/estilo-agregarusuario.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('css/productos.css') }}" rel="stylesheet">
+
+
     <!-- Bootstrap y Fontawesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -87,7 +90,10 @@
                         @endif
                         @else
 
-
+                        <!-- Productos -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/users') }}">Usuario</a>
+                        </li>
 
 
                         <li class="nav-item dropdown">
