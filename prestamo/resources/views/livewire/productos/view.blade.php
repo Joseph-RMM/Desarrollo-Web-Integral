@@ -1,83 +1,54 @@
-
 @section('title', __('Productos'))
+<div class="container">
 
-<div class="container-fluid">
-	<div class="row justify-content-center">
-		<div class="col-md-12">
-			<div class="card">
-				<div class="card-header">
-					<div style="display: flex; justify-content: space-between; align-items: center;">
-						<div class="float-left">
-							<h4><i class="fab fa-laravel text-info"></i>
-								Producto Listing </h4>
-						</div>
-						<div wire:poll.60s>
-							<code>
-								<h5>{{ now()->format('H:i:s') }} UTC</h5>
-							</code>
-						</div>
-						@if (session()->has('message'))
-						<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
-						@endif
-						<div>
-							<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Productos">
-						</div>
-						<div class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">
-							<i class="fa fa-plus"></i> Add Productos
-						</div>
-					</div>
+	<div class="alert colordark" role="alert">
+		<div class="row">
+			<div class="col-lg-5 col-md-5 col-sm-1">
+				<div class="usuario-white">
+					<b>Usuarios</b>
 				</div>
 
-				<div class="card-body">
-					@include('livewire.productos.create')
-					@include('livewire.productos.update')
-					<div class="table-responsive">
-						<table class="table table-bordered table-sm">
-							<thead class="thead">
-								<tr>
-									<td>#</td>
-									<th>Nombre</th>
-									<th>Descripcion</th>
-									<th>Foto</th>
-									<th>Estado Actual Del Producto</th>
-									<th>Id Usuario</th>
-									<td>ACTIONS</td>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach($productos as $row)
-								<tr>
-									<td>{{ $loop->iteration }}</td>
-									<td>{{ $row->nombre }}</td>
-									<td>{{ $row->Descripcion }}</td>
-									<td>{{ $row->foto }}</td>
-									<td>{{ $row->Estado_actual_del_producto }}</td>
-									<td>{{ $row->id_usuario }}</td>
-									<td width="90">
-										<div class="btn-group">
-											<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												Actions
-											</button>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a>
-												<a class="dropdown-item" onclick="confirm('Confirm Delete Producto id {{$row->id}}? \nDeleted Productos cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a>
-											</div>
-										</div>
-									</td>
-								</tr>
-								@endforeach
-							</tbody>
-						</table>
-						{{ $productos->links() }}
-					</div>
-				</div>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-1">
+				@if (session()->has('message'))
+				<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
+				@endif
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2">
+				<div class="usuario-white">
+					<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fab fa-product-hunt"></i> </i> Agregar productos</button>
 
-				
+				</div>
 			</div>
 		</div>
 	</div>
-  </div>
+	<br>
+	<!-- -->
+</div>
+
+<div class="container">
+	<h5><b class="negro">Productos más prestados:</b></h5>
+</div>
+
+@include('livewire.productos.create')
+@include('livewire.productos.update')
 
 
+<div class="container contenedor">
+	<center>
+		<div class="row">
+		@foreach($productos as $row)
+			<div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
+				<div class="card cards" style="width: 18rem;">
+					<img class="card-img-top" src="#">
+					<div class="card-body contenido">
+						<h5 data-toggle="modal" data-target="#updateModal"  wire:click="edit({{$row->id}})" class="card-title">{{ $row->nombre }}</h5>
+					</div>
+				</div>
+			</div>
+			@endforeach
+		</div>
+		{{ $productos->links() }}
 
-
+	</center>
+</div>
