@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 
 class ImageUpload extends Component
 {
+    
     use WithPagination;
 
 
