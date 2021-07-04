@@ -24,19 +24,21 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="card-body">
 						@include('livewire.productos.create')
 						@include('livewire.productos.update')
 				<div class="table-responsive">
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
-							<tr> 
+							<tr>
 								<td>#</td>
 								<th>Nombre</th>
-								
+
 								<th>Descripcion</th>
 								<th>Foto</th>
+                                <th>Foto2</th>
+                                <th>Foto3</th>
 								<th>Estado Actual Del Producto</th>
 								<th>Id Usuario</th>
 								<td>ACTIONS</td>
@@ -45,11 +47,13 @@
 						<tbody>
 							@foreach($productos as $row)
 							<tr>
-								<td>{{ $loop->iteration }}</td> 
+								<td>{{ $loop->iteration }}</td>
 								<td>{{ $row->nombre }}</td>
-								
+
 								<td>{{ $row->Descripcion }}</td>
 								<td>{{ $row->foto }}</td>
+                                <td>{{ $row->foto2 }}</td>
+                                <td>{{ $row->foto3 }}</td>
 								<td>{{ $row->Estado_actual_del_producto }}</td>
 								<td>{{ $row->id_usuario }}</td>
 								<td width="90">
@@ -58,15 +62,20 @@
 									Actions
 									</button>
 									<div class="dropdown-menu dropdown-menu-right">
-									<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a>							 
-									<a class="dropdown-item" onclick="confirm('Confirm Delete Producto id {{$row->id}}? \nDeleted Productos cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a>   
+									<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a>
+									<a class="dropdown-item" onclick="confirm('Confirm Delete Producto id {{$row->id}}? \nDeleted Productos cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a>
 									</div>
 								</div>
 								</td>
 							@endforeach
 						</tbody>
-					</table>						
+					</table>
 					{{ $productos->links() }}
+                    @foreach($productos as $row)
+                    <img src="{{ $row->foto }}">
+                        <img src="{{ $row->foto2 }}">
+                        <img src="{{ $row->foto3 }}">
+                    @endforeach
 					</div>
 				</div>
 			</div>

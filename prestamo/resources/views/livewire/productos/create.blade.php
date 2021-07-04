@@ -9,7 +9,7 @@
                 </button>
             </div>
         <div class="modal-body">
-				<form>
+				<form enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nombre"></label>
                 <input wire:model="nombre" type="text" class="form-control" id="nombre" placeholder="nombre">@error('nombre') <span class="error text-danger">{{ $message }}</span> @enderror
@@ -21,11 +21,11 @@
                 <input wire:model="Descripcion" type="text" class="form-control" id="Descripcion" placeholder="Descripcion">@error('Descripcion') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
 
-            <div class="form-group" enctype="multipart/form-data">
+            <div class="form-group">
 
-                <label for="foto"></label>
+                <label for="foto">Añadir imagenes</label>
 
-                <input wire:model="foto" type="file" class="form-control" id="foto" placeholder="Sube aqui tu foto" accept='image/x-png,image/gif,image/jpg,image/jpeg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model="foto" type="file" class="form-control" id="foto" placeholder="Sube aqui tu foto" multiple accept='image/x-png,image/gif,image/jpg,image/jpeg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
 
 
 
