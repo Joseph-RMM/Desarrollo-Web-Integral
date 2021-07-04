@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Faker\Provider\Image;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Producto;
@@ -12,18 +13,19 @@ use Livewire\WithFileUploads;
 use \Illuminate\Http\Request;
 use App\Models\User;
 
+
 class Productos extends Component
 {
-
+    use WithPagination;
+    use WithFileUploads;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $nombre, $Descripcion, $foto, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
+    public $selected_id, $keyWord, $nombre, $Descripcion, $foto, $foto2, $foto3, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
     public $updateMode = false;
     public $selectedtiposdeproductos=null;
     public $tipos_deproductos=null;
     public $usuario=null;
-    use WithPagination;
-    use WithFileUploads;
+
 
     public function upload(){
         //dd('Rad');=
@@ -83,19 +85,27 @@ class Productos extends Component
         $this->validate([
         'nombre' => 'required',
 		'Descripcion' => 'required',
-		'foto' => 'image|max:1024',
+		'foto.*' => 'image|max:1024',
 		'Estado_actual_del_producto' => 'required',
 		'id_usuario' => 'required',
         'id_tiposdeproductos' => 'required',
         ]);
 
-        $foto=$this->foto->store('foto','public');
-        
+        //$namefotos=$this->foto->store('foto','public');
+        $urlclean=[];
+        $inde=0;
+        foreach ($this->foto as $fotoname){
+            $namefoto=$fotoname->store('foto','public');
+            $urlclean[$inde++]=Storage::url($namefoto);
+        }
+        //$urlclean=Storage::url($namefoto);
         Producto::create([
             'nombre' => $this-> nombre,
 			'Descripcion' => $this-> Descripcion,
             'Estado_actual_del_producto'=> $this-> Estado_actual_del_producto,
-			'foto' => $this-> foto,
+			'foto' => $urlclean[0],
+            'foto2' => $urlclean[1],
+            'foto3' => $urlclean[2],
 			'id_usuario' => $this-> id_usuario,
             'id_tiposdeproductos' => $this-> id_tiposdeproductos,
 

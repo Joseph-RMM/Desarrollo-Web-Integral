@@ -8,6 +8,7 @@
 					<b>Usuarios</b>
 				</div>
 
+
 			</div>
 			<div class="col-lg-5 col-md-5 col-sm-1">
 				@if (session()->has('message'))
@@ -17,6 +18,7 @@
 			<div class="col-lg-2 col-md-2 col-sm-2">
 				<div class="usuario-white">
 					<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fab fa-product-hunt"></i> </i> Agregar productos</button>
+
 
 				</div>
 			</div>

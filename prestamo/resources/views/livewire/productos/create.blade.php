@@ -2,6 +2,7 @@
 <div wire:ignore.self class="modal fade bd-example-modal-lg" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+
             <div class="modal-body">
                 <div class="container">
                     <div class="alert colordark" role="alert">
@@ -40,6 +41,8 @@
                                         <option value="D">Disponible</option>
                                     </select>
                                 </div>
+
+            
 
                                 <div class="field">
                                     <label for="id_usuario"> Id usuario<b class="rojo">*</b></label>

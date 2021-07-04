@@ -24,14 +24,16 @@ class Producto extends Migration
             $table->string('nombre');
             $table->string('Descripcion');
             $table->string('foto');
+            $table->string('foto2');
+            $table->string('foto3');
             $table->timestamps();
-            $table->string('Estado_actual_del_producto');            
-            $table->unsignedBigInteger('id_usuario')->index();            
-            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');        
+            $table->string('Estado_actual_del_producto');
+            $table->unsignedBigInteger('id_usuario')->index();
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_tiposdeproductos')->unsigned();
-            $table->foreign('id_tiposdeproductos')->references('id')->on('tiposdeproductos');          
+            $table->foreign('id_tiposdeproductos')->references('id')->on('tiposdeproductos');
         });
-        
+
     }
 
     /**
@@ -44,6 +46,5 @@ class Producto extends Migration
         Schema::dropIfExists('tiposdeproductos');
 
         Schema::dropIfExists('productos');
-        Schema::dropIfExists('tiposdeproductos');
     }
 }
