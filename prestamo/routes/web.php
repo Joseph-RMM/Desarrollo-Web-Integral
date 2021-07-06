@@ -20,11 +20,11 @@ Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Route Hooks - Do not delete//
+	Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('auth');
 	Route::view('producto', 'livewire.productos.index')->middleware('auth');
 	Route::view('users', 'livewire.users.index')->middleware('auth');
 
-	
-	Route::view('image-upload', 'livewire.image-upload')->middleware('auth');
+	//Route::view('image-upload', 'livewire.image-upload')->middleware('auth');
 	
 Auth::routes();
 

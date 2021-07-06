@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\User;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Users extends Component
+class Users extends Component implements MustVerifyEmail
 {
     use WithPagination;
 
