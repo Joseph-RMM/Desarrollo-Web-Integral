@@ -74,7 +74,13 @@ class Productos extends Component
 		$this->id_usuario = null;
         $this->id_tiposdeproductos = null;
     }
-
+    public function messages()
+    {
+        return [
+            'foto.min' => 'Sube tres imagenes solamente',
+            'foto.max' => 'Sube tres imagenes solamente',
+        ];
+    }
     public function store(Request $request)
     {
         //if($request->hasFile('foto')){
@@ -86,6 +92,7 @@ class Productos extends Component
         'nombre' => 'required',
 		'Descripcion' => 'required',
 		'foto.*' => 'image|max:1024',
+        'foto' => 'min:3|max:3',
 		'Estado_actual_del_producto' => 'required',
 		'id_usuario' => 'required',
         'id_tiposdeproductos' => 'required',

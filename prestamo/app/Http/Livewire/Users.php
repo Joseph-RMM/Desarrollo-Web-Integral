@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Dotenv\Exception\ValidationException;
+use http\Client\Request;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -46,6 +47,7 @@ class Users extends Component
 		$this->email = null;
     }
 
+
     public function store()
     {
         $this->validate([
@@ -80,33 +82,38 @@ class Users extends Component
 		$this->email = $record-> email;
         $this->updateMode = true;
     }
-    protected $messages = [
-        'email.required' => 'The Email Address cannot be empty.',
-        'email.email' => 'The Email Address format is not valid.',
-    ];
-    public function update()
+
+    public function messages()
+    {
+        return [
+            'email.unique' => 'Sube tres imagenes solamente',
+            'email.max' => 'Sube tres imagenes solamente',
+        ];
+    }
+
+    public function updates()
     {
         $this->validate([
-            'name' => ['required', 'string', 'min:3', 'max:50'],
-            'lastname' => ['required', 'string','min:3', 'max:51'],
-            'tel' => ['required', 'digits:10'],
-            'email' => ['required', 'string', 'email', 'unique:users', 'regex:/(.*)@(gmail|yahoo|outlook)\.com/i'],
-            'password' => ['required', 'string', 'min:8'],
-            'password_confirmation'=> ['required', 'string', 'min:8','same:password'],
+        'name' => ['required','string','min:3','max:50'],
+        'lastname' => ['required','string','min:3','max:51'],
+        'tel' => ['required','digits:10']
         ]);
-
-        if ($this->selected_id) {
-			$record = User::find($this->selected_id);
-            $record->update([
-			'name' => $this-> name,
-			'lastname' => $this-> lastname,
-			'tel' => $this-> tel,
-			'email' => $this-> email
+        $record = User::findOrFail($this->selected_id);
+        if($record->email!==$this-> email) {
+            $this->validate([
+                'email' => ['required','min:10','email','unique:users','regex:/(.*)@(gmail|yahoo|outlook)\.com/i']
             ]);
-           }
-        else{
-            $this->updateMode = false;
-            session()->flash('message', 'Invalid Mail');
+        }
+        if ($this->selected_id) {
+            $record->update([
+                'name' => $this->name,
+                'lastname' => $this->lastname,
+                'tel' => $this->tel,
+                'email' => $this->email
+            ]);
+        } else {
+            $this->updateMode = true;
+            session()->flash('message', 'El usuario no se pudo editar');
             $this->resetInputFields();
         }
     }
