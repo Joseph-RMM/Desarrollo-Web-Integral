@@ -15,9 +15,15 @@ class Productossolicitados extends Migration
     {
         Schema::create('productossolicitados', function (Blueprint $table) {
             $table->id();
+            //producto
             $table->unsignedBigInteger('id_tiposdeproductos');
             $table->foreign('id_tiposdeproductos')->references('id')->on('productos');
+
             $table->date('fecha_devolucion');
+            //solicitado
+            $table->unsignedBigInteger('id_solicitud');
+            $table->foreign('id_solicitud')->references('id')->on('solicitudes');
+                        
             $table->timestamps();
         });
     }

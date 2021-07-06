@@ -18,11 +18,13 @@ class Solicitudes extends Migration
             $table->string('Mensaje');
             $table->string('status');
             $table->timestamps();
+            //usuario
             $table->unsignedBigInteger('id_usuario');
             $table->foreign('id_usuario')->references('id')->on('users');
-            
+            //usuario solicitante
             $table->unsignedBigInteger('id_usuariosolicitante');
             $table->foreign('id_usuariosolicitante')->references('id')->on('users');
+            
         });
     }
 
