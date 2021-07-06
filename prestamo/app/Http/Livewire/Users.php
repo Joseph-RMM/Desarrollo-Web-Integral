@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Dotenv\Exception\ValidationException;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -9,13 +10,14 @@ use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Users extends Component implements MustVerifyEmail
+class Users extends Component
 {
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $name, $lastname, $tel, $email,$password,$password_confirmation;
     public $updateMode = false;
+
 
     public function render()
     {
@@ -47,12 +49,12 @@ class Users extends Component implements MustVerifyEmail
     public function store()
     {
         $this->validate([
-            'name' => ['required', 'string', 'max:50'],
-            'lastname' => ['required', 'string', 'max:51'],
-            'tel' => ['required', 'string', 'max:13'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
-            'password_confirmation'=> ['required', 'string', 'min:8','same:password'],
+            'name' => ['required','string','min:3','max:50'],
+            'lastname' => ['required','string','min:3','max:51'],
+            'tel' => ['required','digits:10'],
+            'email' => ['required','string','email','unique:users','regex:/(.*)@(gmail|yahoo|outlook)\.com/i'],
+            'password' => ['required','string','min:8'],
+            'password_confirmation'=> ['required','string','min:8','same:password']
         ]);
 
         User::create([
@@ -65,29 +67,32 @@ class Users extends Component implements MustVerifyEmail
 
         $this->resetInput();
 		$this->emit('closeModal');
-		session()->flash('message', 'User Successfully created.');
+		session()->flash('message', 'Se ha creado un nuevo Usuario.');
     }
 
     public function edit($id)
     {
         $record = User::findOrFail($id);
-
         $this->selected_id = $id;
 		$this->name = $record-> name;
 		$this->lastname = $record-> lastname;
 		$this->tel = $record-> tel;
 		$this->email = $record-> email;
-
         $this->updateMode = true;
     }
-
+    protected $messages = [
+        'email.required' => 'The Email Address cannot be empty.',
+        'email.email' => 'The Email Address format is not valid.',
+    ];
     public function update()
     {
         $this->validate([
-		'name' => 'required',
-		'lastname' => 'required',
-		'tel' => 'required',
-		'email' => 'required',
+            'name' => ['required', 'string', 'min:3', 'max:50'],
+            'lastname' => ['required', 'string','min:3', 'max:51'],
+            'tel' => ['required', 'digits:10'],
+            'email' => ['required', 'string', 'email', 'unique:users', 'regex:/(.*)@(gmail|yahoo|outlook)\.com/i'],
+            'password' => ['required', 'string', 'min:8'],
+            'password_confirmation'=> ['required', 'string', 'min:8','same:password'],
         ]);
 
         if ($this->selected_id) {
@@ -98,10 +103,11 @@ class Users extends Component implements MustVerifyEmail
 			'tel' => $this-> tel,
 			'email' => $this-> email
             ]);
-
-            $this->resetInput();
+           }
+        else{
             $this->updateMode = false;
-			session()->flash('message', 'User Successfully updated.');
+            session()->flash('message', 'Invalid Mail');
+            $this->resetInputFields();
         }
     }
 

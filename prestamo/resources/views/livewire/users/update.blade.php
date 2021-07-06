@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-lg-9 col-md-6 col-sm-2">
                             <div class="usuario-white">
-                                Actializar usuario
+                                Actualizar usuario
                             </div>
                         </div>
                     </div>

@@ -25,39 +25,25 @@
         </div>
     </div>
 
-    <div class="table-responsive">
+
+    <div class="container contenedor">
         @include('livewire.productos.create')
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <td>#</td>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Foto</th>
-                    <th>Foto2</th>
-                    <th>Foto3</th>
-                    <th>Estado Actual Del Producto</th>
-                    <th>Id Usuario</th>
-                    <td>ACTIONS</td>
-                </tr>
-            </thead>
-            <tbody>
+        <center>
+            <div class="row">
                 @foreach($productos as $row)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $row->nombre }}</td>
-                    <td>{{ $row->Descripcion }}</td>
-                    <td><img class="card-img-top" src="{{ $row->foto }}"></td>
-                    <td><img class="card-img-top" src="{{ $row->foto2 }}"></td>
-                    <td><img class="card-img-top" src="{{ $row->foto3 }}"></td>
-                    <td>{{ $row->Estado_actual_del_producto }}</td>
-                    <td>{{ $row->id_usuario }}</td>
-                    <td>
-                        <button onclick="confirm('Confirm Delete Producto id {{$row->id}}? \nDeleted Productos cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="button-rojo button5"><i class="fas fa-trash-alt"></i></button>
-                    </td>
-                </tr>
+                <div class="col-lg-4 col-md-6 col-sm-12 mx-auto">
+                    <div class="card cards" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ $row->foto }}">
+                        <div class="card-body contenido">
+                            <h5 class="card-title">{{ $row->nombre }}</h5>
+                            <p class="card-text">{{ $row->Descripcion }}</p>
+                            <p onclick="confirm('Confirm Delete Producto id {{$row->id}}? \nDeleted Productos cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="rojo">Eliminar</i></button>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
-            </tbody>
-        </table>
+            </div>
+        </center>
     </div>
+
 </div>
