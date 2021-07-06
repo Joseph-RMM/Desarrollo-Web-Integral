@@ -89,8 +89,8 @@ class Productos extends Component
             //$product['foto']=$request->file(key:'foto')->store(path:'fotos');
         //}
         $this->validate([
-        'nombre' => 'required',
-		'Descripcion' => 'required',
+        'nombre' => 'required|min:4',
+		'Descripcion' => 'required|min:20',
 		'foto.*' => 'image|max:1024',
         'foto' => 'min:3|max:3',
 		'Estado_actual_del_producto' => 'required',
