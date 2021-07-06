@@ -67,7 +67,7 @@ class Users extends Component
 
         $this->resetInput();
 		$this->emit('closeModal');
-		session()->flash('message', 'User Successfully created.');
+		session()->flash('message', 'Se ha creado un nuevo Usuario.');
     }
 
     public function edit($id)
