@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Correo electronico <b class="rojo">*</b></label>
-                                    <input wire:model="email" type="text" id="email" placeholder="Email">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
+                                    <input wire:model="email" type="email" id="email" placeholder="Email">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="field">
