@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Municipio;
 use App\Models\Producto;
 use App\Models\Tiposdeproducto;
 use Illuminate\Http\Request;
@@ -37,11 +38,38 @@ class ApiController extends Controller
         }
         return response($response, 200);
     }
+    public function findlocation($location)
+    {
+        //$keyWord = '%'.$categories .'%';
+        $ProductFound=Producto::join('users','productos.id_usuario', '=', 'users.id')
+            ->join('municipios','users.id_municipio', '=', 'municipios.id')
+            ->where('municipios.name', $location)
+            ->simplePaginate(15);
+        $response=[];
+        $aux=0;
+        foreach ($ProductFound as $Product){
+            $response[$aux++]=[
+                'nombre'=>$Product['nombre'],
+                'Descripcion'=>$Product['Descripcion'],
+                'foto1'=>$Product['foto'],
+                'foto2'=>$Product['foto2'],
+                'foto3' =>$Product['foto3'],
+                'updated_at' =>$Product['updated_at'],
+                'EstadoProducto' =>$Product['Estado_actual_del_producto'],
+            ];
+        }
+        return response($response, 200);
+    }
     public function categories()
     {
+        //[{"clasificacion":"Electronicos"},{"clasificacion":"Cocina"}]
         return Tiposdeproducto::all('clasificacion');
     }
-
+    public function locations()
+    {
+        //[{"clasificacion":"Electronicos"},{"clasificacion":"Cocina"}]
+        return Municipio::all('name');
+    }
     /**
      * Store a newly created resource in storage.
      *

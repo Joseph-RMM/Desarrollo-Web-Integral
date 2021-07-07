@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Municipio;
 
 class Users extends Component
 {
@@ -17,11 +18,13 @@ class Users extends Component
 
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $name, $lastname, $tel, $email,$password,$password_confirmation;
+    public $Muni;
     public $updateMode = false;
 
 
     public function render()
     {
+
 		$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.users.view', [
             'users' => User::latest()
@@ -30,6 +33,7 @@ class Users extends Component
 						->orWhere('tel', 'LIKE', $keyWord)
 						->orWhere('email', 'LIKE', $keyWord)
 						->paginate(10),
+            'Municipal'=>Municipio::all()
         ]);
     }
 
@@ -56,7 +60,8 @@ class Users extends Component
             'tel' => ['required','digits:10'],
             'email' => ['required','string','email','unique:users','regex:/(.*)@(gmail|yahoo|outlook)\.com/i'],
             'password' => ['required','string','min:8'],
-            'password_confirmation'=> ['required','string','min:8','same:password']
+            'password_confirmation'=> ['required','string','min:8','same:password'],
+            'Muni'=>['required']
         ]);
 
         User::create([
@@ -64,7 +69,8 @@ class Users extends Component
 			'lastname' => $this-> lastname,
 			'tel' => $this-> tel,
 			'email' => $this-> email,
-            'password' =>Hash::make( $this-> password)
+            'password' =>Hash::make( $this-> password),
+            'id_municipio' => $this-> Muni
         ]);
 
         $this->resetInput();
@@ -80,6 +86,7 @@ class Users extends Component
 		$this->lastname = $record-> lastname;
 		$this->tel = $record-> tel;
 		$this->email = $record-> email;
+        $this->Muni = $record-> Muni;
         $this->updateMode = true;
     }
 

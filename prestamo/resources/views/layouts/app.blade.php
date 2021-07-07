@@ -50,7 +50,7 @@
                     <!-- Left Side Of Navbar -->
                     @auth()
                     <ul class="navbar-nav mr-auto">
-                       
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
                         </li>
@@ -63,7 +63,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
                             </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
+                        </li>
+
                     </ul>
                     @endauth()
 
@@ -104,7 +107,7 @@
                                 <a class="dropdown-item" href="{{ url('/home') }}" >
                                     {{ __('home') }}
                                 </a>
-                               
+
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

@@ -13,6 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::create('municipios', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name',50);
@@ -23,6 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->unsignedBigInteger('id_municipio')->unsigned();
+            $table->foreign('id_municipio')->references('id')->on('municipios');
         });
     }
 
@@ -33,6 +40,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('municipios');
         Schema::dropIfExists('users');
     }
 }

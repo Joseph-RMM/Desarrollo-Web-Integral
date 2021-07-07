@@ -20,7 +20,7 @@ class Productos extends Component
     use WithFileUploads;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $nombre, $Descripcion, $foto, $foto2, $foto3, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos,$id_municipio;
+    public $selected_id, $keyWord, $nombre, $Descripcion, $foto, $foto2, $foto3, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
     public $updateMode = false;
     public $selectedtiposdeproductos=null;
     public $tipos_deproductos=null;
@@ -52,7 +52,6 @@ class Productos extends Component
 						->orWhere('Estado_actual_del_producto', 'LIKE', $keyWord)
 						->orWhere('id_usuario', 'LIKE', $keyWord)
                         ->orWhere('id_tiposdeproductos', 'LIKE', $keyWord)
-                        ->orWhere('id_municipio', 'LIKE', $keyWord)
 						->paginate(10),
             'tiposdeproductos' => Tiposdeproducto::all(),
             'users' => User::all()
@@ -74,7 +73,7 @@ class Productos extends Component
 		$this->Estado_actual_del_producto = null;
 		$this->id_usuario = null;
         $this->id_tiposdeproductos = null;
-        $this->id_municipio = null;
+
     }
     public function messages()
     {
@@ -98,8 +97,8 @@ class Productos extends Component
 		'Estado_actual_del_producto' => 'required',
 		'id_usuario' => 'required',
         'id_tiposdeproductos' => 'required',
-        'id_municipio' => 'required',
-        
+
+
         ]);
 
         //$namefotos=$this->foto->store('foto','public');
@@ -118,8 +117,8 @@ class Productos extends Component
             'foto2' => $urlclean[1],
             'foto3' => $urlclean[2],
 			'id_usuario' => $this-> id_usuario,
-            'id_tiposdeproductos' => $this-> id_tiposdeproductos,         
-            'id_municipio' => $this-> id_municipio,
+            'id_tiposdeproductos' => $this-> id_tiposdeproductos,
+
 
         ]);
 
@@ -139,7 +138,6 @@ class Productos extends Component
 		$this->Estado_actual_del_producto = $record-> Estado_actual_del_producto;
 		$this->id_usuario = $record-> id_usuario;
         $this->id_tiposdeproductos = $record-> id_tiposdeproductos;
-        $this->id_municipio = $record-> id_municipio;
         $this->updateMode = true;
     }
 
@@ -152,7 +150,7 @@ class Productos extends Component
 		'Estado_actual_del_producto' => 'required',
 		'id_usuario' => 'required',
         'id_tiposdeproductos' => 'required',
-        'id_municipio' => 'required',
+
         ]);
 
         if ($this->selected_id) {
@@ -164,7 +162,7 @@ class Productos extends Component
 			'Estado_actual_del_producto' => $this-> Estado_actual_del_producto,
 			'id_usuario' => $this-> id_usuario,
             'id_tiposdeproductos' => $this-> id_tiposdeproductos,
-            'id_municipio' => $this-> id_municipio,
+
             ]);
 
             $this->resetInput();

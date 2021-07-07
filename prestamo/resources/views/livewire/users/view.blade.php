@@ -6,7 +6,7 @@
 				<div class="usuario-white">
 					<b>Usuarios</b>
 				</div>
-				
+
 			</div>
 			<div class="col-lg-5 col-md-5 col-sm-1">
 			@if (session()->has('message'))
@@ -34,7 +34,8 @@
 					<th scope="col">Apellidos</th>
 					<th scope="col">Telefono</th>
 					<th scope="col">Correo</th>
-					<th scope="col">Acción</th>
+					<th scope="col">Municipio</th>
+                    <th scope="col">Acción</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -45,6 +46,7 @@
 					<td>{{ $row->lastname }}</td>
 					<td>{{ $row->tel }}</td>
 					<td>{{ $row->email }}</td>
+                    <td>{{ $row->id_municipio }}</td>
 					<td>
 						<button onclick="confirm('Confirm Delete User id {{$row->id}}? \nDeleted Users cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="button-rojo button5"><i class="fas fa-trash-alt"></i></button>
 						<button data-toggle="modal" data-target="#updateModal" class="button-verde button5" wire:click="edit({{$row->id}})"><i class="fas fa-pencil-alt"></i></button>
