@@ -32,6 +32,9 @@ class Producto extends Migration
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('id_tiposdeproductos')->unsigned();
             $table->foreign('id_tiposdeproductos')->references('id')->on('tiposdeproductos');
+            
+            $table->unsignedBigInteger('id_municipio')->unsigned();
+            $table->foreign('id_municipio')->references('id')->on('municipios');
         });
 
     }

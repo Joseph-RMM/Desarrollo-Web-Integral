@@ -40,7 +40,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.stream', 'Family Dx') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -50,12 +50,12 @@
                     <!-- Left Side Of Navbar -->
                     @auth()
                     <ul class="navbar-nav mr-auto">
-                        @can("admin.home")
+                       
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
+                            <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
                         </li>
 						<li class="nav-item">
-                            <a href="{{ url('/productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
+                            <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
@@ -63,7 +63,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
                             </li>
-                        @endcan
+                        
                     </ul>
                     @endauth()
 
@@ -91,9 +91,7 @@
                         @else
 
                         <!-- Productos -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/users') }}">Usuario</a>
-                        </li>
+
 
 
                         <li class="nav-item dropdown">
@@ -102,11 +100,11 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @can("admin.home")
-                                <a class="dropdown-item" href="{{ url('/Dashboard') }}" >
-                                    {{ __('Dashboard') }}
+                                ("home")
+                                <a class="dropdown-item" href="{{ url('/home') }}" >
+                                    {{ __('home') }}
                                 </a>
-                                @endcan
+                               
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
