@@ -14,7 +14,7 @@
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-2">
 				<div class="usuario-white">
-					<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-user"> </i> Agregar categorias</button>
+					<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-clipboard"></i> Agregar categorias</button>
 				</div>
 			</div>
 		</div>
