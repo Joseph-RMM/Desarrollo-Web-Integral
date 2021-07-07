@@ -115,7 +115,6 @@ class Productos extends Component
             'foto3' => $urlclean[2],
 			'id_usuario' => $this-> id_usuario,
             'id_tiposdeproductos' => $this-> id_tiposdeproductos,
-
         ]);
 
         $this->resetInput();

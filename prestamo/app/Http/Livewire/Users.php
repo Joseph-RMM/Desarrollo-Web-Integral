@@ -83,13 +83,7 @@ class Users extends Component
         $this->updateMode = true;
     }
 
-    public function messages()
-    {
-        return [
-            'email.unique' => 'Sube tres imagenes solamente',
-            'email.max' => 'Sube tres imagenes solamente',
-        ];
-    }
+
 
     public function updates()
     {
