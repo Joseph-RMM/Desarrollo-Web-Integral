@@ -124,3 +124,15 @@
     text-decoration: none;
 }
 
+.muynegro {
+    color: black;
+}
+
+.paraeltitulo {
+    color: rgba(53, 61, 79, 0.8)
+}
+
+.verduras {
+    color: rgba(110, 225, 168, 1);
+    ;
+}

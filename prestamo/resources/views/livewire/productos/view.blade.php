@@ -28,6 +28,8 @@
 
     <div class="container contenedor">
         @include('livewire.productos.create')
+        @include('livewire.productos.vista')
+
         <center>
             <div class="row">
                 @foreach($productos as $row)
@@ -35,9 +37,7 @@
                     <div class="card cards" style="width: 18rem;">
                         <img class="card-img-top" src="{{ $row->foto }}">
                         <div class="card-body contenido">
-                            <h5 class="card-title">{{ $row->nombre }}</h5>
-                            <p class="card-text">{{ $row->Descripcion }}</p>
-                            <p onclick="confirm('Confirm Delete Producto id {{$row->id}}? \nDeleted Productos cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="rojo">Eliminar</i></button>
+                            <h5 data-toggle="modal" data-target="#updateModal" wire:click="modal({{$row->id}})" class="card-title">{{ $row->nombre }}</h5>
                         </div>
                     </div>
                 </div>
