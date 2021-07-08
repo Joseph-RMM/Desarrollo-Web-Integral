@@ -17,7 +17,11 @@
             </div>
             <div class="form-group">
                 <label for="status"></label>
-                <input wire:model="status" type="text" class="form-control" id="status" placeholder="Status">@error('status') <span class="error text-danger">{{ $message }}</span> @enderror
+                <select wire:model="status" class='form-control'>
+                <option value="P">Estado del producto</option>
+                    <option value="P">Pendiente</option>
+                    <option value="A">Aceptar</option>
+            </select>
             </div>
             <div class="form-group">
                 <label for="id_usuario"></label>
@@ -25,7 +29,12 @@
             </div>
             <div class="form-group">
                 <label for="id_usuariosolicitante"></label>
-                <input wire:model="id_usuariosolicitante" type="text" class="form-control" id="id_usuariosolicitante" placeholder="Id Usuariosolicitante">@error('id_usuariosolicitante') <span class="error text-danger">{{ $message }}</span> @enderror
+                <select wire:model="id_usuariosolicitante" class='form-control'>
+                    <option value="">Usuarios que puede que conoscas</option>
+                     @foreach($users as $users)
+                    <option value="{{$users->id}}">{{$users->name}} {{$users->lastname}}</option>
+                    @endforeach
+                </select>
             </div>
 
                 </form>

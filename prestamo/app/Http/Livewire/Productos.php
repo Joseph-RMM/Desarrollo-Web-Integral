@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\WithFileUploads;
 use \Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Post;
 
 class Productos extends Component
 {
@@ -25,7 +25,7 @@ class Productos extends Component
     public $selectedtiposdeproductos=null;
     public $tipos_deproductos=null;
     public $usuario=null;
-
+    public $productos=null;
 
     public function upload(){
         //dd('Rad');=
@@ -168,6 +168,13 @@ class Productos extends Component
             $this->updateMode = false;
 			session()->flash('message', 'Producto Successfully updated.');
         }
+    }
+
+    public function disponibles(){
+       // $pdisponible=DB::table('productos')->where('Estado_actual_del_producto','=','D')->get();
+
+        return view('Productos.productos.productosdisponible',[
+           'posts'=>Posts::orderBy('id','desc')->paginate(8)]);
     }
 
     public function destroy($id)

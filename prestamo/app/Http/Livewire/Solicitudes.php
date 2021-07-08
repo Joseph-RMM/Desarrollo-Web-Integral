@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Solicitude;
+use App\Models\User;
 
 class Solicitudes extends Component
 {
@@ -24,6 +25,7 @@ class Solicitudes extends Component
 						->orWhere('id_usuario', 'LIKE', $keyWord)
 						->orWhere('id_usuariosolicitante', 'LIKE', $keyWord)
 						->paginate(10),
+            'users' => User::all()
         ]);
     }
 	
@@ -53,7 +55,7 @@ class Solicitudes extends Component
         Solicitude::create([ 
 			'Mensaje' => $this-> Mensaje,
 			'status' => $this-> status,
-			'id_usuario' => $this-> id_usuario,
+			'id_usuario' =>auth()->user()->id,
 			'id_usuariosolicitante' => $this-> id_usuariosolicitante
         ]);
         
@@ -89,7 +91,7 @@ class Solicitudes extends Component
             $record->update([ 
 			'Mensaje' => $this-> Mensaje,
 			'status' => $this-> status,
-			'id_usuario' => $this-> id_usuario,
+			'id_usuario' => auth()->user()->id,
 			'id_usuariosolicitante' => $this-> id_usuariosolicitante
             ]);
 

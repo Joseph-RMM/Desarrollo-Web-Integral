@@ -16,6 +16,7 @@ Auth::routes();
 	Route::view('municipios', 'livewire.municipios.index')->middleware('auth');
 Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('auth');
 Route::view('producto', 'livewire.productos.index')->middleware('auth');
+Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('auth');
 Route::view('users', 'livewire.users.index')->middleware('auth');
 
 	//Route::view('image-upload', 'livewire.image-upload')->middleware('auth');
