@@ -28,7 +28,7 @@
                                     <input wire:model="Descripcion" type="text" id="Descripcion" placeholder="Descripcion">@error('Descripcion') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="field">
-                                    <label>Añadir imagenes <b class="rojo">*</b></label>
+                                    <label>Añadir tres imagenes <b class="rojo">*</b></label>
                                     <br>
                                     <input wire:model="foto" type="file"  id="foto" placeholder="Sube aqui tu foto" multiple accept='image/x-png,image/gif,image/jpg,image/jpeg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
