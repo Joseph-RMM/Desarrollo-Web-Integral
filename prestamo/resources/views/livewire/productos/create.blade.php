@@ -41,16 +41,7 @@
                                         <option value="D">Disponible</option>
                                     </select>
                                 </div>
-                                <div class="field">
-                                    <label>Id usuario <b class="rojo">*</b></label>
-                                    <br>
-                                    <select wire:model="id_usuario" >
-                                        <option value="">usuario</option>
-                                        @foreach($users as $users)
-                                        <option value="{{auth()->user()->id}}">{{auth()->user()->id}} </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+
                                 <div class="field">
                                     <label>Id tipo producto <b class="rojo">*</b></label>
                                     <br>

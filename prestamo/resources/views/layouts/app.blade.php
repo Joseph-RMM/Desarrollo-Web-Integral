@@ -48,12 +48,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    @auth()
-                    <ul class="navbar-nav mr-auto">
 
+                    <ul class="navbar-nav mr-auto">
+                        @auth('admin.home')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
+                            <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
                         </li>
+                        @endauth()
 						<li class="nav-item">
                             <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
                         </li>
@@ -66,9 +67,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
                         </li>
-
                     </ul>
-                    @endauth()
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

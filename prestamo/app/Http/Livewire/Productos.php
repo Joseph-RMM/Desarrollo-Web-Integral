@@ -95,7 +95,6 @@ class Productos extends Component
 		'foto.*' => 'image|max:1024',
         'foto' => 'min:3|max:3',
 		'Estado_actual_del_producto' => 'required',
-		'id_usuario' => 'required',
         'id_tiposdeproductos' => 'required',
 
 
@@ -116,7 +115,7 @@ class Productos extends Component
 			'foto' => $urlclean[0],
             'foto2' => $urlclean[1],
             'foto3' => $urlclean[2],
-			'id_usuario' => $this-> id_usuario,
+			'id_usuario' =>auth()->user()->id,
             'id_tiposdeproductos' => $this-> id_tiposdeproductos,
 
 
