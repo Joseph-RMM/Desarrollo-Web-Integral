@@ -32,3 +32,4 @@ Route::view('Categorias', 'livewire.tiposdeproductos.index')->middleware('can:ad
 Route::get('graficdonut', [DashBoardController::class,'graficdonut'])->middleware('can:admin.home');
 Auth::routes();
 Route::get('Dashboard', [DashBoardController::class, 'index'])->middleware('can:admin.home');
+Route::get('updateusers/{id}', [App\Http\Livewire\Users::class, 'edit'])->middleware('can:admin.home');

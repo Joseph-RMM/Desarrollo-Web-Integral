@@ -12,6 +12,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Municipio;
 use App\Models\RegisterController;
+use Livewire\Livewire;
+
 class Users extends Component
 {
     use WithPagination;
@@ -20,7 +22,7 @@ class Users extends Component
     public $selected_id, $keyWord, $name, $lastname, $tel, $email,$password,$password_confirmation;
     public $Muni;
     public $updateMode = false;
-    public $Municipal,$Municipio;
+    //public $Municipal,$Municipio;
 
     public function render()
     {
@@ -87,7 +89,8 @@ class Users extends Component
 		$this->tel = $record-> tel;
 		$this->email = $record-> email;
         $this->Muni = $record-> Muni;
-        $this->updateMode = true;
+       // $this->updateMode = true;
+       return view('livewire.users.update');
     }
 
 
