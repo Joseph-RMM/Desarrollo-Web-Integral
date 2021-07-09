@@ -64,7 +64,7 @@
                     Cancelar
                 </button>
 
-                <button type="button" wire:click.prevent="store()" class="btn btn-primary close-modal">Agregar Categoria</button>
+                <button type="button" wire:click.prevent="store()" class="btn btn-primary close-modal">Agregar producto</button>
 
             </div>
         </div>

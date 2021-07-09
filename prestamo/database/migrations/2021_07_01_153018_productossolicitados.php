@@ -19,6 +19,7 @@ class Productossolicitados extends Migration
             $table->unsignedBigInteger('id_tiposdeproductos');
             $table->foreign('id_tiposdeproductos')->references('id')->on('productos');
 
+            $table->date('fecha_entrega');
             $table->date('fecha_devolucion');
             //solicitado
             $table->unsignedBigInteger('id_solicitud');

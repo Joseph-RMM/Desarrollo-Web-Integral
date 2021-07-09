@@ -11,6 +11,8 @@ use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Municipio;
+use App\Models\RegisterController;
+use Livewire\Livewire;
 
 class Users extends Component
 {
@@ -20,7 +22,7 @@ class Users extends Component
     public $selected_id, $keyWord, $name, $lastname, $tel, $email,$password,$password_confirmation;
     public $Muni;
     public $updateMode = false;
-
+    //public $Municipal,$Municipio;
 
     public function render()
     {
@@ -103,7 +105,7 @@ class Users extends Component
         $record = User::findOrFail($this->selected_id);
         if($record->email!==$this-> email) {
             $this->validate([
-                'email' => ['required','min:10','email','unique:users','regex:/(.*)@(gmail|yahoo|outlook)\.com/i']
+                'email' => ['required','min:10','email','unique:users','regex:/(.*)@(live|gmail|yahoo|hotmail|outlook)\.com/i']
             ]);
         }
         if ($this->selected_id) {
