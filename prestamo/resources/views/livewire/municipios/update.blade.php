@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-lg-9 col-md-6 col-sm-2">
                             <div class="usuario-white">
-                                Actializar Municipio
+                                Actualizar Municipio
                             </div>
                         </div>
                     </div>

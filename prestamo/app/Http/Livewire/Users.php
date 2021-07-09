@@ -61,7 +61,7 @@ class Users extends Component
             'email' => ['required','string','email','unique:users','regex:/(.*)@(gmail|yahoo|outlook)\.com/i'],
             'password' => ['required','string','min:8'],
             'password_confirmation'=> ['required','string','min:8','same:password'],
-            'Muni'=>['required']
+            'Muni'=>['required','numeric','min:1']
         ]);
 
         User::create([
@@ -77,7 +77,7 @@ class Users extends Component
 		$this->emit('closeModal');
 		session()->flash('message', 'Se ha creado un nuevo Usuario.');
     }
-
+    public $MuniUser;
     public function edit($id)
     {
         $record = User::findOrFail($id);
@@ -86,7 +86,7 @@ class Users extends Component
 		$this->lastname = $record-> lastname;
 		$this->tel = $record-> tel;
 		$this->email = $record-> email;
-        $this->Muni = $record-> Muni;
+        $this->MuniUser = $record-> id_municipio;
         $this->updateMode = true;
     }
 
@@ -97,7 +97,8 @@ class Users extends Component
         $this->validate([
         'name' => ['required','string','min:3','max:50'],
         'lastname' => ['required','string','min:3','max:51'],
-        'tel' => ['required','digits:10']
+        'tel' => ['required','digits:10'],
+        'Muni'=>['required','numeric','min:1']
         ]);
         $record = User::findOrFail($this->selected_id);
         if($record->email!==$this-> email) {
@@ -110,12 +111,13 @@ class Users extends Component
                 'name' => $this->name,
                 'lastname' => $this->lastname,
                 'tel' => $this->tel,
-                'email' => $this->email
+                'email' => $this->email,
+                'id_municipio'=>$this->Muni
             ]);
-        } else {
-            $this->updateMode = true;
-            session()->flash('message', 'El usuario no se pudo editar');
-            $this->resetInputFields();
+            $this->resetInput();
+            $this->updateMode = false;
+            $this->emit('closeModal');
+            session()->flash('message', 'Municipio Successfully updated.');
         }
     }
 

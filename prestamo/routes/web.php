@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 Route::resource('Admin',UserController::class)->names('admin.users');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
-//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route Hooks - Do not delete//
