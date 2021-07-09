@@ -116,6 +116,11 @@
                             @enderror
                         </div>
                         <div class="field">
+                            <label  for="id_municipio">{{ __('Municipio') }}  <b class="rojo">*</b></label>
+                            <br>
+                            <input id="id_municipio" type="text" name="id_municipio" value="{{ old('id_municipio') }}" required autocomplete="id_municipio">
+                        </div>
+                        <div class="field">
                             <label for="password">{{ __('Password') }} <b class="rojo">*</b></label>
                             <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                             @error('password')

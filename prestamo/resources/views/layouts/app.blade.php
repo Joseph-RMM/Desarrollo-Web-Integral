@@ -39,7 +39,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ url('seller.home') }}">
                     {{ config('app.stream', 'Family Dx') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -48,17 +48,16 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    @auth()
+
                     <ul class="navbar-nav mr-auto">
-                        @can('admin.home')
+                        @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
+                            <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
                         </li>
-                        @endcan
+                        @endauth
 						<li class="nav-item">
                             <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
                         </li>
-                            @can('admin.home')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
                         </li>
@@ -68,9 +67,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
                         </li>
-                            @endcan
                     </ul>
-                @endauth()
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
