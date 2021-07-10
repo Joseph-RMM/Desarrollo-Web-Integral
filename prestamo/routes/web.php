@@ -13,6 +13,7 @@ Auth::routes();
 //Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route Hooks - Do not delete//
+	Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('auth');
 //Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('auth');
 //Route::view('municipios', 'livewire.municipios.index')->middleware('auth');
 Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('auth');
