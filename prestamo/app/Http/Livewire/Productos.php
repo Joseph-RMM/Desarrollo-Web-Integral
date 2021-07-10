@@ -188,8 +188,8 @@ class Productos extends Component
     public function disponibles(){
        // $pdisponible=DB::table('productos')->where('Estado_actual_del_producto','=','D')->get();
 
-        return view('Productos.productos.productosdisponible',[
-           'posts'=>Posts::orderBy('id','desc')->paginate(8)]);
+       // return view('Productos.productos.productosdisponible',[
+        //   'posts'=>Posts::orderBy('id','desc')->paginate(8)]);
     }
 
     public function destroy($id)
