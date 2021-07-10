@@ -25,7 +25,6 @@
 	<div class="table-responsive">
 
 		@include('livewire.users.create')
-		@include('livewire.users.update')
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -49,7 +48,7 @@
                     <td>{{ $row->id_municipio }}</td>
 					<td>
 						<button onclick="confirm('Confirm Delete User id {{$row->id}}? \nDeleted Users cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="button-rojo button5"><i class="fas fa-trash-alt"></i></button>
-						<button data-toggle="modal" data-target="#updateModal" class="button-verde button5" wire:click="edit({{$row->id}})"><i class="fas fa-pencil-alt"></i></button>
+						<button data-toggle="modal" data-target="#updateModal" class="button-verde button5"><i class="fas fa-pencil-alt"></i> <a href="{{ url('/updateusers/$row->id')}}"></a></button>
 					</td>
 				</tr>
 				@endforeach
