@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Validation\Validator;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use HasFactory;
     use HasRoles;
+    use Notifiable;
 
     public $timestamps = true;
 

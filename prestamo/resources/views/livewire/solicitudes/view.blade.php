@@ -6,8 +6,17 @@
 				<div class="card-header">
 					<div style="display: flex; justify-content: space-between; align-items: center;">
 						<div class="float-left">
-							<h4><i class="fab fa-laravel text-info"></i>
-							Solicitude Listing </h4>
+							<div class="container-fluid">
+								@if(session('message'))
+								<div class="row mb-2">
+									<div class="col-lg-12">
+										<div class="alert-danger">
+										{{session('message')}}
+										</div>
+									</div>
+								</div>
+								@endif
+							</div>
 						</div>
 						<div wire:poll.60s>
 							<code><h5>{{ now()->format('H:i:s') }} UTC</h5></code>

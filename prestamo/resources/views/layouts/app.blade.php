@@ -51,32 +51,32 @@
                     @auth()
                     <ul class="navbar-nav mr-auto">
                         @can('admin.home')
-                        <li class="nav-item">
+                            <li class="nav-item">
                             <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
-                        </li>
+                            </li>
                         @endcan
 						<li class="nav-item">
                             <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
                         </li>
                         @can('admin.home')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
                             </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
-                        </li>
-                        @endcan
-                        @can('seller.home')
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/solicitudes') }}">Categorias</a>
+                                <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
                             </li>
+                        @endcan
+                        
+                        <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/solicitudes') }}">Categorias</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/productossolicitados') }}">Municipios</a>
                         </li>
-                        @endcan
+                        
                     </ul>
                     @endauth()
 
