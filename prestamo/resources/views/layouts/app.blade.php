@@ -50,23 +50,21 @@
                     <!-- Left Side Of Navbar -->
 
                     <ul class="navbar-nav mr-auto">
-                        @auth('admin.home')
+                        @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
+                            <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
                         </li>
-                        @endauth()                        
+                                             
 						<li class="nav-item">
                             <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
-                        </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
-                            </li>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
                         </li>
+                        @endauth   
                     </ul>
 
 
