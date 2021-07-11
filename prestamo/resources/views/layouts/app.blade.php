@@ -48,24 +48,17 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-
+                    @auth()
                     <ul class="navbar-nav mr-auto">
                         @can('admin.home')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
                         </li>
-                            <li class="nav-item">
-                                <a href="{{ url('/productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos Admin</a>
-                            </li>
                         @endcan
-
-                        @can('seller.home')
 						<li class="nav-item">
                             <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos Seller</a>
                         </li>
-                        @endcan
-
-                            @can('admin.home')
+                        @can('admin.home')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
                         </li>
@@ -75,10 +68,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
                         </li>
-                            @endcan
-
+                        @endcan
+                        @can('seller.home')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/solicitudes') }}">Categorias</a>
+                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/productossolicitados') }}">Municipios</a>
+                        </li>
+                        @endcan
                     </ul>
-
+                    @endauth()
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
