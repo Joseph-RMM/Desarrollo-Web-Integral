@@ -51,6 +51,7 @@ class Users extends Component
 		$this->lastname = null;
 		$this->tel = null;
 		$this->email = null;
+
     }
 
 
@@ -60,7 +61,7 @@ class Users extends Component
             'name' => ['required','string','min:3','max:50'],
             'lastname' => ['required','string','min:3','max:51'],
             'tel' => ['required','digits:10'],
-            'email' => ['required','string','email','unique:users','regex:/(.*)@(gmail|yahoo|outlook)\.com/i'],
+            'email' => ['required','string','email','unique:users','regex:/(.*)@(live|gmail|yahoo|hotmail|outlook)\.com/i'],
             'password' => ['required','string','min:8'],
             'password_confirmation'=> ['required','string','min:8','same:password'],
             'Muni'=>['required','numeric','min:1']
@@ -73,13 +74,13 @@ class Users extends Component
 			'email' => $this-> email,
             'password' =>Hash::make( $this-> password),
             'id_municipio' => $this-> Muni
-        ]);
+        ])->assignRole('Seller');
 
         $this->resetInput();
 		$this->emit('closeModal');
 		session()->flash('message', 'Se ha creado un nuevo Usuario.');
     }
-    public $MuniUser;
+    public $modal=false;
     public function edit($id)
     {
         $record = User::findOrFail($id);
@@ -88,7 +89,6 @@ class Users extends Component
 		$this->lastname = $record-> lastname;
 		$this->tel = $record-> tel;
 		$this->email = $record-> email;
-        $this->MuniUser = $record-> id_municipio;
         $this->updateMode = true;
     }
 
@@ -100,7 +100,7 @@ class Users extends Component
         'name' => ['required','string','min:3','max:50'],
         'lastname' => ['required','string','min:3','max:51'],
         'tel' => ['required','digits:10'],
-        'Muni'=>['required','numeric','min:1']
+
         ]);
         $record = User::findOrFail($this->selected_id);
         if($record->email!==$this-> email) {
@@ -114,12 +114,13 @@ class Users extends Component
                 'lastname' => $this->lastname,
                 'tel' => $this->tel,
                 'email' => $this->email,
-                'id_municipio'=>$this->Muni
+
             ]);
             $this->resetInput();
+            $this->modal = false;
             $this->updateMode = false;
             $this->emit('closeModal');
-            session()->flash('message', 'Municipio Successfully updated.');
+            session()->flash('message', 'Successfully updated.');
         }
     }
 

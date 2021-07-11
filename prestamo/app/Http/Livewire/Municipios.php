@@ -40,7 +40,7 @@ class Municipios extends Component
     public function store()
     {
         $this->validate([
-		'name' => 'required|string|min:4|unique:Municipios',
+		    'name' => 'required|string|min:4|unique:Municipios',
         ]);
 
         Municipio::create([

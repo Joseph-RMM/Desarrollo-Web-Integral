@@ -27,7 +27,7 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<td scope="col">#</td>
+					<td scope="col">ID</td>
 					<th scope="col">Nombre</th>
 					<th scope="col">Accción</th>
 				</tr>
@@ -35,7 +35,7 @@
 			<tbody>
 				@foreach($municipios as $row)
 				<tr>
-					<td>{{ $loop->iteration }}</td>
+					<td>{{ $row->id }}</td>
 					<td>{{ $row->name }}</td>
 					<td>
 						<button onclick="confirm('Confirm Delete Municipio id {{$row->id}}? \nDeleted Municipios cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="button-rojo button5"><i class="fas fa-trash-alt"></i></button>

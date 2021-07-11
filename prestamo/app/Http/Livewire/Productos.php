@@ -28,7 +28,7 @@ class Productos extends Component
     public $usuario=null;
     public $productos=null;
 
-  
+
 
 
     public function upload()
@@ -165,7 +165,6 @@ class Productos extends Component
             'Estado_actual_del_producto' => 'required',
             'id_usuario' => 'required',
             'id_tiposdeproductos' => 'required',
-
         ]);
         if ($this->selected_id) {
             $record = Producto::find($this->selected_id);

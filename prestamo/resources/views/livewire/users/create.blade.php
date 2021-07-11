@@ -40,10 +40,11 @@
                                     <label>Municipio <b class="rojo">*</b></label>
                                     <br>
                                     <select wire:model="Muni" >
+                                        <option value=""></option>
                                         @foreach($Municipal as $Municipio)
                                             <option value="{{$Municipio->id}}">{{$Municipio->name}}</option>
                                         @endforeach
-                                    </select>
+                                    </select>@error('Muni') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="field">

@@ -17,7 +17,7 @@ class RoleAdmin extends Seeder
     {
         $admin  = Role::create(["name"=>"Admin"]);
         $seller = Role::create(["name"=>"Seller"]);
-
+        Permission::create(["name"=>'seller.home'])->assignRole($seller);
         Permission::create(["name"=>'admin.home'])->assignRole($admin);
         Permission::create(["name"=>'admin.users.index'])->assignRole($admin);
         Permission::create(["name"=>'admin.users.create'])->assignRole($admin);
@@ -34,8 +34,8 @@ class RoleAdmin extends Seeder
         Permission::create(["name"=>'admin.api.create'])->assignRole($admin);
         Permission::create(["name"=>'admin.api.edit'])->assignRole($admin);
         Permission::create(["name"=>'admin.api.destroy'])->assignRole($admin);
-        
-     
+
+
 
 
     }
