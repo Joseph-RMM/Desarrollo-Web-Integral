@@ -48,25 +48,37 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-
+                    @auth()
                     <ul class="navbar-nav mr-auto">
-                        @auth
+                        @can('admin.home')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
+                            <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
                         </li>
-                                             
+                        @endcan
 						<li class="nav-item">
                             <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
                         </li>
+                        @can('admin.home')
                         <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
+                            <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
                         </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
+                            </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
                         </li>
-                        @endauth   
+                        @endcan
+                        @can('seller.home')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/solicitudes') }}">Categorias</a>
+                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/productossolicitados') }}">Municipios</a>
+                        </li>
+                        @endcan
                     </ul>
-
+                    @endauth()
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

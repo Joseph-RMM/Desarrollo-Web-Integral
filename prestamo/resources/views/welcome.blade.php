@@ -22,17 +22,12 @@
                 <!-- Left Side Of Navbar -->
                 @auth()
                     <ul class="navbar-nav mr-auto">
+                        @can('seller.home')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
+                        </li>
+                        @endcan
 
-
-                        <li class="nav-item">
-                            <a href="{{ url('/productos') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
-                        </li>
 
                     </ul>
             @endauth()
@@ -69,9 +64,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                @can("admin.home")
-                                    <a class="dropdown-item" href="{{ url('/Dashboard') }}" >
-                                        {{ __('Dashboard') }}
+                                @can("seller.home")
+                                    <a class="dropdown-item" href="{{ url('/home') }}" >
+                                        {{ __('home') }}
                                     </a>
                                 @endcan
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
