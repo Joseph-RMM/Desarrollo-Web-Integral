@@ -6,15 +6,17 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Solicitude;
 use App\Models\User;
+//use App\Notifications\solicitudes;
 
 class Solicitudes extends Component
 {
     use WithPagination;
+    
 
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $Mensaje, $status, $id_usuario, $id_usuariosolicitante;
     public $updateMode = false;
-
+    
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
@@ -52,13 +54,16 @@ class Solicitudes extends Component
 		'id_usuariosolicitante' => 'required',
         ]);
 
-        Solicitude::create([ 
+        $Solicitude=Solicitude::create([ 
+            
 			'Mensaje' => $this-> Mensaje,
 			'status' => $this-> status,
-			'id_usuario' =>auth()->user()->id,
+			'id_usuario' =>$this-> id_usuario,
 			'id_usuariosolicitante' => $this-> id_usuariosolicitante
+            
         ]);
-        
+       // auth()->user()->notify(new solicitudes($Solicitude));
+        return redirect()->back()->with('message','Solicitud creada con excito');
         $this->resetInput();
 		$this->emit('closeModal');
 		session()->flash('message', 'Solicitude Successfully created.');
