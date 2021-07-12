@@ -28,7 +28,7 @@
 
                                 </div>
                                 <div class="field">
-                                    <label>Apellido Paterno <b class="rojo">*</b></label>
+                                    <label>Apellidos <b class="rojo">*</b></label>
                                     <input wire:model="lastname" type="text" id="lastname" placeholder="Lastname">@error('lastname') <span class="error text-danger">{{ $message }}</span> @enderror
 
                                 </div>

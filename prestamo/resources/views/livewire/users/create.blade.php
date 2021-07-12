@@ -25,7 +25,7 @@
                                     <input wire:model="name" type="text" id="name" placeholder="Name">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="field">
-                                    <label>Apellido Materno <b class="rojo">*</b></label>
+                                    <label>Apellidos <b class="rojo">*</b></label>
                                     <input wire:model="lastname" type="text" id="lastname" placeholder="Lastname">@error('lastname') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="field">
@@ -33,7 +33,7 @@
                                     <input wire:model="tel" type="text" id="tel" placeholder="Tel">@error('tel') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="field">
-                                    <label>Correo electronico <b class="rojo">*</b></label>
+                                    <label>Correo electrónico <b class="rojo">*</b></label>
                                     <input wire:model="email" type="email" id="email" placeholder="Email" autocomplete="off">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="field">

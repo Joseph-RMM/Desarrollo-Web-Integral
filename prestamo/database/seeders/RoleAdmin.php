@@ -35,7 +35,7 @@ class RoleAdmin extends Seeder
         Permission::create(["name"=>'admin.api.edit'])->assignRole($admin);
         Permission::create(["name"=>'admin.api.destroy'])->assignRole($admin);
         
-        Permission::create(["name"=>'seller.home'])->assignRole($seller);
+        //Permission::create(["name"=>'seller.home'])->assignRole($seller);
 
         Permission::create(["name"=>'seller.products.index'])->assignRole($seller);
         Permission::create(["name"=>'seller.products.create'])->assignRole($seller);

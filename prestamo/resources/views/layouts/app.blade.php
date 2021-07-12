@@ -52,21 +52,21 @@
                     @auth()
                     <ul class="navbar-nav mr-auto">
                         @can('admin.home')
-                            <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
                         </li>
-						<li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ url('/productos') }}" class="nav-link">Productos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
                         </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/Categorias') }}">Categorias</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/Categorias') }}">Categorías</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
+                        </li>
                         @endcan
 
 
@@ -107,8 +107,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                ("home")
-                                <a class="dropdown-item" href="{{ url('/home') }}" >
+                                <a class="dropdown-item">
+                                    ("home")
+                                </a>
+                                <a class="dropdown-item" href="{{ url('/home') }}">
                                     {{ __('home') }}
                                 </a>
 
@@ -143,7 +145,6 @@
         window.livewire.on('closeupdateModal', () => {
             $('#updateModal').modal('hide');
         });
-
     </script>
     <script src="{{ asset('js/estilo-login.js') }}"></script>
     <script src="{{ asset('js/inicioadmin.js') }}"></script>
