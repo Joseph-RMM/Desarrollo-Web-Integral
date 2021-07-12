@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'tel' => $data['tel'],
             'email' => $data['email'],
-            'id_municipio'=>$data['Muni'],
+            'id_municipio'=>1,
             'password' => Hash::make($data['password']),
         ])->assignRole('Seller');
     }

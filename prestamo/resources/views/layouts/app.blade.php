@@ -69,7 +69,7 @@
                             </li>
                         @endcan
 
-                        
+
 
                     </ul>
                     @endauth()
