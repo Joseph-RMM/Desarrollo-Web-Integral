@@ -68,14 +68,9 @@
                                 <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
                             </li>
                         @endcan
+
                         
-                        <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/solicitudes') }}">Categorias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/productossolicitados') }}">Municipios</a>
-                        </li>
-                        
+
                     </ul>
                     @endauth()
 

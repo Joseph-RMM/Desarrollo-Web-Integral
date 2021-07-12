@@ -65,9 +65,11 @@ class Productos extends Component
     private function resetInput()
     {
         $this->nombre = null;
-
 		$this->Descripcion = null;
 		$this->foto = null;
+        $this->foto1 = null;
+        $this->foto2 = null;
+        $this->foto3 = null;
 		$this->Estado_actual_del_producto = null;
 		$this->id_usuario = null;
         $this->id_tiposdeproductos = null;
