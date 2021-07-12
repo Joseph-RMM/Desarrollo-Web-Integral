@@ -8,10 +8,10 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
 Auth::routes();
-Route::view('producto', 'livewire.productos.index')->middleware('auth');
-Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('auth');
-Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('auth');
-Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('auth');
+Route::view('producto', 'livewire.productos.index')->middleware('can:seller.home');
+Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('can:seller.home');
+Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('can:seller.home');
+Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('can:seller.home');
 
 
 
