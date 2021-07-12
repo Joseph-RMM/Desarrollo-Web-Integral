@@ -16,7 +16,7 @@ Route::view('productossolicitados', 'livewire.productossolicitados.index')->midd
 //Obtiene json de productos original v
 Route::get('productosseller',[ProdutosellerController::class,'index'])->middleware('auth');
 Route::view('createp','livewire.productossellers.create')->middleware('auth');
-}
+
 Auth::routes();
 
 //Rutas del Admin
