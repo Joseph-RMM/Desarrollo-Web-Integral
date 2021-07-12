@@ -18,8 +18,8 @@ class ProdutosellerController extends Controller
      */
     public function index()
     {
-        $Productos=Producto::all();
-        return $Productos;
+        $productos=Producto::all();
+        return view('livewire.productossellers.index',compact('productos'));
     }
 
     /**
