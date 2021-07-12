@@ -24,28 +24,28 @@ class Tiposdeproductos extends Component
 						->paginate(10),
         ]);
     }
-	
+
     public function cancel()
     {
         $this->resetInput();
         $this->updateMode = false;
     }
-	
+
     private function resetInput()
-    {		
+    {
 		$this->clasificacion = null;
     }
 
     public function store()
     {
         $this->validate([
-		'clasificacion' => 'required',
+            'clasificacion' => 'required|string|min:4|unique:tiposdeproductos',
         ]);
 
-        Tiposdeproducto::create([ 
+        Tiposdeproducto::create([
 			'clasificacion' => $this-> clasificacion
         ]);
-        
+
         $this->resetInput();
 		$this->emit('closeModal');
 		session()->flash('message', 'Tiposdeproducto Successfully created.');
@@ -53,23 +53,24 @@ class Tiposdeproductos extends Component
 
     public function edit($id)
     {
+
         $record = Tiposdeproducto::findOrFail($id);
 
-        $this->selected_id = $id; 
+        $this->selected_id = $id;
 		$this->clasificacion = $record-> clasificacion;
-		
+
         $this->updateMode = true;
     }
 
     public function update()
     {
         $this->validate([
-		'clasificacion' => 'required',
+            'clasificacion' => 'required|string|min:4|unique:tiposdeproductos',
         ]);
 
         if ($this->selected_id) {
 			$record = Tiposdeproducto::find($this->selected_id);
-            $record->update([ 
+            $record->update([
 			'clasificacion' => $this-> clasificacion
             ]);
 

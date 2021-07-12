@@ -75,6 +75,7 @@ class Municipios extends Component
             ]);
 
             $this->resetInput();
+            $this->emit('closeupdateModal');
             $this->updateMode = false;
 			session()->flash('message', 'Municipio Successfully updated.');
         }

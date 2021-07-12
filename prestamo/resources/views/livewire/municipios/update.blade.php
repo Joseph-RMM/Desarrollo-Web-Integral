@@ -23,7 +23,7 @@
                                 <label>Ingresa los datos por favor.</label>
                                 <div class="field">
                                     <label>Municipio <b class="rojo">*</b></label>
-                                    <input wire:model="name" type="text" id="clasificacion" placeholder="Clasificacion">@error('clasificacion') <span class="error text-danger">{{ $message }}</span> @enderror
+                                    <input wire:model="name" type="text" id="Municipio" placeholder="Municipio">@error('name') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </form>
                         </div>
@@ -32,7 +32,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" wire:click.prevent="cancel()" class="cancelar" data-dismiss="modal">Cancelar</button>
-                <button type="button" wire:click.prevent="update()" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                <button type="button" wire:click.prevent="update()" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>

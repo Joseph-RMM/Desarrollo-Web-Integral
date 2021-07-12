@@ -18,7 +18,7 @@
                 <div class="wrapper-agregarusuario">
                     <div class="form-container">
                         <div class="form-inner">
-                            <form class="signup">
+                            <form class="signup" autocomplete="off">
                                 <label>Ingresa los datos por favor.</label>
                                 <div class="field">
                                     <label>Nombre <b class="rojo">*</b></label>
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Correo electronico <b class="rojo">*</b></label>
-                                    <input wire:model="email" type="email" id="email" placeholder="Email">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
+                                    <input wire:model="email" type="email" id="email" placeholder="Email" autocomplete="off">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="field">
                                     <label>Municipio <b class="rojo">*</b></label>

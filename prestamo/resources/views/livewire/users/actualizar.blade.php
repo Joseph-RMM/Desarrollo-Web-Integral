@@ -43,6 +43,15 @@
                                     <input wire:model="email" type="email" id="email" placeholder="Email">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
 
                                 </div>
+                                <div class="field">
+                                    <label>Municipio <b class="rojo">*</b></label>
+                                    <br>
+                                    <select wire:model="Muni">
+                                        @foreach($Municipal as $Municipio)
+                                            <option value="{{$Municipio->id}}">{{$Municipio->name}}</option>
+                                        @endforeach
+                                    </select>@error('Muni') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div>
 
 
                             </form>
@@ -54,7 +63,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" wire:click.prevent="cancel()" class="cancelar" data-dismiss="modal">Cancelar</button>
-                <button type="button" wire:click.prevent="updates()" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                <button type="button" wire:click.prevent="updates()" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>

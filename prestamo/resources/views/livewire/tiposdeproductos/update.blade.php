@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-lg-9 col-md-6 col-sm-2">
                             <div class="usuario-white">
-                                Actializar Categoria
+                                Actualizar Categoria
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,8 @@
                                 <div class="field">
                                     <label>Categoria <b class="rojo">*</b></label>
                                     <input wire:model="clasificacion" type="text" class="form-control" id="clasificacion" placeholder="Clasificacion">@error('clasificacion') <span class="error text-danger">{{ $message }}</span> @enderror
-
+                                      <br>
+                                    <br>
                                 </div>
                             </form>
                         </div>
@@ -37,7 +38,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" wire:click.prevent="cancel()" class="cancelar" data-dismiss="modal">Cancelar</button>
-                <button type="button" wire:click.prevent="update()" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                <button type="button" wire:click.prevent="update()" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>

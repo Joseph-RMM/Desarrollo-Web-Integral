@@ -37,7 +37,7 @@
                     <div class="card cards" style="width: 18rem;">
                         <img class="card-img-top" src="{{ $row->foto }}">
                         <div class="card-body contenido">
-                            <h5 data-toggle="modal" data-target="#updateModal" wire:click="modal({{$row->id}})" class="card-title">{{ $row->nombre }}</h5>
+                            <h5 data-toggle="modal" data-target="#updateModal" wire:click="edit({{$row->id}})" class="card-title">{{ $row->nombre }}</h5>
                         </div>
                     </div>
                 </div>

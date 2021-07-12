@@ -36,6 +36,7 @@
 </head>
 
 <body>
+
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg">
             <div class="container">
@@ -54,11 +55,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
                         </li>
-                        @endcan
 						<li class="nav-item">
-                            <a href="{{ url('/producto') }}" class="nav-link"><i class="fab fa-laravel text-info"></i> Productos Seller</a>
+                            <a href="{{ url('/productos') }}" class="nav-link">Productos</a>
                         </li>
-                        @can('admin.home')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
                         </li>
@@ -143,6 +142,13 @@
         window.livewire.on('closeModal', () => {
             $('#exampleModal').modal('hide');
         });
+        window.livewire.on('closeModalUpdate', () => {
+            $('#updateModall').modal('hide');
+        });
+        window.livewire.on('closeupdateModal', () => {
+            $('#updateModal').modal('hide');
+        });
+
     </script>
     <script src="{{ asset('js/estilo-login.js') }}"></script>
     <script src="{{ asset('js/inicioadmin.js') }}"></script>

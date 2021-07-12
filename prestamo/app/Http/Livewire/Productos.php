@@ -14,10 +14,9 @@ use App\Models\User;
 
 class Productos extends Component
 {
-
-
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $nombre, $Descripcion, $foto, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
+    public $selected_id, $keyWord, $nombre, $Descripcion,$foto1, $foto2, $foto3, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
+    public $foto;
     public $updateMode = false;
     public $selectedtiposdeproductos=null;
     public $tipos_deproductos=null;
@@ -39,6 +38,7 @@ class Productos extends Component
         $this->emit('fotosubida');
 		session()->flash('message', 'no estoy funcionando');
     }
+
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
@@ -55,8 +55,7 @@ class Productos extends Component
             'tiposdeproductos' => Tiposdeproducto::all(),
             'users' => User::all()
         ]);
-
-}
+    }
     public function cancel()
     {
         $this->resetInput();
@@ -124,7 +123,9 @@ class Productos extends Component
         $this->selected_id = $id;
         $this->nombre = $record-> nombre;
 		$this->Descripcion = $record-> Descripcion;
-		$this->foto = $record-> foto;
+		$this->foto1 = $record-> foto;
+        $this->foto2 = $record-> foto2;
+        $this->foto3 = $record-> foto3;
 		$this->Estado_actual_del_producto = $record-> Estado_actual_del_producto;
 		$this->id_usuario = $record-> id_usuario;
         $this->id_tiposdeproductos = $record-> id_tiposdeproductos;
@@ -165,6 +166,7 @@ class Productos extends Component
         if ($id) {
             $record = Producto::where('id', $id);
             $record->delete();
+            $this->emit('closeupdateModal');
         }
     }
 }

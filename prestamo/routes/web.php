@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Models\Municipio;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('can:seller.home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
 Auth::routes();
 Route::view('producto', 'livewire.producto.index')->middleware('can:seller.home');
 Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('can:seller.home');

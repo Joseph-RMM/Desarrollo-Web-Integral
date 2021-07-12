@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Tiposdeproducto;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\TipoProducto;
@@ -17,35 +18,33 @@ class TipoProductos extends Component
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
-        return view('livewire.tipoProductos.view', [
-            'tipoProductos' => TipoProducto::latest()
-						
+        return view('livewire.tiposdeproductos.view', [
+            'tipoProductos' => Tiposdeproducto::latest()
 						->orWhere('clasificacion', 'LIKE', $keyWord)
 						->paginate(10),
-        ]);
+            ]);
     }
 
     public function cancel()
     {
+        $this->render();
         $this->resetInput();
         $this->updateMode = false;
     }
 
     private function resetInput()
-    {		
-		
+    {
+
 		$this->clasificacion = null;
     }
 
     public function store()
     {
         $this->validate([
-		
-		'clasificacion' => 'required',
+		    'clasificacion' => 'required|string|min:4|unique:tiposdeproductos',
         ]);
 
-        TipoProducto::create([ 
-			
+        Tiposdeproducto::create([
 			'clasificacion' => $this-> clasificacion
         ]);
 
@@ -56,10 +55,10 @@ class TipoProductos extends Component
 
     public function edit($id)
     {
-        $record = TipoProducto::findOrFail($id);
+        $record = Tiposdeproducto::findOrFail($id);
 
-        $this->selected_id = $id; 
-		
+        $this->selected_id = $id;
+
 		$this->clasificacion = $record-> clasificacion;
 
         $this->updateMode = true;
@@ -68,27 +67,27 @@ class TipoProductos extends Component
     public function update()
     {
         $this->validate([
-		
 		'clasificacion' => 'required',
         ]);
 
         if ($this->selected_id) {
-			$record = TipoProducto::find($this->selected_id);
-            $record->update([ 
-			
+			$record = Tiposdeproducto::find($this->selected_id);
+            $record->update([
+
 			'clasificacion' => $this-> clasificacion
             ]);
 
             $this->resetInput();
+            $this->emit('closeupdateModal');
             $this->updateMode = false;
-			session()->flash('message', 'TipoProducto Successfully updated.');
+			session()->flash('message', 'Successfully updated.');
         }
     }
 
     public function destroy($id)
     {
         if ($id) {
-            $record = TipoProducto::where('id', $id);
+            $record = Tiposdeproducto::where('id', $id);
             $record->delete();
         }
     }

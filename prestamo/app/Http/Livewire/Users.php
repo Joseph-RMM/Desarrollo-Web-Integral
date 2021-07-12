@@ -20,13 +20,12 @@ class Users extends Component
 
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $name, $lastname, $tel, $email,$password,$password_confirmation;
-    public $Muni;
+    public $Muni, $cbox2, $MucipioAnterior;
     public $updateMode = false;
     //public $Municipal,$Municipio;
 
     public function render()
     {
-
 		$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.users.view', [
             'users' => User::latest()
@@ -51,7 +50,7 @@ class Users extends Component
 		$this->lastname = null;
 		$this->tel = null;
 		$this->email = null;
-
+        $this->MucipioAnterior=null;
     }
 
 
@@ -80,7 +79,8 @@ class Users extends Component
 		$this->emit('closeModal');
 		session()->flash('message', 'Se ha creado un nuevo Usuario.');
     }
-    public $modal=false;
+
+
     public function edit($id)
     {
         $record = User::findOrFail($id);
@@ -89,6 +89,7 @@ class Users extends Component
 		$this->lastname = $record-> lastname;
 		$this->tel = $record-> tel;
 		$this->email = $record-> email;
+        $this->Muni=$record-> id_municipio;
         $this->updateMode = true;
     }
 
@@ -100,8 +101,9 @@ class Users extends Component
         'name' => ['required','string','min:3','max:50'],
         'lastname' => ['required','string','min:3','max:51'],
         'tel' => ['required','digits:10'],
-
+        'Muni'=>['required','numeric','min:1']
         ]);
+
         $record = User::findOrFail($this->selected_id);
         if($record->email!==$this-> email) {
             $this->validate([
@@ -114,12 +116,12 @@ class Users extends Component
                 'lastname' => $this->lastname,
                 'tel' => $this->tel,
                 'email' => $this->email,
-
+                'id_municipio' => $this-> Muni
             ]);
             $this->resetInput();
             $this->modal = false;
             $this->updateMode = false;
-            $this->emit('closeModal');
+            $this->emit('closeModalUpdate');
             session()->flash('message', 'Successfully updated.');
         }
     }

@@ -1,4 +1,4 @@
-<div class="modal fade bd-example-modal-lg" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div wire:ignore.self class="modal fade bd-example-modal-lg" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header mx">
@@ -17,13 +17,13 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100 modalimg" src="#" alt="First slide">
+                                    <img class="d-block w-100 modalimg" src="{{$foto1}}" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100 modalimg" src="#" alt="Second slide">
+                                    <img class="d-block w-100 modalimg" src="{{$foto2}}" alt="Second slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img class="d-block w-100 modalimg" src="#" alt="Third slide">
+                                    <img class="d-block w-100 modalimg" src="{{$foto3}}" alt="Third slide">
                                 </div>
                             </div>
                             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -57,7 +57,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" wire:click.prevent="eliminar()" class="btn btn-secondary" data-dismiss="modal">Eliminar</button>
+                <button onclick="confirm('Confirm Delete Tiposdeproducto id {{$selected_id}}? \nDeleted product cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$selected_id}})" class="button-rojo button5"><i class="fas fa-trash-alt"></i></button>
+
             </div>
         </div>
     </div>

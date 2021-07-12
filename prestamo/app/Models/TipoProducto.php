@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Models;
 
@@ -8,19 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class TipoProducto extends Model
 {
 	use HasFactory;
-	
+
     public $timestamps = true;
 
-    protected $table = 'tipo_productos';
+    protected $table = 'tiposdeproductos';
 
-    protected $fillable = ['clasificacion'];
-	
+    protected $fillable = ['id','clasificacion'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function producto()
     {
-        //return $this->hasOne('App\Models\Producto', 'id', 'id_producto');
+        return $this->hasOne('App\Models\Producto', 'id', 'id_producto');
     }
-    
+
 }
