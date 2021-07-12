@@ -16,7 +16,7 @@ class ProdutosellerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $productos=Producto::all();
         return view('livewire.productossellers.index',compact('productos'));
@@ -29,7 +29,7 @@ class ProdutosellerController extends Controller
      */
     public function create()
     {
-        //
+        return view('livewire.productossellers.create');
     }
 
     /**

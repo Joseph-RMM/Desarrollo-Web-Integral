@@ -13,6 +13,15 @@
         <h3>Cosas raras de productos</h3>
         <div class="row">
             <div class="col-xl-12">
+                <form action="" method="get">
+                    <div class="form-row">
+                        <div class="col-auto my-11" >
+                            <a href="Aqui va la direccion" class="btn btn-success">Crea Nuevo</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xl-12">
                 <div class="table-response">
                     <table class="table-striped">
                         <thead>
@@ -20,6 +29,8 @@
 								<th>Categoria</th>
 								<th>Descripcion</th>
 								<th>Foto</th>
+                                <th>Foto2</th>
+                                <th>Foto3</th>
 								<th>Estado Actual Del Producto</th>
 								<th>Id Usuario</th>
 								<td>ACTIONS</td>
@@ -32,6 +43,8 @@
 								<td>{{ $producto->id_tiposdeproductos }}</td>
 								<td>{{ $producto->Descripcion }}</td>
 								<td>{{ $producto->foto }}</td>
+                                <td>{{ $producto->foto2 }}</td>
+                                <td>{{ $producto->foto3 }}</td>
 								<td>{{ $producto->Estado_actual_del_producto }}</td>
 								<td>{{ $producto->id_usuario }}</td>
 								<td >Editar-
