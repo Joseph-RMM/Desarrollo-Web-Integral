@@ -5,15 +5,15 @@ use App\Http\Controllers\Admin\UserController;
 use App\Models\Municipio;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\ProdutosellerController;
+Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
-Auth::routes();
-Route::view('producto', 'livewire.productos.index')->middleware('can:seller.home');
-Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('can:seller.home');
-Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('can:seller.home');
-Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('can:seller.home');
-
+//Route::view('producto', 'livewire.productos.index')->middleware('auth');
+Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('auth');
+Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('auth');
+Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('auth');
+Route::get('productosseller',[ProdutosellerController::class,'index'])->middleware('auth');
 
 
 Auth::routes();
