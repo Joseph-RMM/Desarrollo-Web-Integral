@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Estado_actual_del_producto">Estado_actual_del_productoto</label>
-                        <input type="file" class="form-group" name="Estado_actual_del_producto" required >
+                        <input type="text" class="form-group" name="Estado_actual_del_producto" required >
                     </div>
                     <div class="form-group">
                         <label for="id_usuario">id_usuario</label>

@@ -10,12 +10,12 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
 //Route::view('producto', 'livewire.productos.index')->middleware('auth');
-Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('auth');
+Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('can:seller.home');
 Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('auth');
 Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('auth');
 //Obtiene json de productos original v
-Route::get('productosseller',[ProdutosellerController::class,'index'])->middleware('auth');
-Route::view('createp','livewire.productossellers.create')->middleware('auth');
+Route::get('productosseller',[ProdutosellerController::class,'index'])->middleware('can:seller.home');
+Route::view('createp','livewire.productossellers.create')->middleware('can:seller.home');
 
 Auth::routes();
 
