@@ -12,7 +12,7 @@
         <h4>crear products</h4>
         <div class="row">
             <div class="col-xl-12">
-                <form action="Aqui va el store" method="post">
+                <form action="{{route('')}}" method="post">
                     <div class="form-group">
                         <label for="Nombre">nombre</label>
                         <input type="text" class="form-group" name="Nombre" required minlength="4" >

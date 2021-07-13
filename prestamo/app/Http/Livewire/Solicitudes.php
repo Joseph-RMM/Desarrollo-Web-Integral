@@ -63,7 +63,7 @@ class Solicitudes extends Component
             
         ]);
        // auth()->user()->notify(new solicitudes($Solicitude));
-        return redirect()->back()->with('message','Solicitud creada con excito');
+        return redirect()->back()->with('message','Tines una solicitud de amistad');
         $this->resetInput();
 		$this->emit('closeModal');
 		session()->flash('message', 'Solicitude Successfully created.');

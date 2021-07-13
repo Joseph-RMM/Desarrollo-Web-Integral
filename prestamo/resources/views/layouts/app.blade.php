@@ -68,6 +68,21 @@
                             <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
                         </li>
                         @endcan
+                        @can('seller.home')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/producto') }}" class="nav-link">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/productosseller') }}" class="nav-link">Productos Sellers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/solicitudes') }}" class="nav-link">Solicitudes</a>
+                        </li>
+
+                        @endcan
 
 
 
