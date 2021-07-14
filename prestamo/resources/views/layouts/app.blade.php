@@ -81,6 +81,9 @@
                         <li class="nav-item">
                             <a href="{{ url('/solicitudes') }}" class="nav-link">Solicitudes</a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/productossolicitados') }}" class="nav-link">solicitar producto</a>
+                        </li>
 
                         @endcan
 

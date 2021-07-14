@@ -13,10 +13,11 @@
 
     <div class="container">
         
-        <h3>Cosas raras de productos</h3>
+        <h3>productos</h3>
         <div class="row">
             <div class="col-xl-12">
-                <form action="" method="get">
+                <form action="Aqui va create" method="get">
+                    
                     <div class="form-row">
                         <div class="col-auto my-11" >
                             <a href="" class="btn btn-success">Crea Nuevo</a>

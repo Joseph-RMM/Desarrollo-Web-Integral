@@ -29,6 +29,7 @@ class ProdutosellerController extends Controller
      */
     public function create()
     {
+
         return view('livewire.productossellers.create');
     }
 
@@ -40,7 +41,15 @@ class ProdutosellerController extends Controller
      */
     public function store(Request $request)
     {
-        return('entre');
+        $produ=new Producto;
+        $produ->nombre = $request->input('nombre');
+		$produ->Descripcion = $request->input('Descripcion');
+        $produ->foto1 = $request->input('foto');
+        $produ->foto2 = $request->input('foto2');
+        $produ->foto3 = $request->input('foto3');
+		$produ->Estado_actual_del_producto = $request->input('Estado_actual_del_producto');
+		$produ->id_usuario = $request->input('id_usuario');
+        $produ->id_tiposdeproductos = $request->input('id_tiposdeproductos'); 
     }
 
     /**
