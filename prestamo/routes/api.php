@@ -15,6 +15,9 @@ Route::get('/locations', [ApiController::class,'locations']);
 Route::get('/categories', [ApiController::class,'categories']);
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
+Route::get('/offersP/findlocation/{location}', [ApiController::class,'findlocation']);
+Route::get('/offersP/categories/{categories}', [ApiController::class,'index']);
+Route::get('/offersP/search/{products}', [ApiController::class,'search']);
 
 
 //Protected
