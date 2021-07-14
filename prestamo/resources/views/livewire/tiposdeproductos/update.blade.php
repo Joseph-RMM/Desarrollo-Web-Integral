@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-lg-9 col-md-6 col-sm-2">
                             <div class="usuario-white">
-                                Actualizar Categoria
+                                Actualizar Categoría
                             </div>
                         </div>
                     </div>
@@ -24,8 +24,8 @@
 
                                 <label>Ingresa los datos por favor.</label>
                                 <div class="field">
-                                    <label>Categoria <b class="rojo">*</b></label>
-                                    <input wire:model="clasificacion" type="text" class="form-control" id="clasificacion" placeholder="Clasificacion">@error('clasificacion') <span class="error text-danger">{{ $message }}</span> @enderror
+                                    <label>Categoría <b class="rojo">*</b></label>
+                                    <input wire:model="clasificacion" type="text" id="clasificacion" placeholder="Categoría">@error('clasificacion') <span class="error text-danger">{{ $message }}</span> @enderror
                                       <br>
                                     <br>
                                 </div>
