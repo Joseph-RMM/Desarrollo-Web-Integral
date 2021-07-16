@@ -115,10 +115,16 @@
                             </span>
                             @enderror
                         </div>
+                        <div class="field">
+                            <label for="Muni">{{ __('Municipio') }} <b class="rojo">*</b></label>
+                        <select id="Muni" name="Muni">
+                            <option value=""></option>
 
-
-
-
+                            @foreach($Municipal as $Municipio)
+                                <option value="{{$Municipio->id}}">{{$Municipio->name}}</option>
+                            @endforeach
+                        </select>@error('Muni') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </div>
                         <div class="field">
                             <label for="password">{{ __('Password') }} <b class="rojo">*</b></label>
                             <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">

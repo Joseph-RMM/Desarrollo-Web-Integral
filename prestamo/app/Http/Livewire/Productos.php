@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Producto;
@@ -167,8 +169,14 @@ class Productos extends Component
     {
         if ($id) {
             $record = Producto::where('id', $id);
+            if($record!=null){
+            Storage::delete([
+                Str::replaceArray("storage",["public"],$this->foto1),
+                Str::replaceArray("storage",["public"],$this->foto2),
+                Str::replaceArray("storage",["public"],$this->foto3)]);
             $record->delete();
             $this->emit('closeupdateModal');
+            }
         }
     }
 }
