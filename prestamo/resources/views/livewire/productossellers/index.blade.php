@@ -16,11 +16,11 @@
         <h3>productos</h3>
         <div class="row">
             <div class="col-xl-12">
-                <form action="Aqui va create" method="get">
+                <form action="{{route('createp')}}" method="get">
                     
                     <div class="form-row">
                         <div class="col-auto my-11" >
-                            <a href="" class="btn btn-success">Crea Nuevo</a>
+                            <a href="{{route('createp')}}" class="btn btn-success">Crea Nuevo</a>
                         </div>
                     </div>
                 </form>

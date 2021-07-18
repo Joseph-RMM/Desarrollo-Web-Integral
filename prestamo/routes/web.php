@@ -17,12 +17,13 @@ Route::view('productossolicitados', 'livewire.productossolicitados.index')->midd
 Route::view('producto', 'livewire.productos.index')->middleware('can:seller.home');
 //Obtiene json de productos original v
 Route::get('productosseller',[ProdutosellerController::class,'index'])->middleware('can:seller.home');
-Route::view('createp','livewire.productossellers.create')->middleware('can:seller.home');
-Route::view('store','livewire.productossellers.store')->middleware('can:seller.home');
-Route::middleware(['createp', 'second'])->group(function () {
-    return view('livewire.productossellers.create');
-});
+Route::get('createp',[ProdutosellerController::class,'create'])->name('createp');
+Route::post('store',[ProdutosellerController::class,'store'])->middleware('can:seller.home');
+
 Auth::routes();
+
+    
+
 
 //Rutas del Admin
 Route::view('Municipios', 'livewire.Municipios.index')->middleware('can:admin.home');
