@@ -17,6 +17,7 @@ Route::view('productossolicitados', 'livewire.productossolicitados.index')->midd
 Route::view('producto', 'livewire.productos.index')->middleware('can:seller.home');
 //Obtiene json de productos original v
 Route::get('productosseller',[ProdutosellerController::class,'index'])->middleware('can:seller.home');
+Route::get('productossellerb',[ProdutosellerController::class,'indexbuscador'])->middleware('can:seller.home');
 Route::get('createp',[ProdutosellerController::class,'create'])->name('createp');
 Route::post('storep',[ProdutosellerController::class,'store'])->middleware('storep');
 

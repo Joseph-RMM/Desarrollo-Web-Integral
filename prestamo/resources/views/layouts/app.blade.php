@@ -79,6 +79,9 @@
                             <a href="{{ url('/productosseller') }}" class="nav-link">Productos Sellers</a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ url('/productossellerb') }}" class="nav-link">Productos Buscador</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ url('/solicitudes') }}" class="nav-link">Solicitudes</a>
                         </li>
                         <li class="nav-item">

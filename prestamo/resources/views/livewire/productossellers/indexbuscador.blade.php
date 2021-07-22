@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-1">
                     <div class="usuario-white">
-                        <b>Productos</b>
+                        <b>Productos del BUSCADOR</b>
                     </div>
     
                 </div>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2">
                     <div class="usuario-white">
-                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-box-open"></i> </i> Agregar Productos</button>
+                       
                     </div>
                 </div>
             </div>
