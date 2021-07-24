@@ -40,7 +40,7 @@
     
     
         <div class="container contenedor">
-            @include('livewire.productossellers.create')
+            
             
     
             <center>

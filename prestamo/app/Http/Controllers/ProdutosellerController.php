@@ -12,7 +12,7 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 class ProdutosellerController extends Controller
 {
-	protected $paginationTheme = 'bootstrap';
+    protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $nombre, $Descripcion,$foto1, $foto2, $foto3, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
     public $foto;
     public $updateMode = false;
@@ -26,15 +26,16 @@ class ProdutosellerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    /* public function index(Request $request)
     {
+       
         //consulta para mostar la lista de produstos ordenados disponibles
         $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
         $keyWord = '%'.$this->keyWord .'%';
         
         return view('livewire.productossellers.index', compact('productos'));
         //return view('livewire.productossellers.index',compact('productos'));
-    }
+    }*/
 
     public function indexbuscador(Request $request)
     {
@@ -52,11 +53,11 @@ class ProdutosellerController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    // public function create()
-    //{
+    public function create()
+    {
         
-    //    return view('livewire.productossellers.create');
-    //}
+        //return view('livewire.productossellers.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -66,30 +67,8 @@ class ProdutosellerController extends Controller
      */
     public function store(Request $request)
     {
-
-        $urlclean = [];
-        $inde = 0;
-        foreach ($this->foto as $fotoname) {
-            $namefoto = $fotoname->store('foto', 'public');
-            $urlclean[$inde++] = Storage::url($namefoto);
-        }
-        //$urlclean=Storage::url($namefoto);
-        Producto::create([
-            'nombre' => $this->nombre,
-            'Descripcion' => $this->Descripcion,
-            'Estado_actual_del_producto' => $this->Estado_actual_del_producto,
-            'foto' => $urlclean[0],
-            'foto2' => $urlclean[1],
-            'foto3' => $urlclean[2],
-            'id_usuario' => auth()->user()->id,
-            'id_tiposdeproductos' => $this->id_tiposdeproductos,
-
-
-        ]);
-
-        $this->resetInput();
-		$this->emit('closeModal');
-		session()->flash('message', 'Producto Successfully created.');
+        //return('hola');
+        
     }
 
     /**

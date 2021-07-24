@@ -47,9 +47,9 @@
                                     <br>
                                     <select wire:model='id_tiposdeproductos' >
                                         <option value="">Clasificacion de producto</option>
-                                       
-                                        <option value="prueba">prueba </option>
-                                        
+                                        @foreach($tiposdeproductos as $tiposdeproductos)
+                                        <option value="{{$tiposdeproductos->id}}">{{$tiposdeproductos->clasificacion}} </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </form>
