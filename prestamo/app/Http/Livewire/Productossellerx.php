@@ -44,8 +44,15 @@ class Productossellerx extends Component
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
-        return view('livewire.productossellers.view', [
-            'productos' => Producto::latest()
+        $productos=Producto::where('Estado_actual_del_producto', 'LIKE',$keyWord)
+                            ->orderByDesc('id')->get()
+                            ->paginate(10);
+        
+        
+        return view('livewire.productossellers.indexbuscador', compact('productos'));
+        //$keyWord = '%'.$this->keyWord .'%';
+       /* return view('livewire.productossellers.view', [
+            'productos' =>Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get()
                         ->Where('nombre', 'LIKE', $keyWord)
 
 						->orWhere('Descripcion', 'LIKE', $keyWord)
@@ -56,7 +63,8 @@ class Productossellerx extends Component
 						->paginate(10),
             'tiposdeproductos' => Tiposdeproducto::all(),
             'users' => User::all()
-        ]);
+        ]);*/
+
     }
     public function cancel()
     {

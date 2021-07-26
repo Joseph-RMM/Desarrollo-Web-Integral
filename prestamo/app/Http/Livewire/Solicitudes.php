@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\SolicitudesEvent;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Solicitude;
 use App\Models\User;
-//use App\Notifications\solicitudes;
+use App\Notifications\solicitudesn;
 
 class Solicitudes extends Component
 {
@@ -62,7 +63,14 @@ class Solicitudes extends Component
 			'id_usuariosolicitante' => $this-> id_usuariosolicitante
             
         ]);
-       // auth()->user()->notify(new solicitudes($Solicitude));
+        
+       //¿ auth()->user()->notify(new solicitudes($Solicitude));
+       //User::all()
+       //->except($Solicitude->id)
+        //->each(function(User $user) use ($Solicitude){
+         //  $user->notify(new solicitudesn($Solicitude));
+       //});
+       event(new SolicitudesEvent($Solicitude));
         return redirect()->back()->with('message','Tines una solicitud de amistad');
         $this->resetInput();
 		$this->emit('closeModal');

@@ -2,10 +2,12 @@
 
 namespace App\Notifications;
 
+use App\Models\Solicitude;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Solicitudes;
 
 class solicitudesn extends Notification
 {
@@ -16,9 +18,9 @@ class solicitudesn extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Solicitude $solicitude)
     {
-        //
+        $this->solicitude = $solicitude;
     }
 
     /**
@@ -55,7 +57,9 @@ class solicitudesn extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'Mensaje' => $this->solicitude->Mensaje,
+            'status' =>  $this->solicitude->status,
+            'id_usuariosolicitante' => $this->solicitude->id_usuariosolicitante,
         ];
     }
 }
