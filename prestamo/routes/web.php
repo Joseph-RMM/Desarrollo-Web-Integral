@@ -10,14 +10,16 @@ use Symfony\Component\Routing\Generator\Urlgeneratorinterface;
 Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
+Route::get('buscador', [App\Http\Controllers\ProdutobuscadorController::class, 'index'])->middleware('auth');
+Route::get('ofertador', [App\Http\Controllers\ProdutosellerController::class, 'index'])->middleware('auth');
 //Route::view('producto', 'livewire.productos.index')->middleware('auth');
 Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('can:seller.home');
 Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('can:seller.home');
 Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('auth');
 Route::view('producto', 'livewire.productos.index')->middleware('can:seller.home');
 //Obtiene json de productos original v
-Route::view('productosseller','livewire.productos.index')->middleware('can:seller.home');
-Route::get('productossellerb',[ProdutosellerController::class,'indexbuscador'])->middleware('can:seller.home');
+Route::view('productosseller','livewire.productossellers.index')->middleware('can:seller.home');
+Route::view('productossellerb','livewire.productosbuscador.index')->middleware('can:seller.home');
 //Route::get('createp',[ProdutosellerController::class,'create'])->name('createp');
 //Route::post('storep',[ProdutosellerController::class,'store'])->name('storep');
 

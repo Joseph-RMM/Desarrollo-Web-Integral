@@ -26,24 +26,25 @@ class ProdutosellerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    /* public function index(Request $request)
+    public function index(Request $request)
     {
-       
+       return view('ofertador');
         //consulta para mostar la lista de produstos ordenados disponibles
-        $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
+        /* $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
         $keyWord = '%'.$this->keyWord .'%';
         
         return view('livewire.productossellers.index', compact('productos'));
-        //return view('livewire.productossellers.index',compact('productos'));
-    }*/
+        //return view('livewire.productossellers.index',compact('productos'));*/
+    }
 
     public function indexbuscador(Request $request)
     {
-        //consulta para mostar la lista de produstos ordenados disponibles
-        $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
-        $keyWord = '%'.$this->keyWord .'%';
         
-        return view('livewire.productossellers.indexbuscador', compact('productos'));
+        //consulta para mostar la lista de produstos ordenados disponibles
+        ///$productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
+        //$keyWord = '%'.$this->keyWord .'%';
+        
+        //return view('livewire.productossellers.indexbuscador', compact('productos'));
         //return view('livewire.productossellers.index',compact('productos'));
     }
 

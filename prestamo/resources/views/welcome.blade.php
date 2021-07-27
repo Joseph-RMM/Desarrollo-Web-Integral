@@ -11,7 +11,7 @@
 
         <title>@hasSection('title') @yield('title') | @endif {{ config('app.name', 'Laravel') }}</title>
     </head>
-    <body>
+<body>
     <div class="app">
 
         <div class="container">
@@ -79,6 +79,7 @@
                                 </form>
                             </div>
                         </li>
+
                     @endguest
                 </ul>
             </div>
@@ -86,5 +87,7 @@
         </div>
 
     </div>
-    </body>
+    <button type="button" class="btn btn-primary btn-lg btn-block"><a class="nav-link" href="{{ url('ofertador') }}">OFERTADOR</a></button>
+<button type="button" class="btn btn-secondary btn-lg btn-block"><a class="nav-link" href="{{ url('buscador') }}">BUSCADOR</a></button>
+</body>
 @endsection
