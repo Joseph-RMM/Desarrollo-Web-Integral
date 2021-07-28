@@ -60,7 +60,7 @@ class Solicitudes extends Component
 			'Mensaje' => $this-> Mensaje,
 			'status' => $this-> status,
 			'id_usuario' =>$this-> id_usuario,
-			'id_usuariosolicitante' => $this-> id_usuariosolicitante
+			'id_usuariosolicitante' => Auth()->user()->id
             
         ]);
         
