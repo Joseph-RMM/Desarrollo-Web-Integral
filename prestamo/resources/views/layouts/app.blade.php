@@ -120,37 +120,36 @@
                         
                         <!-- Notifications Dropdown Menu -->
                         <li class="nav-item dropdown">
+                            
                             <a class="nav-link" data-toggle="dropdown" href="#">
+                                
                             <i class="far fa-bell"></i>
-                            <span class="badge badge-warning navbar-badge">
-                                @if (count(auth()->user()->unreadNotifications))
+                            
+                                @if (count(auth()->user()->Notifications))
                                 <span class="badge badge-warning">
-                                    {{count(auth()->user()->unreadNotifications)}}
+                                    {{count(auth()->user()->Notifications)}}
                                 </span>
                                     
                                 @endif
-                            </span>
+                            
                             </a>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <span class="dropdown-item dropdown-header">15 Notifications</span>
+                                @foreach (auth()->user()->Notifications as $notification)
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-users mr-2"></i> {{$notification->data['Mensaje']}}
+                                        <br>
+                                        <i class="fas fa-envelope mr-2"></i> {{$notification->data['status']}}
+                                        <span class="xl-1 float-right text-muted text-sm">Te ha enviado una solicitud de amistad</span>
+                                        <span class="xl-1 float-right text-muted text-sm">{{$notification->created_at->diffForHumans()}}</span>
+                                    </a>  
+                                @endforeach
+                                
+
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-envelope mr-2"></i> 4 new messages
-                                <span class="float-right text-muted text-sm">3 mins</span>
-                            </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-users mr-2"></i> 8 friend requests
-                                <span class="float-right text-muted text-sm">12 hours</span>
-                            </a>
+                            <span class="dropdown-item dropdown-header">Todas tus notificaciones</span>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-file mr-2"></i> 3 new reports
-                                <span class="float-right text-muted text-sm">2 days</span>
-                            </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                            </div>
                         </li>
 
                         <!-- Productos -->
