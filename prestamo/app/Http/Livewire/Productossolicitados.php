@@ -44,10 +44,10 @@ class Productossolicitados extends Component
     public function store()
     {
         $this->validate([
-		'id_tiposdeproductos' => 'required',
-		'fecha_entrega' => 'required',
-		'fecha_devolucion' => 'required',
-		'id_solicitud' => 'required',
+		'id_tiposdeproductos' => 'required|min:1|numeric',
+		'fecha_entrega' => 'required|date',
+		'fecha_devolucion' => 'required|date',
+		'id_solicitud' => 'required|min:1|numeric',
         ]);
 
         Productossolicitado::create([ 

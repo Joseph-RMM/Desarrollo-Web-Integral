@@ -49,9 +49,9 @@ class Solicitudes extends Component
     public function store()
     {
         $this->validate([
-		'Mensaje' => 'required',
+		'Mensaje' => 'required|min:4',
 		'status' => 'required',
-		'id_usuario' => 'required',
+		'id_usuario' => 'required|min:1',
 		'id_usuariosolicitante' => 'required',
         ]);
 
@@ -107,7 +107,7 @@ class Solicitudes extends Component
             $record->update([ 
 			'Mensaje' => $this-> Mensaje,
 			'status' => $this-> status,
-			'id_usuario' => auth()->user()->id,
+			'id_usuario' => $this-> id_usuario,
 			'id_usuariosolicitante' => $this-> id_usuariosolicitante
             ]);
 
