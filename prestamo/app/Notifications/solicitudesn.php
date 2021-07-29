@@ -3,11 +3,12 @@
 namespace App\Notifications;
 
 use App\Models\Solicitude;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Solicitudes;
+
 
 class solicitudesn extends Notification
 {
@@ -60,6 +61,7 @@ class solicitudesn extends Notification
             'Mensaje' => $this->solicitude->Mensaje,
             'status' =>  $this->solicitude->status,
             'id_usuariosolicitante' => $this->solicitude->id_usuariosolicitante,
+            'time'=> Carbon::now()->diffForHumans(),
         ];
     }
 }

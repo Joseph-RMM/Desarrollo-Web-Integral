@@ -17,7 +17,7 @@ class Solicitudes extends Component
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $Mensaje, $status, $id_usuario, $id_usuariosolicitante;
     public $updateMode = false;
-    
+   
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
@@ -60,21 +60,24 @@ class Solicitudes extends Component
 			'Mensaje' => $this-> Mensaje,
 			'status' => $this-> status,
 			'id_usuario' =>$this-> id_usuario,
-			'id_usuariosolicitante' => Auth()->user()->id
+			'id_usuariosolicitante' => $this-> id_usuariosolicitante,
             
         ]);
-        
-       //¿ auth()->user()->notify(new solicitudes($Solicitude));
-       //User::all()
-       //->except($Solicitude->id)
-        //->each(function(User $user) use ($Solicitude){
-         //  $user->notify(new solicitudesn($Solicitude));
-       //});
-       event(new SolicitudesEvent($Solicitude));
+        //ESTA LINEA FUNCIONA
+       ///auth()->user()->notify(new solicitudesn($Solicitude));
+
+        //NOTIFICACION AL 100------------------------>NO BORRAR
+       User::all()
+        ->except($Solicitude->id)
+        ->each(function(User $user) use ($Solicitude){
+            $user->notify(new solicitudesn($Solicitude));
+        });
+       //event(new SolicitudesEvent($Solicitude));
         return redirect()->back()->with('message','Tines una solicitud de amistad');
         $this->resetInput();
 		$this->emit('closeModal');
 		session()->flash('message', 'Solicitude Successfully created.');
+        //NOTIFICACION AL 100------------------------> NO BORRAR
     }
 
     public function edit($id)

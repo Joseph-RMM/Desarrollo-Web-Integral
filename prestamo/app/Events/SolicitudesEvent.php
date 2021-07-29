@@ -22,7 +22,7 @@ class SolicitudesEvent
      */
     public function __construct($Solicitude)
     {
-        $this->Solicitude=$Solicitude;
+       // $this->Solicitude=$Solicitude;
     }
 
     /**
