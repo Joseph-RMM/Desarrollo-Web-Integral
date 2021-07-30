@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Livewire;
-
-use Livewire\Component;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
@@ -13,8 +11,9 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\WithFileUploads;
 use \Illuminate\Http\Request;
 use App\Models\User;
+use Livewire\Component;
 
-class Productossellerx extends Component
+class Productosinvitados extends Component
 {
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $nombre, $Descripcion,$foto1, $foto2, $foto3, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
@@ -23,6 +22,7 @@ class Productossellerx extends Component
     public $selectedtiposdeproductos=null;
     public $tipos_deproductos=null;
     public $usuario=null;
+    public $search=null;
     use WithPagination;
     use WithFileUploads;
 
@@ -44,17 +44,9 @@ class Productossellerx extends Component
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
-        $productos=Producto::where('Estado_actual_del_producto', 'LIKE',$keyWord)
-                            ->orderByDesc('id')->get()
-                            ->paginate(10);
-        
-        
-        return view('livewire.productossellers.indexbuscador', compact('productos'));
-        //$keyWord = '%'.$this->keyWord .'%';
-       /* return view('livewire.productossellers.view', [
-            'productos' =>Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get()
-                        ->Where('nombre', 'LIKE', $keyWord)
-
+        return view('livewire.productosinvitados.view', [
+            'productos' => Producto::latest()
+                        ->orWhere('nombre', 'LIKE', $keyWord)
 						->orWhere('Descripcion', 'LIKE', $keyWord)
 						->orWhere('foto', 'LIKE', $keyWord)
 						->orWhere('Estado_actual_del_producto', 'LIKE', $keyWord)
@@ -63,8 +55,7 @@ class Productossellerx extends Component
 						->paginate(10),
             'tiposdeproductos' => Tiposdeproducto::all(),
             'users' => User::all()
-        ]);*/
-
+        ]);
     }
     public function cancel()
     {

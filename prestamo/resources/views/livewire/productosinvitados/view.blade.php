@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-1">
                 <div class="usuario-white">
-                    <b>Productos OFERTADOR</b>
+                    <b>Productos invitados</b>
                 </div>
 
             </div>
@@ -16,19 +16,17 @@
                 @if (session()->has('message'))
                 <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
                 @endif
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-2">
-                <div class="usuario-white">
-                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-box-open"></i> </i> Agregar Productos</button>
+                <div>
+                    <input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Productos">
                 </div>
             </div>
+
         </div>
     </div>
 
 
     <div class="container contenedor">
-        @include('livewire.productos.create')
-        @include('livewire.productos.vista')
+
 
         <center>
             <div class="row">

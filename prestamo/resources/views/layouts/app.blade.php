@@ -73,10 +73,10 @@
                             <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/producto') }}" class="nav-link">Productos</a>
+                            <a href="{{ url('/producto') }}" class="nav-link">Productos Admin (Padre)</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/productosseller') }}" class="nav-link">Productos Sellers</a>
+                            <a href="{{ url('/productosseller') }}" class="nav-link">Productos Ofertador</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/productossellerb') }}" class="nav-link">Productos Buscador</a>
@@ -85,9 +85,12 @@
                             <a href="{{ url('/solicitudes') }}" class="nav-link">Solicitudes</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/productossolicitados') }}" class="nav-link">solicitar producto</a>
+                            <a href="{{ url('/productossolicitados') }}" class="nav-link">Detalles prestamo</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="{{ url('/productosinvitado') }}" class="nav-link">Productos invitados</a>
+                        </li>
+                        
                         @endcan
 
 

@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\WithFileUploads;
 use \Illuminate\Http\Request;
 use App\Models\User;
-class Productosbuscador extends Component
+
+class Productossellers extends Component
 {
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $nombre, $Descripcion,$foto1, $foto2, $foto3, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
@@ -42,13 +43,14 @@ class Productosbuscador extends Component
 
     public function render()
     {
+
         //consulta para mostar la lista de produstos ordenados disponibles
         $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
         $keyWord = '%'.$this->keyWord .'%';
-        
+                
         //return view('livewire.productossellers.index', compact('productos'));
-
-        return view('livewire.productosbuscador.view',compact('productos'));
+        
+        return view('livewire.productossellers.view',compact('productos'));
 
     }
     public function cancel()

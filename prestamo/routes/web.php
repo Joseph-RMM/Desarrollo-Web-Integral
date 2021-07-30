@@ -18,10 +18,9 @@ Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('can:seller
 Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('auth');
 Route::view('producto', 'livewire.productos.index')->middleware('can:seller.home');
 //Obtiene json de productos original v
-Route::view('productosseller','livewire.productossellers.index')->middleware('can:seller.home');
+Route::view('productosseller','livewire.productosofertador.index')->middleware('can:seller.home');
 Route::view('productossellerb','livewire.productosbuscador.index')->middleware('can:seller.home');
-//Route::get('createp',[ProdutosellerController::class,'create'])->name('createp');
-//Route::post('storep',[ProdutosellerController::class,'store'])->name('storep');
+Route::view('productosinvitado','livewire.productosinvitados.index')->name('productosinvitado');
 
 Auth::routes();
 
