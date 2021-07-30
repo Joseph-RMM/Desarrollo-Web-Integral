@@ -42,27 +42,13 @@ class Productosbuscador extends Component
 
     public function render()
     {
-		$keyWord = '%'.$this->keyWord .'%';
-        $productos=Producto::where('Estado_actual_del_producto', 'LIKE',$keyWord)
-                            ->orderByDesc('id')->get()
-                            ->paginate(10);
+                //consulta para mostar la lista de produstos ordenados disponibles
+        $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
+        $keyWord = '%'.$this->keyWord .'%';
         
-        
-        return view('livewire.productosbuscador.indexbuscador', compact('productos'));
-        //$keyWord = '%'.$this->keyWord .'%';
-       /* return view('livewire.productossellers.view', [
-            'productos' =>Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get()
-                        ->Where('nombre', 'LIKE', $keyWord)
+        //return view('livewire.productossellers.index', compact('productos'));
 
-						->orWhere('Descripcion', 'LIKE', $keyWord)
-						->orWhere('foto', 'LIKE', $keyWord)
-						->orWhere('Estado_actual_del_producto', 'LIKE', $keyWord)
-						->orWhere('id_usuario', 'LIKE', $keyWord)
-                        ->orWhere('id_tiposdeproductos', 'LIKE', $keyWord)
-						->paginate(10),
-            'tiposdeproductos' => Tiposdeproducto::all(),
-            'users' => User::all()
-        ]);*/
+        return view('livewire.productosbuscador.view',compact('productos'));
 
     }
     public function cancel()

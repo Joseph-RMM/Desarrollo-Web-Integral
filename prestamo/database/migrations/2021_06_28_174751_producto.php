@@ -28,8 +28,10 @@ class Producto extends Migration
             $table->string('foto3');
             $table->timestamps();
             $table->string('Estado_actual_del_producto');
+            //user
             $table->unsignedBigInteger('id_usuario')->index();
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
+            //tipo
             $table->unsignedBigInteger('id_tiposdeproductos')->unsigned();
             $table->foreign('id_tiposdeproductos')->references('id')->on('tiposdeproductos');
 
