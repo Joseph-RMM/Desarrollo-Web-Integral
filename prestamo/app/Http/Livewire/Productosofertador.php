@@ -42,13 +42,21 @@ class Productosofertador extends Component
 
     public function render()
     {
-        //consulta para mostar la lista de produstos ordenados disponibles
-        $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
-        $keyWord = '%'.$this->keyWord .'%';
-        
-        //return view('livewire.productossellers.index', compact('productos'));
+		$keyWord = '%'.$this->keyWord .'%';
+        return view('livewire.productosofertador.view', [
+            'productos' => Producto::latest()
+                        ->orWhere('nombre', 'LIKE', $keyWord)
 
-        return view('livewire.productosofertador.view',compact('productos'));
+						->orWhere('Descripcion', 'LIKE', $keyWord)
+						->orWhere('foto', 'LIKE', $keyWord)
+						->orWhere('Estado_actual_del_producto', 'LIKE', $keyWord)
+						->orWhere('id_usuario', 'LIKE', $keyWord)
+                        ->orWhere('id_tiposdeproductos', 'LIKE', $keyWord)
+						->paginate(10),
+            'tiposdeproductos' => Tiposdeproducto::all(),
+            'users' => User::all()
+        ]);
+
 
     }
     public function cancel()
