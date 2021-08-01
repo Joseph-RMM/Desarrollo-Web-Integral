@@ -59,7 +59,7 @@ class Solicitudes extends Component
             
 			'Mensaje' => $this-> Mensaje,
 			'status' => $this-> status,
-			'id_usuario' =>$this-> id_usuario,
+			'id_usuario' =>auth()->user()->id,
 			'id_usuariosolicitante' => $this-> id_usuariosolicitante,
             
         ]);
@@ -73,6 +73,7 @@ class Solicitudes extends Component
             $user->notify(new solicitudesn($Solicitude));
         });
        //event(new SolicitudesEvent($Solicitude));
+
         return redirect()->back()->with('message','Tines una solicitud de amistad');
         $this->resetInput();
 		$this->emit('closeModal');
