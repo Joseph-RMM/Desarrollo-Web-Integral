@@ -24,6 +24,8 @@ class Productossolicitados extends Component
 						->orWhere('fecha_devolucion', 'LIKE', $keyWord)
 						->orWhere('id_solicitud', 'LIKE', $keyWord)
 						->paginate(10),
+            'solicitudes'=> Solicitudes::all(),
+            'Productos'=>Productos::all(),
         ]);
     }
 	
