@@ -21,6 +21,10 @@ Route::view('producto', 'livewire.productos.index')->middleware('can:seller.home
 Route::view('productosseller','livewire.productosofertador.index')->middleware('can:seller.home');
 Route::view('productossellerb','livewire.productosbuscador.index')->middleware('can:seller.home');
 Route::view('productosinvitado','livewire.productosinvitados.index')->name('productosinvitado');
+Route::get('marcar', function(){
+    auth()->user()->unreadNotifications->markAsRead();
+    return redirect()->back();	
+})->name('marcar');
 
 Auth::routes();
 
