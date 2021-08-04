@@ -13,7 +13,7 @@ class Solicitude extends Model
 
     protected $table = 'solicitudes';
 
-    protected $fillable = ['Mensaje','status','id_usuario','id_usuariosolicitante'];
+    protected $fillable = ['Mensaje','status','id_usuario','id_usuariosolicitante','name'];
 	
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

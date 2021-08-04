@@ -8,9 +8,19 @@ use App\Models\Producto;
 use App\Models\User;
 use App\Models\Tiposdeproducto;
 use Illuminate\Support\Facades\Storage;
-
+use Livewire\WithPagination;
+use Livewire\WithFileUploads;
 class ProdutosellerController extends Controller
 {
+    protected $paginationTheme = 'bootstrap';
+    public $selected_id, $keyWord, $nombre, $Descripcion,$foto1, $foto2, $foto3, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
+    public $foto;
+    public $updateMode = false;
+    public $selectedtiposdeproductos=null;
+    public $tipos_deproductos=null;
+    public $usuario=null;
+    use WithPagination;
+    use WithFileUploads;
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +28,24 @@ class ProdutosellerController extends Controller
      */
     public function index(Request $request)
     {
-        $productos=Producto::all();
-        return view('livewire.productossellers.index',compact('productos'));
+       return view('ofertador');
+        //consulta para mostar la lista de produstos ordenados disponibles
+        /* $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
+        $keyWord = '%'.$this->keyWord .'%';
+        
+        return view('livewire.productossellers.index', compact('productos'));
+        //return view('livewire.productossellers.index',compact('productos'));*/
+    }
+
+    public function indexbuscador(Request $request)
+    {
+        
+        //consulta para mostar la lista de produstos ordenados disponibles
+        ///$productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
+        //$keyWord = '%'.$this->keyWord .'%';
+        
+        //return view('livewire.productossellers.indexbuscador', compact('productos'));
+        //return view('livewire.productossellers.index',compact('productos'));
     }
 
     /**
@@ -27,10 +53,11 @@ class ProdutosellerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function create()
     {
-
-        return view('livewire.productossellers.create');
+        
+        //return view('livewire.productossellers.create');
     }
 
     /**
@@ -41,15 +68,8 @@ class ProdutosellerController extends Controller
      */
     public function store(Request $request)
     {
-        $produ=new Producto;
-        $produ->nombre = $request->input('nombre');
-		$produ->Descripcion = $request->input('Descripcion');
-        $produ->foto1 = $request->input('foto');
-        $produ->foto2 = $request->input('foto2');
-        $produ->foto3 = $request->input('foto3');
-		$produ->Estado_actual_del_producto = $request->input('Estado_actual_del_producto');
-		$produ->id_usuario = $request->input('id_usuario');
-        $produ->id_tiposdeproductos = $request->input('id_tiposdeproductos'); 
+        //return('hola');
+        
     }
 
     /**

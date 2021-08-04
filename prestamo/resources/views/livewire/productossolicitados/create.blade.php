@@ -16,11 +16,11 @@
             </div>
             <div class="form-group">
                 <label for="fecha_entrega"></label>
-                <input wire:model="fecha_entrega" type="text" class="form-control" id="fecha_entrega" placeholder="Fecha Entrega">@error('fecha_entrega') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model="fecha_entrega" type="Date" class="form-control" id="fecha_entrega" placeholder="Fecha Entrega">@error('fecha_entrega') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="fecha_devolucion"></label>
-                <input wire:model="fecha_devolucion" type="text" class="form-control" id="fecha_devolucion" placeholder="Fecha Devolucion">@error('fecha_devolucion') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model="fecha_devolucion" type="Date" class="form-control" id="fecha_devolucion" placeholder="Fecha Devolucion">@error('fecha_devolucion') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="id_solicitud"></label>

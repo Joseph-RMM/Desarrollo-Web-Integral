@@ -28,7 +28,8 @@
     <!-- Bootstrap y Fontawesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
+    <!-- GRAFICAS-->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @livewireStyles
@@ -49,66 +50,39 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     @auth()
-                    <ul class="navbar-nav mr-auto">
-                        @can('admin.home')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/Dashboard') }}">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/productos') }}" class="nav-link">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/usuarios') }}">Usuarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/Categorias') }}">Categorías</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/Municipios') }}">Municipios</a>
-                        </li>
-                        @endcan
-                        @can('seller.home')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/producto') }}" class="nav-link">Productos Admin (Padre)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/productosseller') }}" class="nav-link">Productos Ofertador</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/productossellerb') }}" class="nav-link">Productos Buscador</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/solicitudes') }}" class="nav-link">Solicitudes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/productossolicitados') }}" class="nav-link">Detalles prestamo</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/productosinvitado') }}" class="nav-link">Productos invitados</a>
-                        </li>
-                        
-                        @endcan
+                        <ul class="navbar-nav mr-auto">
 
+                            @can('seller.home')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
+                            </li>
 
+                            <li class="nav-item">
+                                <a href="{{ url('/productossellerb') }}" class="nav-link">Productos Buscador</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/solicitudes') }}" class="nav-link">Solicitudes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/productossolicitados') }}" class="nav-link">solicitar producto</a>
+                            </li>
 
-                    </ul>
+                            @endcan
+                        </ul>
                     @endauth()
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                        @if (Route::has('login'))
-                        <!--
-                            Boton de entrar
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        -->
-                        @endif
+                            @if (Route::has('login'))
+                                <!--
+                                Boton de entrar
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                                -->
+                            @endif
 
                         @if (Route::has('register'))
                         <!--
@@ -119,40 +93,6 @@
                         -->
                         @endif
                         @else
-                        
-                        <!-- Notifications Dropdown Menu -->
-                        <li class="nav-item dropdown">
-                            
-                            <a class="nav-link" data-toggle="dropdown" href="#">
-                                
-                            <i class="far fa-bell"></i>
-                            
-                                @if (count(auth()->user()->Notifications))
-                                <span class="badge badge-warning">
-                                    {{count(auth()->user()->Notifications)}}
-                                </span>
-                                    
-                                @endif
-                            
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                @foreach (auth()->user()->Notifications as $notification)
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-users mr-2"></i> {{$notification->data['name']}}
-                                        <br>
-                                        <i class="fas fa-envelope mr-2"></i> {{$notification->data['Mensaje']}}
-                                        <span class="xl-1 float-right text-muted text-sm">Te ha enviado una solicitud de amistad</span>
-                                        <span class="xl-1 float-right text-muted text-sm">{{$notification->created_at->diffForHumans()}}</span>
-                                    </a>  
-                                @endforeach
-                                
-
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-divider"></div>
-                            <span class="dropdown-item dropdown-header">Todas tus notificaciones</span>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-divider"></div>
-                        </li>
 
                         <!-- Productos -->
 
@@ -182,8 +122,6 @@
                             </div>
                         </li>
                         @endguest
-
-                        
                     </ul>
                 </div>
             </div>
@@ -207,8 +145,6 @@
     </script>
     <script src="{{ asset('js/estilo-login.js') }}"></script>
     <script src="{{ asset('js/inicioadmin.js') }}"></script>
-    <!-- GRAFICAS-->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </body>
 
 </html>

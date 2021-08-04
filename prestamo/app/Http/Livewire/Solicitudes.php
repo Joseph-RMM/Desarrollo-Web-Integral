@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\SolicitudesEvent;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Solicitude;
 use App\Models\User;
-//use App\Notifications\solicitudes;
+use App\Notifications\solicitudesn;
 
 class Solicitudes extends Component
 {
@@ -16,19 +17,34 @@ class Solicitudes extends Component
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $Mensaje, $status, $id_usuario, $id_usuariosolicitante;
     public $updateMode = false;
-    
+   
     public function render()
     {
-		$keyWord = '%'.$this->keyWord .'%';
+
+        $keyWord = '%'.$this->keyWord .'%';
+        $usuariologeado = auth()->user()->id;
+        //$solicitudes=Solicitude::where("id_usuario","=",$usuariologeado)->orderByDesc('id')->get();
+        //$users = User::all()->except($usuariologeado);
+        //return view('livewire.solicitudes.view',compact('solicitudes','users'));
+		
         return view('livewire.solicitudes.view', [
-            'solicitudes' => Solicitude::latest()
-						->orWhere('Mensaje', 'LIKE', $keyWord)
-						->orWhere('status', 'LIKE', $keyWord)
-						->orWhere('id_usuario', 'LIKE', $keyWord)
-						->orWhere('id_usuariosolicitante', 'LIKE', $keyWord)
+            'solicitudes' => Solicitude::join('users','solicitudes.id_usuariosolicitante','=','users.id')
+                
+
+						->orWhere('id_usuario', '=', $usuariologeado)
+						
 						->paginate(10),
-            'users' => User::all()
+            'users' => User::all()->except($usuariologeado),
         ]);
+        		
+        /*return view('livewire.solicitudes.view', [
+            'solicitudes' => Solicitude::latest()
+
+						->orWhere('id_usuario', '=', $usuariologeado)
+						
+						->paginate(10),
+            'users' => User::all(),
+        ]);*/
     }
 	
     public function cancel()
@@ -48,25 +64,41 @@ class Solicitudes extends Component
     public function store()
     {
         $this->validate([
-		'Mensaje' => 'required',
-		'status' => 'required',
-		'id_usuario' => 'required',
+		'Mensaje' => 'required|min:4',
+		
+		
 		'id_usuariosolicitante' => 'required',
         ]);
-
+        $usermanda=auth()->user()->id;
+        $name=User::where('id','=', $usermanda)->value('name');
+        
         $Solicitude=Solicitude::create([ 
             
 			'Mensaje' => $this-> Mensaje,
-			'status' => $this-> status,
-			'id_usuario' =>$this-> id_usuario,
-			'id_usuariosolicitante' => $this-> id_usuariosolicitante
-            
+			'status' =>'P',
+			'id_usuario' =>$usermanda,
+			'id_usuariosolicitante' => $this-> id_usuariosolicitante,
+            'name'=>$name
+            //'name'=>Users::where('name','id_usuario','=',$this-> id_usuariosolicitante)
+                            
         ]);
-       // auth()->user()->notify(new solicitudes($Solicitude));
+        //ESTA LINEA FUNCIONA
+       ///auth()->user()->notify(new solicitudesn($Solicitude));
+
+        //NOTIFICACION AL 100------------------------>NO BORRAR
+       User::where("id","=",$this-> id_usuariosolicitante)
+        
+        ->each(function(User $user) use ($Solicitude){
+            $user->notify(new solicitudesn($Solicitude));
+        });
+       //event(new SolicitudesEvent($Solicitude));
+
         return redirect()->back()->with('message','Tines una solicitud de amistad');
         $this->resetInput();
-		$this->emit('closeModal');
+		
 		session()->flash('message', 'Solicitude Successfully created.');
+        $this->emit('closeModal');
+        //NOTIFICACION AL 100------------------------> NO BORRAR
     }
 
     public function edit($id)
@@ -96,7 +128,7 @@ class Solicitudes extends Component
             $record->update([ 
 			'Mensaje' => $this-> Mensaje,
 			'status' => $this-> status,
-			'id_usuario' => auth()->user()->id,
+			'id_usuario' => $this-> id_usuario,
 			'id_usuariosolicitante' => $this-> id_usuariosolicitante
             ]);
 
