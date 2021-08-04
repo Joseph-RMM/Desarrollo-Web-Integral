@@ -18,7 +18,7 @@ class Productos extends Component
 {
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $nombre, $Descripcion,$foto1, $foto2, $foto3, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
-    public $foto;
+    public $foto=[3];
     public $updateMode = false;
     public $selectedtiposdeproductos=null;
     public $tipos_deproductos=null;
@@ -34,8 +34,8 @@ class Productos extends Component
         ]);
 
 
-        $foto=$this->foto->store('foto','public');
-        $validatedData['foto']=$foto;
+        //$foto=$this->foto->store('foto','public');
+        //$validatedData['foto']=$foto;
         Producto::create($validatedData);
         $this->emit('fotosubida');
 		session()->flash('message', 'no estoy funcionando');

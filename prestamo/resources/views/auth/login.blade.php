@@ -119,7 +119,6 @@
                             <label for="Muni">{{ __('Municipio') }} <b class="rojo">*</b></label>
                         <select id="Muni" name="Muni">
                             <option value=""></option>
-
                             @foreach($Municipal as $Municipio)
                                 <option value="{{$Municipio->id}}">{{$Municipio->name}}</option>
                             @endforeach
@@ -145,7 +144,7 @@
                         </div>
                         <div class="field btn">
                             <div class="btn-layer"></div>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" id="registro" class="btn btn-primary">
                                 {{ __('Register') }}
                             </button>
                         </div>
