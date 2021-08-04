@@ -18,7 +18,7 @@ class Productos extends Component
 {
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $nombre, $Descripcion,$foto1, $foto2, $foto3, $Estado_actual_del_producto, $id_usuario,$id_tiposdeproductos;
-    public $foto;
+    public $foto=[3];
     public $updateMode = false;
     public $selectedtiposdeproductos=null;
     public $tipos_deproductos=null;
@@ -26,7 +26,7 @@ class Productos extends Component
     use WithPagination;
     use WithFileUploads;
 
-    public function upload(){
+    /*public function upload(){
         //dd('Rad');=
 
         $validatedData=$this->validate([
@@ -34,12 +34,12 @@ class Productos extends Component
         ]);
 
 
-        $foto=$this->foto->store('foto','public');
-        $validatedData['foto']=$foto;
+        //$foto=$this->foto->store('foto','public');
+        //$validatedData['foto']=$foto;
         Producto::create($validatedData);
         $this->emit('fotosubida');
 		session()->flash('message', 'no estoy funcionando');
-    }
+    }*/
 
     public function render()
     {
@@ -68,7 +68,7 @@ class Productos extends Component
     {
         $this->nombre = null;
 		$this->Descripcion = null;
-		$this->foto = null;
+		$this->foto = [null,null,null];
         $this->foto1 = null;
         $this->foto2 = null;
         $this->foto3 = null;
@@ -88,11 +88,8 @@ class Productos extends Component
             'nombre' => 'required|min:4',
             'Descripcion' => 'required|min:20',
             'foto.*' => 'image|max:1024',
-            'foto' => 'min:3|max:3',
-            'Estado_actual_del_producto' => 'required',
+            'foto' => 'min:3|max:3',            
             'id_tiposdeproductos' => 'required',
-
-
         ]);
 
         $urlclean = [];
@@ -105,14 +102,12 @@ class Productos extends Component
         Producto::create([
             'nombre' => $this->nombre,
             'Descripcion' => $this->Descripcion,
-            'Estado_actual_del_producto' => $this->Estado_actual_del_producto,
+            'Estado_actual_del_producto' => 'D',
             'foto' => $urlclean[0],
             'foto2' => $urlclean[1],
             'foto3' => $urlclean[2],
             'id_usuario' => auth()->user()->id,
             'id_tiposdeproductos' => $this->id_tiposdeproductos,
-
-
         ]);
 
         $this->resetInput();
