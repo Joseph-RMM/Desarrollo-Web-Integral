@@ -61,6 +61,7 @@ class solicitudesn extends Notification
             'Mensaje' => $this->solicitude->Mensaje,
             'status' =>  $this->solicitude->status,
             'id_usuariosolicitante' => $this->solicitude->id_usuariosolicitante,
+            'name'=>$this->solicitude->name,
             'time'=> Carbon::now()->diffForHumans(),
         ];
     }

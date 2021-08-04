@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Productossolicitado;
-
+use App\Models\Producto;
 class Productossolicitados extends Component
 {
     use WithPagination;
@@ -24,6 +24,7 @@ class Productossolicitados extends Component
 						->orWhere('fecha_devolucion', 'LIKE', $keyWord)
 						->orWhere('id_solicitud', 'LIKE', $keyWord)
 						->paginate(10),
+            'producto'=>Producto::all()
 
         ]);
     }
@@ -103,6 +104,7 @@ class Productossolicitados extends Component
     public function destroy($id)
     {
         if ($id) {
+            $productosolicitado=Productossolicitado::where('id_tiposdeproductos',$id);
             $record = Productossolicitado::where('id', $id);
             $record->delete();
         }

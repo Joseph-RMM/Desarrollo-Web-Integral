@@ -32,15 +32,7 @@
                                     <br>
                                     <input wire:model="foto" type="file"  id="foto" placeholder="Sube aqui tu foto" multiple accept='image/x-png,image/gif,image/jpg,image/jpeg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="field">
-                                    <label>Estado actual del producto <b class="rojo">*</b></label>
-                                    <br>
-                                    <select wire:model="Estado_actual_del_producto">
-                                        <option value="D">Estado del producto</option>
-                                        <option value="P">Prestado</option>
-                                        <option value="D">Disponible</option>
-                                    </select>
-                                </div>
+
 
                                 <div class="field">
                                     <label>Id tipo producto <b class="rojo">*</b></label>

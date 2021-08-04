@@ -43,8 +43,8 @@
 								<td>#</td> 
 								<th>Mensaje</th>
 								<th>Status</th>
-								<th>Id Usuario</th>
-								<th>Id Usuariosolicitante</th>
+								<th>Nombre</th>
+								
 								<td>ACTIONS</td>
 							</tr>
 						</thead>
@@ -54,8 +54,8 @@
 								<td>{{ $loop->iteration }}</td> 
 								<td>{{ $row->Mensaje }}</td>
 								<td>{{ $row->status }}</td>
-								<td>{{ $row->id_usuario }}</td>
-								<td>{{ $row->id_usuariosolicitante }}</td>
+								<td>{{ $row->name }}</td>
+								
 								<td width="90">
 								<div class="btn-group">
 									<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

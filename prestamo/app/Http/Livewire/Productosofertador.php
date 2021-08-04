@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\WithFileUploads;
 use \Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Productossolicitado;
 class Productosofertador extends Component
 {
 	protected $paginationTheme = 'bootstrap';
@@ -42,7 +43,24 @@ class Productosofertador extends Component
 
     public function render()
     {
-		$keyWord = '%'.$this->keyWord .'%';
+        $usuariologeado = auth()->user()->id;
+        //consulta para mostar la lista de produstos ordenados disponibles
+        //echo( $usuariologeado);
+            
+            //$productos=Producto::where(function($query){
+              //  $query=User::where("id","=","id_usuario");
+                //"Estado_actual_del_producto","=","D" and "id_usuario","=",$usuariologeado->orderByDesc('id')->get();
+            $productos=Producto::where("Estado_actual_del_producto","=","D")
+                                ->where("id_usuario","=",$usuariologeado)->orderByDesc('id')->get();
+            $keyWord = '%'.$this->keyWord .'%';
+            $tiposdeproductos= Tiposdeproducto::all();
+            $users=User::all();
+            $productosolicitado=Productossolicitado::all();
+            //return view('livewire.productossellers.index', compact('productos'));
+    
+            return view('livewire.productosofertador.view',compact('productos','tiposdeproductos','users','productosolicitado'));
+
+		/*$keyWord = '%'.$this->keyWord .'%';
         return view('livewire.productosofertador.view', [
             'productos' => Producto::latest()
                         ->orWhere('nombre', 'LIKE', $keyWord)
@@ -54,8 +72,8 @@ class Productosofertador extends Component
                         ->orWhere('id_tiposdeproductos', 'LIKE', $keyWord)
 						->paginate(10),
             'tiposdeproductos' => Tiposdeproducto::all(),
-            'users' => User::all()
-        ]);
+            'users' => User::all(),
+            'productosolicitado'=>Productossolicitado::all()]);*/
 
 
     }
@@ -90,7 +108,7 @@ class Productosofertador extends Component
             'Descripcion' => 'required|min:20',
             'foto.*' => 'image|max:1024',
             'foto' => 'min:3|max:3',
-            'Estado_actual_del_producto' => 'required',
+            
             'id_tiposdeproductos' => 'required',
 
 
@@ -106,7 +124,7 @@ class Productosofertador extends Component
         Producto::create([
             'nombre' => $this->nombre,
             'Descripcion' => $this->Descripcion,
-            'Estado_actual_del_producto' => $this->Estado_actual_del_producto,
+            'Estado_actual_del_producto' => 'D',
             'foto' => $urlclean[0],
             'foto2' => $urlclean[1],
             'foto3' => $urlclean[2],
@@ -168,16 +186,20 @@ class Productosofertador extends Component
 
     public function destroy($id)
     {
-        if ($id) {
-            $record = Producto::where('id', $id);
+        
+            //$record = Producto::where('id', $id);
+            $record= Producto::find($id);
+            $productosolicitado=Productossolicitado::where('id_tiposdeproductos',$id);
             if($record!=null){
             Storage::delete([
                 Str::replaceArray("storage",["public"],$this->foto1),
                 Str::replaceArray("storage",["public"],$this->foto2),
                 Str::replaceArray("storage",["public"],$this->foto3)]);
+            $productosolicitado->delete();
             $record->delete();
+            
             $this->emit('closeupdateModal');
             }
-        }
+        
     }
 }

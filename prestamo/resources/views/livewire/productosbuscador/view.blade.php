@@ -29,7 +29,7 @@
     <div class="container contenedor">
         
         
-        @include('livewire.productos.vista')
+        @include('livewire.productosbuscador.vista')
         <center>
             <div class="row">
                 @foreach($productos as $row)

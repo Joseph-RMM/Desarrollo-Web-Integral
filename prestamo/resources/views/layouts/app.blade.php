@@ -139,9 +139,9 @@
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                                 @foreach (auth()->user()->Notifications as $notification)
                                     <a href="#" class="dropdown-item">
-                                        <i class="fas fa-users mr-2"></i> {{$notification->data['Mensaje']}}
+                                        <i class="fas fa-users mr-2"></i> {{$notification->data['name']}}
                                         <br>
-                                        <i class="fas fa-envelope mr-2"></i> {{$notification->data['status']}}
+                                        <i class="fas fa-envelope mr-2"></i> {{$notification->data['Mensaje']}}
                                         <span class="xl-1 float-right text-muted text-sm">Te ha enviado una solicitud de amistad</span>
                                         <span class="xl-1 float-right text-muted text-sm">{{$notification->created_at->diffForHumans()}}</span>
                                     </a>  

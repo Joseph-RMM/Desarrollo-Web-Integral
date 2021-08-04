@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use Livewire\WithFileUploads;
 use \Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Solicitude;
 class Productosbuscador extends Component
 {
 	protected $paginationTheme = 'bootstrap';
@@ -42,6 +43,20 @@ class Productosbuscador extends Component
 
     public function render()
     {
+        $usersc = User::join('productos','users.id','=','productos.id_usuario')
+        ->join('solicitudes','users.id','=','solicitudes.id_usuario')
+        ->where('productos.id','=','2')
+        ->where('solicitudes.id_usuariosolicitante','=','1')
+        ->where('solicitudes.status','=','A');
+        $estatus=$usersc->value('status');
+        if($estatus === 'A'){
+            echo($estatus);
+
+        }
+        else{
+            echo('es nulo');
+        }
+        
         //consulta para mostar la lista de produstos ordenados disponibles
         $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
         $keyWord = '%'.$this->keyWord .'%';
@@ -171,5 +186,14 @@ class Productosbuscador extends Component
             $this->emit('closeupdateModal');
             }
         }
+    }
+
+    public function sendRequestProduct($id)
+    {
+        $users = User::join('productos','users.id','=','productos.id_usuario')
+            ->join('solicitudes','users.id','=','solicitudes.id_usuario')
+            ->where('productos.id');
+        //$familia=Solicitude::join('')
+        
     }
 }

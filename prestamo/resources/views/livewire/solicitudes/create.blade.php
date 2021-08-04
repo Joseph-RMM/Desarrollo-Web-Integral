@@ -14,17 +14,8 @@
                 <label for="Mensaje"></label>
                 <input wire:model="Mensaje" type="text" class="form-control" id="Mensaje" placeholder="Mensaje">@error('Mensaje') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
-            <div class="form-group">
-                <label for="status"></label>
-                <select wire:model="status" class='form-control'>
-                <option value="P">Estado del producto</option>
-                    <option value="P">Pendiente</option>
-            </select>
-            </div>
-            <div class="form-group">
-                <label for="id_usuario"></label>
-                <input wire:model="id_usuario" type="text" class="form-control" id="id_usuario" placeholder="Id Usuario">@error('id_usuario') <span class="error text-danger">{{ $message }}</span> @enderror
-            </div>
+
+
 
             <div class="form-group">
                 <label for="id_usuariosolicitante"></label>

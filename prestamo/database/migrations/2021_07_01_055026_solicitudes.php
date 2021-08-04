@@ -17,6 +17,7 @@ class Solicitudes extends Migration
             $table->id();
             $table->string('Mensaje');
             $table->string('status');
+            $table->string('name');
             $table->timestamps();
             //usuario
             $table->unsignedBigInteger('id_usuario');
