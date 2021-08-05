@@ -14,13 +14,17 @@ Route::get('buscador', [App\Http\Controllers\ProdutobuscadorController::class, '
 Route::get('ofertador', [App\Http\Controllers\ProdutosellerController::class, 'index'])->middleware('auth');
 //Route::view('producto', 'livewire.productos.index')->middleware('auth');
 Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('can:seller.home');
-Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('can:seller.home');
+Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('auth');
 Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('auth');
 Route::view('producto', 'livewire.productos.index')->middleware('can:seller.home');
 //Obtiene json de productos original v
 Route::view('productosseller','livewire.productosofertador.index')->middleware('can:seller.home');
 Route::view('productossellerb','livewire.productosbuscador.index')->middleware('can:seller.home');
 Route::view('productosinvitado','livewire.productosinvitados.index')->name('productosinvitado');
+Route::get('marcar', function(){
+    auth()->user()->unreadNotifications->markAsRead();
+    return redirect()->back();	
+})->name('marcar');
 
 Auth::routes();
 

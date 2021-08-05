@@ -127,16 +127,16 @@
                                 
                             <i class="far fa-bell"></i>
                             
-                                @if (count(auth()->user()->Notifications))
+                                @if (count(auth()->user()->unreadNotifications))
                                 <span class="badge badge-warning">
-                                    {{count(auth()->user()->Notifications)}}
+                                    {{count(auth()->user()->unreadNotifications)}}
                                 </span>
                                     
                                 @endif
                             
                             </a>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                @foreach (auth()->user()->Notifications as $notification)
+                                @forelse (auth()->user()->unreadNotifications as $notification)
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-users mr-2"></i> {{$notification->data['name']}}
                                         <br>
@@ -144,14 +144,17 @@
                                         <span class="xl-1 float-right text-muted text-sm">Te ha enviado una solicitud de amistad</span>
                                         <span class="xl-1 float-right text-muted text-sm">{{$notification->created_at->diffForHumans()}}</span>
                                     </a>  
-                                @endforeach
+                                    @empty
+                                    <span class="ml-3 pull-right text-muted text-sm">Sin notificaciones nuevas</span>
+                                @endforelse
                                 
 
                             <div class="dropdown-divider"></div>
                             <div class="dropdown-divider"></div>
-                            <span class="dropdown-item dropdown-header">Todas tus notificaciones</span>
+                            <a href="{{route('marcar')}}" clas="dropdown-item dropdown-footer">marcar como leidas</a>
                             <div class="dropdown-divider"></div>
                             <div class="dropdown-divider"></div>
+                            
                         </li>
 
                         <!-- Productos -->

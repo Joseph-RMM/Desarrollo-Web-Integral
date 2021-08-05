@@ -8,7 +8,7 @@ use Livewire\WithPagination;
 use App\Models\Solicitude;
 use App\Models\User;
 use App\Notifications\solicitudesn;
-
+use App\Models\Productossolicitado;
 class Solicitudes extends Component
 {
     use WithPagination;
@@ -28,10 +28,10 @@ class Solicitudes extends Component
         //return view('livewire.solicitudes.view',compact('solicitudes','users'));
 		
         return view('livewire.solicitudes.view', [
-            'solicitudes' => Solicitude::join('users','solicitudes.id_usuariosolicitante','=','users.id')
+            'solicitudes' => Solicitude::join('users','solicitudes.id_usuario','=','users.id')
                 
-
-						->orWhere('id_usuario', '=', $usuariologeado)
+                        ->select('users.name as name', 'solicitudes.id as id', 'Mensaje','status')
+						->orWhere('id_usuariosolicitante', '=', $usuariologeado)
 						
 						->paginate(10),
             'users' => User::all()->except($usuariologeado),
@@ -140,9 +140,12 @@ class Solicitudes extends Component
 
     public function destroy($id)
     {
-        if ($id) {
-            $record = Solicitude::where('id', $id);
-            $record->delete();
-        }
+        echo($id);
+        $record=Solicitude::find($id);
+        
+        $psolicitado = Productossolicitado::where('id_solicitud', $id)->delete();
+        //$psolicitado->delete();
+        $record->delete();
+        
     }
 }

@@ -187,6 +187,7 @@ class Productosofertador extends Component
     public function destroy($id)
     {
         
+        
             //$record = Producto::where('id', $id);
             $record= Producto::find($id);
             $productosolicitado=Productossolicitado::where('id_tiposdeproductos',$id);
