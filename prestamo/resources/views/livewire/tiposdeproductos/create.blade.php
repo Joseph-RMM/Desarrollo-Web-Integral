@@ -31,7 +31,7 @@
             </div> <!-- modal-body -->
             <div class="modal-footer">
 
-                <button type="button" class="cancelar" data-dismiss="modal">
+                <button type="button" wire:click.prevent="cancel()" class="cancelar" data-dismiss="modal">
                     Cancelar
                 </button>
 

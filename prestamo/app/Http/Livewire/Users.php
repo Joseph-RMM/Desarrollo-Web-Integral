@@ -53,11 +53,30 @@ class Users extends Component
         $this->MucipioAnterior=null;
     }
 
-
+    protected $messages = [        
+        'name.required' => 'El Nombre es requerido',
+        'name.min' => 'El Nombre es de minimo tres caracteres',
+        'name.max' => 'El Nombre es de maximo cincuenta caracteres',
+        'lastname.required' => 'El apellido es requerido',
+        'lastname.min' => 'El apellido debe ser de minimo de tres caracteres',
+        'lastname.max' => 'El apellido debe ser de maximo de cincuenta y uno  caracteres',
+        'tel.required' => 'El  telefono es requerido',
+        'tel.digits' => 'El  telefono es a diez digitos',
+        'email.required' => 'El  correo es requerido',
+        'email.email' => 'El  correo no es valido',
+        'email.unique' => 'El  correo ya se encuentra registrado',
+        'email.regex' => 'Correo invalido (correos aceptados: live, gmail, yahoo, hotmail, outlook)',
+        'password.required' => 'La contraseña es obligatoria',
+        'password.min' => 'La contraseña debe ser de al menos 8 caracteres',
+        'password_confirmation.required' => 'Debes repetir tu contraseña',
+        'password_confirmation.min' => 'La contraseña debe ser de al menos 8 caracteres',
+        'password_confirmation.same' => 'Las contraseñas no son iguales',
+        'Muni.required' => 'Debes seleccionar el municipio al que perteneces',
+    ];
     public function store()
     {
         $this->validate([
-            'name' => ['required','string','min:3','max:50'],
+            'name' => ['required','string','min:3','max:40'],
             'lastname' => ['required','string','min:3','max:51'],
             'tel' => ['required','digits:10'],
             'email' => ['required','string','email','unique:users','regex:/(.*)@(live|gmail|yahoo|hotmail|outlook)\.com/i'],

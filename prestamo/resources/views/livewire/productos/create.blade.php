@@ -22,16 +22,16 @@
                                 <div class="field">
                                     <label>Nombre <b class="rojo">*</b></label>
                                     <input wire:model="nombre" type="text" id="nombre" placeholder="nombre">@error('nombre') <span class="error text-danger">{{ $message }}</span> @enderror
-                                </div>
+                                </div><br>
                                 <div class="field">
                                     <label>Descripcion <b class="rojo">*</b></label>
                                     <input wire:model="Descripcion" type="text" id="Descripcion" placeholder="Descripcion">@error('Descripcion') <span class="error text-danger">{{ $message }}</span> @enderror
-                                </div>
+                                </div><br>
                                 <div class="field">
                                     <label>Añadir tres imagenes <b class="rojo">*</b></label>
                                     <br>
-                                    <input wire:model="foto" type="file"  id="foto" placeholder="Sube aqui tu foto" multiple accept='image/x-png,image/gif,image/jpg,image/jpeg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
-                                </div>
+                                    <input wire:model="foto" type="file"  id="foto" placeholder="Sube aqui tus fotos" multiple accept='image/x-png,image/gif,image/jpg,image/jpeg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div><br>
 
 
                                 <div class="field">
@@ -42,8 +42,8 @@
                                         @foreach($tiposdeproductos as $tiposdeproductos)
                                         <option value="{{$tiposdeproductos->id}}">{{$tiposdeproductos->clasificacion}} </option>
                                         @endforeach
-                                    </select>
-                                </div>
+                                    </select><br>@error('id_tiposdeproductos') <span class="error text-danger">{{ $message }}</span> @enderror
+                                </div><br>
                             </form>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
             </div> <!-- modal-body -->
             <div class="modal-footer">
 
-                <button type="button" class="cancelar" data-dismiss="modal">
+                <button type="button" wire:click.prevent="cancel()" class="cancelar" data-dismiss="modal">
                     Cancelar
                 </button>
 

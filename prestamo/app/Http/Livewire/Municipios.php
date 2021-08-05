@@ -31,16 +31,27 @@ class Municipios extends Component
         $this->resetInput();
         $this->updateMode = false;
     }
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+    }
 
     private function resetInput()
     {
 		$this->name = null;
     }
+    protected $messages = [        
+        'name.required' => 'El Municipio es requerido',
+        'name.min' => 'El Municipio debe ser de minimo de cuatro caracteres',      
+        'name.max' => 'El Municipio debe ser de maximo de cuarenta caracteres',
+        'name.unique' => 'El Municipio ya se encuentra en la base de datos'        
+    ];
 
     public function store()
     {
         $this->validate([
-		    'name' => 'required|string|min:4|unique:Municipios',
+		    'name' => 'required|string|min:4|max:40|unique:Municipios',
         ]);
 
         Municipio::create([

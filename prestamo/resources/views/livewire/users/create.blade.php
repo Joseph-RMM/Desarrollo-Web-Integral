@@ -35,7 +35,7 @@
                                 <div class="field">
                                     <label>Correo electrónico <b class="rojo">*</b></label>
                                     <input wire:model="email" type="email" id="email" placeholder="Email" autocomplete="off">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
-                                </div>
+                                </div><br>
                                 <div class="field">
                                     <label>Municipio <b class="rojo">*</b></label>
                                     <br>
@@ -44,7 +44,7 @@
                                         @foreach($Municipal as $Municipio)
                                             <option value="{{$Municipio->id}}">{{$Municipio->name}}</option>
                                         @endforeach
-                                    </select>@error('Muni') <span class="error text-danger">{{ $message }}</span> @enderror
+                                    </select><br>@error('Muni') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="field">

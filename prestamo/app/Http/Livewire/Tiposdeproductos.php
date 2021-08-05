@@ -30,16 +30,28 @@ class Tiposdeproductos extends Component
         $this->resetInput();
         $this->updateMode = false;
     }
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+    }
 
     private function resetInput()
     {
 		$this->clasificacion = null;
+       
     }
-
+    protected $messages = [        
+            'clasificacion.required' => 'La categoria es requerida',
+            'clasificacion.min' => 'La categoria debe ser de minimo de cuatro caracteres',      
+            'clasificacion.max' => 'La categoria debe ser de maximo de cuarenta caracteres',
+            'clasificacion.unique' => 'La categoria ya se encuentra en la base de datos'       
+        ];
     public function store()
     {
+        
         $this->validate([
-            'clasificacion' => 'required|string|min:4|unique:tiposdeproductos',
+            'clasificacion' => 'required|string|min:4|max:40|unique:tiposdeproductos',
         ]);
 
         Tiposdeproducto::create([

@@ -62,13 +62,18 @@ class Productos extends Component
     {
         $this->resetInput();
         $this->updateMode = false;
+    } 
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
     }
 
     private function resetInput()
     {
         $this->nombre = null;
 		$this->Descripcion = null;
-		$this->foto = [null,null,null];
+		$this->foto = [];
         $this->foto1 = null;
         $this->foto2 = null;
         $this->foto3 = null;
@@ -76,6 +81,15 @@ class Productos extends Component
 		$this->id_usuario = null;
         $this->id_tiposdeproductos = null;
     }
+    protected $messages = [        
+        'nombre.required' => 'El Nombre es requerido',
+        'nombre.min' => 'El Nombre debe ser de minimo cuatro caracteres',
+        'Descripcion.required' => 'La descripcion es requerida',
+        'Descripcion.min' => 'La descripcion es de minimo veinte caracteres',
+        'foto.min' => 'Debes subir tres fotos',
+        'foto.max' => 'Debes subir solo tres fotos',
+        'id_tiposdeproductos.required' => 'Debes seleccionar una categoria',
+    ];
 
     public function store(Request $request)
     {
