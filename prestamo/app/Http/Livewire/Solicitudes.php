@@ -28,10 +28,10 @@ class Solicitudes extends Component
         //return view('livewire.solicitudes.view',compact('solicitudes','users'));
 		
         return view('livewire.solicitudes.view', [
-            'solicitudes' => Solicitude::join('users','solicitudes.id_usuariosolicitante','=','users.id')
+            'solicitudes' => Solicitude::join('users','solicitudes.id_usuario','=','users.id')
                 
                         ->select('users.name as name', 'solicitudes.id as id', 'Mensaje','status')
-						->orWhere('id_usuario', '=', $usuariologeado)
+						->orWhere('id_usuariosolicitante', '=', $usuariologeado)
 						
 						->paginate(10),
             'users' => User::all()->except($usuariologeado),
