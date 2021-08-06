@@ -36,7 +36,7 @@ Route::get('marcar', function(){
 
 //*************************** INVITADO ************************************************************
 Route::view('productosinvitado','livewire.productosinvitados.index')->name('productosinvitado');
-
+Route::view('terminosYcondiciones','livewire.productosinvitados.terminos')->name('productosinvitado');
 Auth::routes();
 
     
