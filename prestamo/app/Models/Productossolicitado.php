@@ -13,7 +13,7 @@ class Productossolicitado extends Model
 
     protected $table = 'productossolicitados';
 
-    protected $fillable = ['id_tiposdeproductos','fecha_entrega','fecha_devolucion','id_solicitud'];
+    protected $fillable = ['id_tiposdeproductos','fecha_entrega','fecha_devolucion','direccion','telefono','celular','parentesco','id_solicitud'];
 	
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

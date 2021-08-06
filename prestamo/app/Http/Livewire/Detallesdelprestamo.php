@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Productossolicitado;
 
-class Productossolicitados extends Component
+class Detallesdelprestamo extends Component
 {
     use WithPagination;
 
@@ -17,7 +17,7 @@ class Productossolicitados extends Component
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
-        return view('livewire.productossolicitados.view', [
+        return view('livewire.detallesdelprestamo.view', [
             'productossolicitados' => Productossolicitado::latest()
 						->orWhere('id_tiposdeproductos', 'LIKE', $keyWord)
 						->orWhere('fecha_entrega', 'LIKE', $keyWord)

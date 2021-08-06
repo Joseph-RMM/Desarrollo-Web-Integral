@@ -16,11 +16,27 @@
             </div>
             <div class="form-group">
                 <label for="fecha_entrega"></label>
-                <input wire:model="fecha_entrega" type="Date" class="form-control" id="fecha_entrega" placeholder="Fecha Entrega">@error('fecha_entrega') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model="fecha_entrega" type="date" class="form-control" id="fecha_entrega" placeholder="Fecha Entrega">@error('fecha_entrega') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="fecha_devolucion"></label>
-                <input wire:model="fecha_devolucion" type="Date" class="form-control" id="fecha_devolucion" placeholder="Fecha Devolucion">@error('fecha_devolucion') <span class="error text-danger">{{ $message }}</span> @enderror
+                <input wire:model="fecha_devolucion" type="date" class="form-control" id="fecha_devolucion" placeholder="Fecha Devolucion">@error('fecha_devolucion') <span class="error text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
+                <label for="direccion"></label>
+                <input wire:model="direccion" type="map" class="form-control" id="direccion" placeholder="Direccion">@error('direccion') <span class="error text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
+                <label for="telefono"></label>
+                <input wire:model="telefono" type="tel" class="form-control" id="telefono" placeholder="Telefono">@error('telefono') <span class="error text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
+                <label for="celular"></label>
+                <input wire:model="celular" type="tel" class="form-control" id="celular" placeholder="Celular">@error('celular') <span class="error text-danger">{{ $message }}</span> @enderror
+            </div>
+            <div class="form-group">
+                <label for="parentesco"></label>
+                <input wire:model="parentesco" type="text" class="form-control" id="parentesco" placeholder="Parentesco">@error('parentesco') <span class="error text-danger">{{ $message }}</span> @enderror
             </div>
             <div class="form-group">
                 <label for="id_solicitud"></label>

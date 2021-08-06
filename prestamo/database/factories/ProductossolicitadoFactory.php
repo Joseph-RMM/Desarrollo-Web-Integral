@@ -16,6 +16,10 @@ class ProductossolicitadoFactory extends Factory
 			'id_tiposdeproductos' => $this->faker->name,
 			'fecha_entrega' => $this->faker->name,
 			'fecha_devolucion' => $this->faker->name,
+			'direccion' => $this->faker->name,
+			'telefono' => $this->faker->name,
+			'celular' => $this->faker->name,
+			'parentesco' => $this->faker->name,
 			'id_solicitud' => $this->faker->name,
         ];
     }

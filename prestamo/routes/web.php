@@ -12,19 +12,30 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middlewa
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth');
 Route::get('buscador', [App\Http\Controllers\ProdutobuscadorController::class, 'index'])->middleware('auth');
 Route::get('ofertador', [App\Http\Controllers\ProdutosellerController::class, 'index'])->middleware('auth');
+//*****************************OFERTADOR***********************************************************
 //Route::view('producto', 'livewire.productos.index')->middleware('auth');
 Route::view('pdisponibles', 'livewire.productos.productosdisponible')->middleware('can:seller.home');
-Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('auth');
-Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('auth');
-Route::view('producto', 'livewire.productos.index')->middleware('can:seller.home');
+//Route::view('producto', 'livewire.productos.index')->middleware('can:seller.home');
 //Obtiene json de productos original v
 Route::view('productosseller','livewire.productosofertador.index')->middleware('can:seller.home');
+//detalle del producto OFERTADOR detallesdelprestamo
+Route::view('detallesdelproducto', 'livewire.detallesdelprestamo.index')->middleware('auth');
+
+//****************************BUSCADOR ************************************************************
+//Obtiene json de productos original v
 Route::view('productossellerb','livewire.productosbuscador.index')->middleware('can:seller.home');
-Route::view('productosinvitado','livewire.productosinvitados.index')->name('productosinvitado');
+Route::view('solicitudes', 'livewire.solicitudes.index')->middleware('auth');
+Route::view('productossolicitados', 'livewire.productossolicitados.index')->middleware('auth');
+
+//notificaciones
 Route::get('marcar', function(){
     auth()->user()->unreadNotifications->markAsRead();
     return redirect()->back();	
 })->name('marcar');
+
+
+//*************************** INVITADO ************************************************************
+Route::view('productosinvitado','livewire.productosinvitados.index')->name('productosinvitado');
 
 Auth::routes();
 
