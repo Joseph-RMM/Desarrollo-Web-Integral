@@ -23,6 +23,7 @@ class Productosbuscador extends Component
     public $selectedtiposdeproductos=null;
     public $tipos_deproductos=null;
     public $usuario=null;
+    public $desabilitar=false;
     use WithPagination;
     use WithFileUploads;
 
@@ -43,19 +44,7 @@ class Productosbuscador extends Component
 
     public function render()
     {
-        $usersc = User::join('productos','users.id','=','productos.id_usuario')
-        ->join('solicitudes','users.id','=','solicitudes.id_usuario')
-        ->where('productos.id','=','2')
-        ->where('solicitudes.id_usuariosolicitante','=','1')
-        ->where('solicitudes.status','=','A');
-        $estatus=$usersc->value('status');
-        if($estatus === 'A'){
-            echo($estatus);
 
-        }
-        else{
-            echo('es nulo');
-        }
         
         //consulta para mostar la lista de produstos ordenados disponibles
         $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
@@ -134,15 +123,33 @@ class Productosbuscador extends Component
 
         $this->selected_id = $id;
         $this->nombre = $record-> nombre;
-		$this->Descripcion = $record-> Descripcion;
+		//$this->Descripcion = $record-> Descripcion;
 		$this->foto1 = $record-> foto;
         $this->foto2 = $record-> foto2;
         $this->foto3 = $record-> foto3;
 		$this->Estado_actual_del_producto = $record-> Estado_actual_del_producto;
 		$this->id_usuario = $record-> id_usuario;
         $this->id_tiposdeproductos = $record-> id_tiposdeproductos;
-
+        //$this->desabilitar='disabled="disabled"';
         $this->updateMode = true;
+        $usersc = User::join('productos','users.id','=','productos.id_usuario')
+        ->join('solicitudes','users.id','=','solicitudes.id_usuario')
+        ->where('productos.id','=', $id)
+        ->where('solicitudes.id_usuariosolicitante','=', auth()->user()->id);
+        
+        $estatus=$usersc->value('status');
+        if($estatus === 'A'){
+            $this->Descripcion=$estatus;
+            $this->desabilitar=true;
+        }
+        else if($estatus === 'P'){
+            $this->Descripcion='pendiente';
+        }
+        else{
+            
+            $this->Descripcion='rechazado2'.$estatus;
+        }
+        
     }
 
     public function update()
@@ -171,6 +178,8 @@ class Productosbuscador extends Component
             $this->updateMode = false;
 			session()->flash('message', 'Producto Successfully updated.');
         }
+
+
     }
 
     public function destroy($id)
@@ -190,10 +199,11 @@ class Productosbuscador extends Component
 
     public function sendRequestProduct($id)
     {
-        $users = User::join('productos','users.id','=','productos.id_usuario')
-            ->join('solicitudes','users.id','=','solicitudes.id_usuario')
-            ->where('productos.id');
+        //$users = User::join('productos','users.id','=','productos.id_usuario')
+        //    ->join('solicitudes','users.id','=','solicitudes.id_usuario')
+        //    ->where('productos.id');
         //$familia=Solicitude::join('')
+
         
     }
 }

@@ -58,7 +58,7 @@
             </div>
             <div class="modal-footer">
                 <button onclick="confirm('Confirm Delete Tiposdeproducto id {{$selected_id}}? \nDeleted product cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$selected_id}})" class="button-rojo button5"><i class="fas fa-trash-alt"></i></button>
-                <button onclick="confirm('Confirm Delete Tiposdeproducto id {{$selected_id}}? \nDeleted product cannot be recovered!')||event.stopImmediatePropagation()" wire:click="sendRequestProduct({{$selected_id}})" ><i class="fas fa-trash-alt"></i></button>
+                <button  wire:click="sendRequestProduct({{$selected_id}})" {{ $desabilitar ? "disabled": ""}} ><i class="fas fa-trash-alt"></i></button>
                 
             </div>
         </div>
