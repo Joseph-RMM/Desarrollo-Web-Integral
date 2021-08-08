@@ -137,7 +137,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                                 @forelse (auth()->user()->unreadNotifications as $notification)
-                                    <a href="#" class="dropdown-item">
+                                    <a href="{{ url('/solicitudes') }}" class="dropdown-item">
                                         <i class="fas fa-users mr-2"></i> {{$notification->data['name']}}
                                         <br>
                                         <i class="fas fa-envelope mr-2"></i> {{$notification->data['Mensaje']}}
