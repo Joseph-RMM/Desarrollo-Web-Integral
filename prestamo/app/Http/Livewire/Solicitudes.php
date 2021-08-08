@@ -63,12 +63,7 @@ class Solicitudes extends Component
 
     public function store()
     {
-        $this->validate([
-		'Mensaje' => 'required|min:4',
-		
-		
-		'id_usuariosolicitante' => 'required',
-        ]);
+
         $usermanda=auth()->user()->id;
         $name=User::where('id','=', $usermanda)->value('name');
         
@@ -106,34 +101,34 @@ class Solicitudes extends Component
         $record = Solicitude::findOrFail($id);
 
         $this->selected_id = $id; 
-		$this->Mensaje = $record-> Mensaje;
-		$this->status = $record-> status;
-		$this->id_usuario = $record-> id_usuario;
-		$this->id_usuariosolicitante = $record-> id_usuariosolicitante;
+		//$this->Mensaje = $record-> Mensaje;
+		$this->status = $record->status;
+		//$this->id_usuario = $record-> id_usuario;
+		//$this->id_usuariosolicitante = $record-> id_usuariosolicitante;
 		
-        $this->updateMode = true;
+        //$this->updateMode = true;
     }
 
     public function update()
     {
-        $this->validate([
+        /*$this->validate([
 		'Mensaje' => 'required',
 		'status' => 'required',
 		'id_usuario' => 'required',
 		'id_usuariosolicitante' => 'required',
-        ]);
+        ]);*/
 
         if ($this->selected_id) {
 			$record = Solicitude::find($this->selected_id);
             $record->update([ 
-			'Mensaje' => $this-> Mensaje,
-			'status' => $this-> status,
-			'id_usuario' => $this-> id_usuario,
-			'id_usuariosolicitante' => $this-> id_usuariosolicitante
+			//'Mensaje' => $this-> Mensaje,
+			'status' => 'A'
+			//'id_usuario' => $this-> id_usuario,
+			//'id_usuariosolicitante' => $this-> id_usuariosolicitante
             ]);
 
-            $this->resetInput();
-            $this->updateMode = false;
+            //$this->resetInput();
+            //$this->updateMode = false;
 			session()->flash('message', 'Solicitude Successfully updated.');
         }
     }
