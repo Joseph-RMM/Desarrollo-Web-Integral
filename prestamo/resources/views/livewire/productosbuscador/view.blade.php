@@ -32,7 +32,8 @@
         
         
         @include('livewire.productosbuscador.vista')
-        @include('livewire.productossolicitados.create')
+        @include('livewire.productossolicitados.create') 
+        @include('livewire.productosbuscador.SendRequestPModal')
         <center>
             <div class="row">
                 @foreach($productos as $row)

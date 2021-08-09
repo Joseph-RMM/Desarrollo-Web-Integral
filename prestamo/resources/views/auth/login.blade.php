@@ -77,7 +77,7 @@
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <div class="field">
                                     <label for="name">{{ __('Nombre') }}<b class="rojo">*</b></label>
-                                    <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                    <input wire:model="email" id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

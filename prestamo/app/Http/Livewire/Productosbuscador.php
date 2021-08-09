@@ -15,6 +15,7 @@ use \Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Solicitude;
 use App\Notifications\solicitudesn;
+use App\Models\Productossolicitado;
 class Productosbuscador extends Component
 {
 	protected $paginationTheme = 'bootstrap';
@@ -27,6 +28,8 @@ class Productosbuscador extends Component
     public $desabilitar=false;
     public $disableform=false;
     public $requestmessage,$colorbutton;
+    public $fecha_entrega, $fecha_devolucion, $direccion, $telefono, $celular, $parentesco, $id_solicitud;
+    public $testingvar="";
     use WithPagination;
     use WithFileUploads;
 
@@ -63,7 +66,11 @@ class Productosbuscador extends Component
         $this->resetInput();
         $this->updateMode = false;
     }
-
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+    }
     private function resetInput()
     {
         $this->nombre = null;
@@ -75,8 +82,16 @@ class Productosbuscador extends Component
 		$this->Estado_actual_del_producto = null;
 		$this->id_usuario = null;
         $this->id_tiposdeproductos = null;
+        //modal request product data
+        $this->fecha_entrega = null;
+        $this->fecha_devolucion= null;
+        $this->direccion = null;
+        $this->telefono = null;
+        $this->celular= null; 
+        $this->parentesco = null;
+        $this->id_solicitud = null;
     }
-
+  
     public function store(Request $request)
     {
         //if($request->hasFile('foto')){
@@ -137,7 +152,7 @@ class Productosbuscador extends Component
         //$this->updateMode = true;
         $usersc = User::join('productos','users.id','=','productos.id_usuario')
         ->join('solicitudes','users.id','=','solicitudes.id_usuariosolicitante')
-        ->where('productos.id','=', '1')
+        ->where('productos.id','=', $id)
         ->where('solicitudes.id_usuario','=', auth()->user()->id);
        
         $estatus=$usersc->value('status');
@@ -205,35 +220,60 @@ class Productosbuscador extends Component
             $this->emit('closeupdateModal');
             }
         }
-    }
-
+    } 
+    protected $messages = [                
+        'fecha_entrega.required' => 'La fecha de entrega es requerida',  
+        'fecha_entrega.date' => 'La fecha no tiene el formato correcto',  
+        'fecha_entrega.after_or_equal' => 'La fecha de entrega no puede ser antes de hoy', 
+        'fecha_entrega.before' => 'La fecha de entrega no puede ser antes que la de devolucion', 
+        'fecha_devolucion.required' => 'La fecha de devolucion es requerida',  
+        'fecha_devolucion.date' => 'La fecha no tiene el formato correcto', 
+        'fecha_devolucion.after' => 'La fecha de prestamo minima es de un dia', 
+        'direccion.required' => 'La direccion es obligatoria',
+        'direccion.min' => 'La direccion es muy corta',       
+        'direccion.max' => 'La direccion es muy larga',             
+        'telefono.required' => 'El mensaje de prestamo es requerido',
+        'telefono.min' => 'El mensaje de prestamo es muy corto',       
+        'telefono.max' => 'El mensaje de prestamo es muy largo',   
+        'celular.required' => 'El celular es requerido',
+        'celular.digits' => 'El celular es a diez digitos',       
+        'parentesco.required' => 'El parentescco es requerido', 
+        'parentesco.min' => 'El parentescco es muy corto',
+        'parentesco.max' => 'El parentescco es muy largo',
+    ];  
+    protected $rules=[       
+        'fecha_entrega' => 'required|date|before:fecha_devolucion|after_or_equal:today',
+        'fecha_devolucion' => 'required|date|after:today|after:fecha_entrega',
+        'direccion' => 'required|string|min:30|max:80',
+        'telefono' => 'required|string|min:30|max:90',
+        'celular' => 'required|digits:10',
+        'parentesco' => 'required|min:3|max:20'                
+    ];
+    public function updated($field)
+    {
+        //el telefono es el mensaje del prestamo, se quedo asi de momento para no modificar la base
+        $this->validateOnly($field,$this->rules,$this->messages);
+    }    
     public function sendRequestProduct($id)
-    {     
-               
-            $this->validate([
-                'id_tiposdeproductos' => 'required',
-                'fecha_entrega' => 'required',
-                'fecha_devolucion' => 'required',
-                'direccion' => 'required',
-                'telefono' => 'required',
-                'celular' => 'required',
-                'parentesco' => 'required',
-                'id_solicitud' => 'required',
-                ]);
-        
-                Productossolicitado::create([ 
-                    'id_tiposdeproductos' => $this-> id_tiposdeproductos,
+    {    
+        if(!$this->disableform){
+            $this->validate();        
+                Productossolicitado::create([                     
+                    'id_tiposdeproductos' => $id,
                     'fecha_entrega' => $this-> fecha_entrega,
                     'fecha_devolucion' => $this-> fecha_devolucion,
                     'direccion' => $this-> direccion,
                     'telefono' => $this-> telefono,
                     'celular' => $this-> celular,
-                    'parentesco' => $this-> parentesco,
-                    'id_solicitud' => $this-> id_solicitud
-                ]);                
-                $this->resetInput();
-                $this->emit('closeModal');
-                //session()->flash('message', 'Productossolicitado Successfully created.');                 
+                    'parentesco' => $this-> parentesco
+                    //'id_solicitud' => $this-> id_solicitud
+                ]); 
+                             
+            $this->resetInput();
+            $this->emit('closeModalsendRequestProduct');         
+        }
+        
+        //session()->flash('message', 'Productossolicitado Successfully created.');                 
     }
 
     public function sendFriendRequest($id){

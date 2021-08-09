@@ -207,8 +207,18 @@
         window.livewire.on('closeupdateModal', () => {
             $('#updateModal').modal('hide');
         });
+        window.livewire.on('closeModalsendRequestProduct', () => {
+            $('#SendRequestModal').modal('hide');
+            Swal.fire({
+            icon: 'success',
+            title: 'Registro correcto',
+            text: 'Espera a que el ofertador acepte el prestamo'
+            
+            })
+        });
     </script>
     <script src="{{ asset('js/estilo-login.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/inicioadmin.js') }}"></script>
     <!-- GRAFICAS-->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
