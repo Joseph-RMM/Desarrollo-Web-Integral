@@ -87,7 +87,31 @@
         </div>
 
     </div>
-    <button type="button" class="btn btn-primary btn-lg btn-block"><a class="nav-link" href="{{ url('ofertador') }}">OFERTADOR</a></button>
+   
+    <!-- 
+    <div class="container">
+        <div class="  text-white contenedor">
+            <img class="" src="{{asset('img/1.png')}}">
+            <div class="sombra">
+                <a style=" text-decoration:none;" href="{{ url('ofertador') }}" class=" colornegro1 ">Ofertar </a>
+                <p class=" colornegro2">Ahora es mas facil compartir tus cosas con alguien mas.</p>
+            </div>
+        </div>
+
+        <div class="text-white contenedor1 ">
+            <img class="" src="{{asset('img/2.png')}}">
+            <div class="sombra2">
+            <a style=" text-decoration:none;" href="{{ url('buscador') }}" class=" colornegro1 ">Buscador </a>
+
+                <p class=" colornegro22">¿Necesitas algo?, entra y buscalo con tan solo unos clicks.</p>
+            </div>
+        </div>
+    </div>
+ 
+-->
+
+<button type="button" class="btn btn-primary btn-lg btn-block"><a class="nav-link" href="{{ url('ofertador') }}">OFERTADOR</a></button>
 <button type="button" class="btn btn-secondary btn-lg btn-block"><a class="nav-link" href="{{ url('buscador') }}">BUSCADOR</a></button>
+
 </body>
 @endsection
