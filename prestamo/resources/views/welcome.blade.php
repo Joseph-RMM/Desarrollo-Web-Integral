@@ -87,7 +87,8 @@
         </div>
 
     </div>
-
+   
+    <!-- 
     <div class="container">
         <div class="  text-white contenedor">
             <img class="" src="{{asset('img/1.png')}}">
@@ -106,9 +107,11 @@
             </div>
         </div>
     </div>
-    
-    <!-- <button type="button" class="btn btn-primary btn-lg btn-block"><a class="nav-link" href="{{ url('ofertador') }}">OFERTADOR</a></button>
-<button type="button" class="btn btn-secondary btn-lg btn-block"><a class="nav-link" href="{{ url('buscador') }}">BUSCADOR</a></button>
+ 
 -->
+
+<button type="button" class="btn btn-primary btn-lg btn-block"><a class="nav-link" href="{{ url('ofertador') }}">OFERTADOR</a></button>
+<button type="button" class="btn btn-secondary btn-lg btn-block"><a class="nav-link" href="{{ url('buscador') }}">BUSCADOR</a></button>
+
 </body>
 @endsection
