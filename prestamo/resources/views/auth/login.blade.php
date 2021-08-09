@@ -76,7 +76,7 @@
                         <div class="row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <div class="field">
-                                    <label for="name">{{ __('Name') }}<b class="rojo">*</b></label>
+                                    <label for="name">{{ __('Nombre') }}<b class="rojo">*</b></label>
                                     <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="field">
-                                    <label for="lastname">{{ __('Lastname') }} <b class="rojo">*</b></label>
+                                    <label for="lastname">{{ __('Apellido') }} <b class="rojo">*</b></label>
                                     <input id="lastname" type="lastname" class="@error('lastname') is-invalid @enderror" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
                                     @error('lastname')
                                     <span class="invalid-feedback" role="alert">
@@ -96,25 +96,25 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
+                        </div><br>
                         <div class="field">
-                            <label for="tel">{{ __('Tel') }} <b class="rojo">*</b></label>
+                            <label for="tel">{{ __('Telefono') }} <b class="rojo">*</b></label>
                             <input id="tel" type="tel" class="@error('tel') is-invalid @enderror" name="tel" value="{{ old('tel') }}" required autocomplete="tel" autofocus>
                             @error('tel')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                        </div>
+                        </div><br>
                         <div class="field">
-                            <label for="email">{{ __('E-Mail Address') }} <b class="rojo">*</b></label>
+                            <label for="email">{{ __('Correo Electronico') }} <b class="rojo">*</b></label>
                             <input id="email" type="email" class=" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                        </div>
+                        </div><br><br>
                         <div class="field">
                             <label for="Muni">{{ __('Municipio') }} <b class="rojo">*</b></label>
                         <select id="Muni" name="Muni">
@@ -122,19 +122,19 @@
                             @foreach($Municipal as $Municipio)
                                 <option value="{{$Municipio->id}}">{{$Municipio->name}}</option>
                             @endforeach
-                        </select>@error('Muni') <span class="error text-danger">{{ $message }}</span> @enderror
+                        </select><br>@error('Muni') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
                         <div class="field">
-                            <label for="password">{{ __('Password') }} <b class="rojo">*</b></label>
+                            <label for="password">{{ __('Contraseña') }} <b class="rojo">*</b></label>
                             <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                        </div>
+                        </div><br>
                         <div class="field">
-                            <label for="password-confirm">{{ __('Confirm Password') }}<b class="rojo">*</b></label>
+                            <label for="password-confirm">{{ __('Confirma tu Contraseña') }}<b class="rojo">*</b></label>
                             <input id="password-confirm" type="password" class="" name="password_confirmation" required autocomplete="new-password">
                             @error('password')
                             <span class="invalid-feedback" role="alert">

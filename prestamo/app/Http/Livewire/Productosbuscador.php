@@ -14,6 +14,7 @@ use Livewire\WithFileUploads;
 use \Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Solicitude;
+use App\Notifications\solicitudesn;
 class Productosbuscador extends Component
 {
 	protected $paginationTheme = 'bootstrap';
@@ -24,6 +25,8 @@ class Productosbuscador extends Component
     public $tipos_deproductos=null;
     public $usuario=null;
     public $desabilitar=false;
+    public $disableform=false;
+    public $requestmessage,$colorbutton;
     use WithPagination;
     use WithFileUploads;
 
@@ -123,7 +126,7 @@ class Productosbuscador extends Component
 
         $this->selected_id = $id;
         $this->nombre = $record-> nombre;
-		//$this->Descripcion = $record-> Descripcion;
+		$this->Descripcion = $record-> Descripcion;
 		$this->foto1 = $record-> foto;
         $this->foto2 = $record-> foto2;
         $this->foto3 = $record-> foto3;
@@ -131,23 +134,30 @@ class Productosbuscador extends Component
 		$this->id_usuario = $record-> id_usuario;
         $this->id_tiposdeproductos = $record-> id_tiposdeproductos;
         //$this->desabilitar='disabled="disabled"';
-        $this->updateMode = true;
+        //$this->updateMode = true;
         $usersc = User::join('productos','users.id','=','productos.id_usuario')
-        ->join('solicitudes','users.id','=','solicitudes.id_usuario')
-        ->where('productos.id','=', $id)
-        ->where('solicitudes.id_usuariosolicitante','=', auth()->user()->id);
-        
+        ->join('solicitudes','users.id','=','solicitudes.id_usuariosolicitante')
+        ->where('productos.id','=', '1')
+        ->where('solicitudes.id_usuario','=', auth()->user()->id);
+       
         $estatus=$usersc->value('status');
         if($estatus === 'A'){
-            $this->Descripcion=$estatus;
+            $this->colorbutton='success';
+            $this->requestmessage='  Solicitud Aceptada';
             $this->desabilitar=true;
+            $this->disableform=false;
         }
         else if($estatus === 'P'){
-            $this->Descripcion='pendiente';
+            $this->colorbutton='primary';
+            $this->requestmessage='  Solicitud Pendiente';  
+            $this->desabilitar=true; 
+            $this->disableform=true;        
         }
         else{
-            
-            $this->Descripcion='rechazado2'.$estatus;
+            $this->colorbutton='primary';
+            $this->requestmessage='  Enviar Solicitud';
+            $this->desabilitar=false; 
+            $this->disableform=true;
         }
         
     }
@@ -198,12 +208,66 @@ class Productosbuscador extends Component
     }
 
     public function sendRequestProduct($id)
-    {
-        //$users = User::join('productos','users.id','=','productos.id_usuario')
-        //    ->join('solicitudes','users.id','=','solicitudes.id_usuario')
-        //    ->where('productos.id');
-        //$familia=Solicitude::join('')
-
+    {     
+               
+            $this->validate([
+                'id_tiposdeproductos' => 'required',
+                'fecha_entrega' => 'required',
+                'fecha_devolucion' => 'required',
+                'direccion' => 'required',
+                'telefono' => 'required',
+                'celular' => 'required',
+                'parentesco' => 'required',
+                'id_solicitud' => 'required',
+                ]);
         
+                Productossolicitado::create([ 
+                    'id_tiposdeproductos' => $this-> id_tiposdeproductos,
+                    'fecha_entrega' => $this-> fecha_entrega,
+                    'fecha_devolucion' => $this-> fecha_devolucion,
+                    'direccion' => $this-> direccion,
+                    'telefono' => $this-> telefono,
+                    'celular' => $this-> celular,
+                    'parentesco' => $this-> parentesco,
+                    'id_solicitud' => $this-> id_solicitud
+                ]);                
+                $this->resetInput();
+                $this->emit('closeModal');
+                //session()->flash('message', 'Productossolicitado Successfully created.');                 
+    }
+
+    public function sendFriendRequest($id){
+        $id_usuariosolicitante = User::join('productos','users.id','=','productos.id_usuario')            
+            ->where('productos.id','=',$id)->value('users.id');    
+            //$this->Descripcion=$id_usuariosolicitante;
+        
+            $usermanda=auth()->user()->id;
+            $name=User::where('id','=', $usermanda)->value('name');
+            
+            $Solicitude=Solicitude::create([                 
+                'Mensaje' => 'Hola quiero ser tu amigo@',
+                'status' =>'P',
+                'id_usuario' =>$usermanda,
+                'id_usuariosolicitante' => $id_usuariosolicitante,
+                'name'=>$name                               
+            ]);
+            //ESTA LINEA FUNCIONA
+           ///auth()->user()->notify(new solicitudesn($Solicitude));
+    
+            //NOTIFICACION AL 100------------------------>NO BORRAR
+           User::where("id","=",$id_usuariosolicitante)
+            
+            ->each(function(User $user) use ($Solicitude){
+                $user->notify(new solicitudesn($Solicitude));
+            });
+           //event(new SolicitudesEvent($Solicitude));
+            $this->colorbutton='primary';
+            $this->requestmessage='  Solicitud Pendiente';
+            $this->desabilitar=true;
+    
+            return redirect()->back()->with('message','Tines una solicitud de amistad');
+            //$this->resetInput();            
+            //session()->flash('message', 'Solicitude Successfully created.');
+            //$this->emit('closeModal');
     }
 }

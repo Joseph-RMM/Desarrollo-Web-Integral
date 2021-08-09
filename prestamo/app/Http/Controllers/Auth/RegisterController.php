@@ -43,13 +43,35 @@ class RegisterController extends Controller
         $this->middleware('guest');
 
     }
+    
+    protected $messages = [       
+        'name.required' => 'El Nombre es requerido',
+        'name.min' => 'El Nombre es demasiado corto',
+        'name.max' => 'El Nombre es demasiado largo',
+        'lastname.required' => 'El apellido es requerido',
+        'lastname.min' => 'El apellido es demasiado corto',
+        'lastname.max' => 'El apellido es demasiado largo',
+        'tel.required' => 'El  telefono es requerido',
+        'tel.digits' => 'El  telefono es a diez digitos',
+        'email.required' => 'El  correo es requerido',
+        'email.email' => 'El  correo no es valido',
+        'email.unique' => 'El  correo ya se encuentra registrado',
+        'email.regex' => 'Correo invalido (correos aceptados: live, gmail, yahoo, hotmail, outlook)',
+        'password.required' => 'La contraseña es obligatoria',
+        'password.min' => 'La contraseña debe ser de al menos 8 caracteres',
+        'password_confirmation.required' => 'Debes repetir tu contraseña',
+        'password_confirmation.min' => 'La contraseña debe ser de al menos 8 caracteres',
+        'password_confirmation.same' => 'Las contraseñas no son iguales',
+        'Muni.required' => 'Debes seleccionar el municipio al que perteneces'
+    ];
+    
 
     /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
-     */
+     */    
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -58,8 +80,9 @@ class RegisterController extends Controller
             'tel' => ['required','digits:10'],
             'email' => ['required','string','email','unique:users','regex:/(.*)@(live|gmail|yahoo|hotmail|outlook)\.com/i'],
             'password' => ['required','string','min:8'],
+            'password_confirmation'=> ['required','string','min:8','same:password'],
             'Muni'=>['required','numeric','min:1']
-        ]);
+        ],$this->messages);
     }
 
     /**
