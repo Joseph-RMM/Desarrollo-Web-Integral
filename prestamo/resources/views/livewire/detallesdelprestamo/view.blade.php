@@ -16,7 +16,6 @@
 						<div>
 							<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Productossolicitados">
 						</div>
->
 					</div>
 				</div>
 				
@@ -26,20 +25,20 @@
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
 							<tr> 								
-								<th>Id Productossolicitado</th>
+								<th>Foto</th>
 								<th>Fecha Entrega</th>
 								<th>Fecha Devolucion</th>
 								<th>Direccion</th>
 								<th>Mensaje</th>
 								<th>Celular</th>
 								<th>Parentesco</th>							
-								<td>ACTIONS</td>
+								<td>Acciones</td>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($productossolicitados as $row)
 							<tr>								
-								<td width="40"><img class="card-img-top" src="{{ $row->foto }}"></td>
+								<td width="90"><img class="card-img-top" src="{{ $row->foto }}"></td>
 								<td>{{ $row->fecha_entrega }}</td>
 								<td>{{ $row->fecha_devolucion }}</td>
 								<td>{{ $row->direccion }}</td>
@@ -48,10 +47,14 @@
 								<td>{{ $row->parentesco }}</td>
 								
 								<td width="90">
-								<div class="btn-group">							 
-									<a  class="btn btn-danger"  onclick="confirm('Confirm Delete Productossolicitado id {{$row->id}}? \nDeleted Productossolicitados cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Cancelar </a>   
-									<a  class="btn btn-success" href="{{url('/detallesdelproducto')}}"> Aceptar </a>	
-								</div>
+								
+								<button type="button" wire:click.prevent="destroy({{ $row->id }})" class="btn btn-danger">Eliminar</button>
+								<br>
+								<button type="button" wire:click.prevent="acceptRequestLoan({{ $row->productoid }})" class="btn btn-warning">@if( $row->Estado_actual_del_producto==='D') Aceptar @else Terminar @endif</button>
+								<br>
+								<button type="button" wire:click.prevent="cancel()" class="btn btn-info">Info</button>					 
+										
+								
 								</td>
 							@endforeach
 						</tbody>

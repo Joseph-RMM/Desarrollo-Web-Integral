@@ -51,7 +51,8 @@ class Productosbuscador extends Component
     public function render()
     {
         //consulta para mostar la lista de produstos ordenados disponibles
-        $productos=Producto::join('users','productos.id_usuario','=','users.id')        
+        $productos=Producto::join('users','productos.id_usuario','=','users.id')
+        ->select('productos.id','nombre','Descripcion','foto','foto2','foto3','Estado_actual_del_producto',)        
         ->where('users.id','!=',auth()->user()->id)
         ->where("Estado_actual_del_producto","=","D")->orderByDesc('productos.id')    
         ->get();

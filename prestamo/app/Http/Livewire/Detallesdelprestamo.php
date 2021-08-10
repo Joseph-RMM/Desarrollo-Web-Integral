@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Productossolicitado;
+use App\Models\Producto;
 
 class Detallesdelprestamo extends Component
 {
@@ -14,19 +15,15 @@ class Detallesdelprestamo extends Component
     public $selected_id, $keyWord, $id_tiposdeproductos, $fecha_entrega, $fecha_devolucion, $direccion, $telefono, $celular, $parentesco;
     public $updateMode = false;
 	public $foto;
+	public $Estado_actual_del_producto,$statusproduct;
     public function render()
     {
-		$keyWord = '%'.$this->keyWord .'%';
+		
         return view('livewire.detallesdelprestamo.view', [
-            'productossolicitados' => Productossolicitado::join('productos','productossolicitados.id','=','productos.id')
-						
-						->orWhere('fecha_entrega', 'LIKE', $keyWord)
-						->orWhere('fecha_devolucion', 'LIKE', $keyWord)
-						->orWhere('direccion', 'LIKE', $keyWord)
-						->orWhere('telefono', 'LIKE', $keyWord)
-						->orWhere('celular', 'LIKE', $keyWord)
-						->orWhere('parentesco', 'LIKE', $keyWord)
-						->orWhere('foto', 'LIKE', $keyWord)				
+            'productossolicitados' => Productossolicitado::join('productos','productossolicitados.id_tiposdeproductos','=','productos.id')
+						->Where('productos.id_usuario','=',auth()->user()->id)														
+						->select('fecha_entrega','fecha_devolucion','direccion','telefono','celular','parentesco',
+						'productossolicitados.id','foto','productos.id as productoid','Estado_actual_del_producto')
 						->paginate(10),
         ]);
 		/*$keyWord = '%'.$this->keyWord .'%';
@@ -140,4 +137,27 @@ class Detallesdelprestamo extends Component
             $record->delete();
         }
     }
+	public function acceptRequestLoan($id){
+		$record = Producto::findOrFail($id);
+		$this->Estado_actual_del_producto= $record->Estado_actual_del_producto;
+
+		$this->updateMode = true;
+		if($this->Estado_actual_del_producto==='D'){
+        	$record->update([ 
+			'Estado_actual_del_producto' => 'P',
+        	]);
+			$this->statusproduct=true;
+			session()->flash('message', 'La solicitud ha sido Aceptada');
+		}
+		else if($this->Estado_actual_del_producto==='P')
+		{
+			$record->update([ 
+				'Estado_actual_del_producto' => 'D'
+			]);
+			$this->statusproduct=false;
+			session()->flash('message', 'Has terminado el prestamo');
+		}
+		$this->updateMode = false;       
+		$this->resetInput();    	       
+	}
 }

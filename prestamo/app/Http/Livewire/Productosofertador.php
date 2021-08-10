@@ -50,8 +50,9 @@ class Productosofertador extends Component
             //$productos=Producto::where(function($query){
               //  $query=User::where("id","=","id_usuario");
                 //"Estado_actual_del_producto","=","D" and "id_usuario","=",$usuariologeado->orderByDesc('id')->get();
-            $productos=Producto::where("Estado_actual_del_producto","=","D")
-                                ->where("id_usuario","=",$usuariologeado)->orderByDesc('id')->get();
+           
+                //where("Estado_actual_del_producto","=","D")->          
+                $productos=Producto::where("id_usuario","=",$usuariologeado)->orderByDesc('id')->get();
             $keyWord = '%'.$this->keyWord .'%';
             $tiposdeproductos= Tiposdeproducto::all();
             $users=User::all();
