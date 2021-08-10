@@ -72,13 +72,13 @@
                             <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/productosseller') }}" class="nav-link">Productos Ofertador</a>
+                            <a href="{{ url('/productosseller') }}" class="nav-link"> Mis productos Ofertador</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/productossellerb') }}" class="nav-link">Productos Buscador</a>
+                            <a href="{{ url('/productossellerb') }}" class="nav-link">Buscador productos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/solicitudes') }}" class="nav-link">Solicitudes</a>
+                            <a href="{{ url('/solicitudes') }}" class="nav-link">Mis amigos</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/productossolicitados') }}" class="nav-link">solicitud de prestamo buscador</a>
