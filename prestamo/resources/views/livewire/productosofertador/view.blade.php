@@ -28,8 +28,8 @@
 
     <div class="container contenedor">
         @include('livewire.productos.create')
-        @include('livewire.productos.vista')
-
+        @include('livewire.productosofertador.vista')
+        @include('livewire\productosofertador\update')
         <center>
             <div class="row">
                 @foreach($productos as $row)
@@ -39,6 +39,7 @@
                         <div class="card-body contenido">
                             <h5 data-toggle="modal" data-target="#updateModal" wire:click="edit({{$row->id}})" class="card-title">{{ $row->nombre }}</h5>
                         </div>
+                        
                     </div>
                 </div>
                 @endforeach
