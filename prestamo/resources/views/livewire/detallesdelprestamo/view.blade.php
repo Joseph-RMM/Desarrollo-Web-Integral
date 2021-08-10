@@ -36,10 +36,9 @@
 								<th>Fecha Entrega</th>
 								<th>Fecha Devolucion</th>
 								<th>Direccion</th>
-								<th>Telefono</th>
+								<th>Mensaje</th>
 								<th>Celular</th>
-								<th>Parentesco</th>
-								<th>Id Solicitud</th>
+								<th>Parentesco</th>							
 								<td>ACTIONS</td>
 							</tr>
 						</thead>
@@ -47,21 +46,22 @@
 							@foreach($productossolicitados as $row)
 							<tr>
 								<td>{{ $loop->iteration }}</td> 
-								<td>{{ $row->id_tiposdeproductos }}</td>
+								<td width="40"><img class="card-img-top" src="{{ $row->foto }}"></td>
 								<td>{{ $row->fecha_entrega }}</td>
 								<td>{{ $row->fecha_devolucion }}</td>
 								<td>{{ $row->direccion }}</td>
 								<td>{{ $row->telefono }}</td>
 								<td>{{ $row->celular }}</td>
 								<td>{{ $row->parentesco }}</td>
-								<td>{{ $row->id_solicitud }}</td>
+							
 								<td width="90">
 								<div class="btn-group">
 									<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									Actions
 									</button>
 									<div class="dropdown-menu dropdown-menu-right">
-									<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a>							 
+														 
+									<a data-toggle="modal" data-target="#updateModal" class="dropdown-item" wire:click="edit({{$row->id}})"><i class="fa fa-edit"></i> Edit </a>	
 									<a class="dropdown-item" onclick="confirm('Confirm Delete Productossolicitado id {{$row->id}}? \nDeleted Productossolicitados cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})"><i class="fa fa-trash"></i> Delete </a>   
 									</div>
 								</div>

@@ -17,13 +17,8 @@
                 <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
                 @endif
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-2">
-                <div class="usuario-white">
-                    <div class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">
-						<i class="fa fa-plus"></i>  solicitar un producto
-					</div>
-                </div>
-            </div>
+            
+            
         </div>
     </div>
 

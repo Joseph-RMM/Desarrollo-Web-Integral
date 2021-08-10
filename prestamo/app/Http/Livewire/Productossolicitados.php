@@ -11,9 +11,9 @@ class Productossolicitados extends Component
     use WithPagination;
 
 	protected $paginationTheme = 'bootstrap';
-    public $selected_id, $keyWord, $id_tiposdeproductos, $fecha_entrega, $fecha_devolucion, $direccion, $telefono, $celular, $parentesco, $id_solicitud;
+    public $selected_id, $keyWord, $id_tiposdeproductos, $fecha_entrega, $fecha_devolucion, $direccion, $telefono, $celular, $parentesco;
     public $updateMode = false;
-
+	public $idproduct;
     public function render()
     {
 		$keyWord = '%'.$this->keyWord .'%';
@@ -23,11 +23,9 @@ class Productossolicitados extends Component
 						->orWhere('fecha_entrega', 'LIKE', $keyWord)
 						->orWhere('fecha_devolucion', 'LIKE', $keyWord)
 						->orWhere('direccion', 'LIKE', $keyWord)
-						->orWhere('telefono', 'LIKE', $keyWord)
-						->orWhere('celular', 'LIKE', $keyWord)
+						->orWhere('telefono', 'LIKE', $keyWord)						
 						->orWhere('parentesco', 'LIKE', $keyWord)
-						->orWhere('id_solicitud', 'LIKE', $keyWord)
-						->paginate(10),
+						->paginate(10)						
         ]);
     }
 	
@@ -46,7 +44,6 @@ class Productossolicitados extends Component
 		$this->telefono = null;
 		$this->celular = null;
 		$this->parentesco = null;
-		$this->id_solicitud = null;
     }
 
     public function store()
@@ -59,7 +56,6 @@ class Productossolicitados extends Component
 		'telefono' => 'required',
 		'celular' => 'required',
 		'parentesco' => 'required',
-		'id_solicitud' => 'required',
         ]);
 
         Productossolicitado::create([ 
@@ -70,7 +66,6 @@ class Productossolicitados extends Component
 			'telefono' => $this-> telefono,
 			'celular' => $this-> celular,
 			'parentesco' => $this-> parentesco,
-			'id_solicitud' => $this-> id_solicitud
         ]);
         
         $this->resetInput();
@@ -90,7 +85,7 @@ class Productossolicitados extends Component
 		$this->telefono = $record-> telefono;
 		$this->celular = $record-> celular;
 		$this->parentesco = $record-> parentesco;
-		$this->id_solicitud = $record-> id_solicitud;
+
 		
         $this->updateMode = true;
     }
@@ -104,8 +99,7 @@ class Productossolicitados extends Component
 		'direccion' => 'required',
 		'telefono' => 'required',
 		'celular' => 'required',
-		'parentesco' => 'required',
-		'id_solicitud' => 'required',
+		'parentesco' => 'required'
         ]);
 
         if ($this->selected_id) {
@@ -117,8 +111,7 @@ class Productossolicitados extends Component
 			'direccion' => $this-> direccion,
 			'telefono' => $this-> telefono,
 			'celular' => $this-> celular,
-			'parentesco' => $this-> parentesco,
-			'id_solicitud' => $this-> id_solicitud
+			'parentesco' => $this-> parentesco
             ]);
 
             $this->resetInput();

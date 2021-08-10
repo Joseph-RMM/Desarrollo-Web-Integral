@@ -13,7 +13,7 @@ class Productossolicitado extends Model
 
     protected $table = 'productossolicitados';
 
-    protected $fillable = ['id_tiposdeproductos','fecha_entrega','fecha_devolucion','direccion','telefono','celular','parentesco','id_solicitud'];
+    protected $fillable = ['id_tiposdeproductos','fecha_entrega','fecha_devolucion','direccion','telefono','celular','parentesco'];
 	
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -28,7 +28,7 @@ class Productossolicitado extends Model
      */
     public function solicitude()
     {
-        return $this->hasOne('App\Models\Solicitude', 'id', 'id_solicitud');
+        return $this->hasOne('App\Models\Solicitude', 'id');
     }
     
 }

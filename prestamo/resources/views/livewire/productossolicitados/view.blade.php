@@ -39,7 +39,7 @@
 								<th>Telefono</th>
 								<th>Celular</th>
 								<th>Parentesco</th>
-								<th>Id Solicitud</th>
+								
 								<td>ACTIONS</td>
 							</tr>
 						</thead>
@@ -54,7 +54,7 @@
 								<td>{{ $row->telefono }}</td>
 								<td>{{ $row->celular }}</td>
 								<td>{{ $row->parentesco }}</td>
-								<td>{{ $row->id_solicitud }}</td>
+							
 								<td width="90">
 								<div class="btn-group">
 									<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

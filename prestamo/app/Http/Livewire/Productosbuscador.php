@@ -50,11 +50,14 @@ class Productosbuscador extends Component
 
     public function render()
     {
-
-        
         //consulta para mostar la lista de produstos ordenados disponibles
-        $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
-        $keyWord = '%'.$this->keyWord .'%';
+        $productos=Producto::join('users','productos.id_usuario','=','users.id')        
+        ->where('users.id','!=',auth()->user()->id)
+        ->where("Estado_actual_del_producto","=","D")->orderByDesc('productos.id')    
+        ->get();
+        //$productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
+        
+        //$keyWord = '%'.$this->keyWord .'%';
         
         //return view('livewire.productossellers.index', compact('productos'));
 
