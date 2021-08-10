@@ -17,19 +17,16 @@
 								</div>
 								@endif
 							</div>
+							<h3>Mis solicitudes de amistad y amigos</h3>
+							<h5>A = Aceptado</h5>
+							<h5>P = Pendiente</h5>
 						</div>
-						<div wire:poll.60s>
-							<code><h5>{{ now()->format('H:i:s') }} UTC</h5></code>
-						</div>
+						
 						@if (session()->has('message'))
 						<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
 						@endif
-						<div>
-							<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Solicitudes">
-						</div>
-						<div class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModal">
-						<i class="fa fa-plus"></i>  Add Solicitudes
-						</div>
+
+
 					</div>
 				</div>
 				
@@ -40,10 +37,10 @@
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
 							<tr> 
-								<td>#</td> 
+								<th>Nombre</th>
 								<th>Mensaje</th>
 								<th>Status</th>
-								<th>Nombre</th>
+								
 								
 								<td>ACTIONS</td>
 							</tr>
@@ -51,10 +48,10 @@
 						<tbody>
 							@foreach($solicitudes as $row)
 							<tr>
-								<td>{{ $loop->iteration }}</td> 
+								<td>{{ $row->name }}</td>
 								<td>{{ $row->Mensaje }}</td>
 								<td>{{ $row->status }}</td>
-								<td>{{ $row->name }}</td>
+								
 								
 								<td width="90">
 								<div class="btn-group">

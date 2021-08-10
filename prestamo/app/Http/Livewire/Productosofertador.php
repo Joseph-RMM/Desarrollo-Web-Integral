@@ -152,29 +152,37 @@ class Productosofertador extends Component
 		$this->Estado_actual_del_producto = $record-> Estado_actual_del_producto;
 		$this->id_usuario = $record-> id_usuario;
         $this->id_tiposdeproductos = $record-> id_tiposdeproductos;
-
+        
         $this->updateMode = true;
     }
 
     public function update()
     {
         $this->validate([
-        'nombre' => 'required',
-		'Descripcion' => 'required',
-		'foto' => 'required',
-		'Estado_actual_del_producto' => 'required',
-		'id_usuario' => 'required',
+            'nombre' => 'required|min:4',
+            'Descripcion' => 'required|min:20',
+            'foto.*' => 'image|max:1024',
+            'foto' => 'min:3|max:3',
+		
         'id_tiposdeproductos' => 'required',
         ]);
 
+        
+        $urlclean = [];
+        $inde = 0;
+        foreach ($this->foto as $fotoname) {
+            $namefoto = $fotoname->store('foto', 'public');
+            $urlclean[$inde++] = Storage::url($namefoto);
+        }
         if ($this->selected_id) {
 			$record = Producto::find($this->selected_id);
             $record->update([
             'nombre' => $this-> nombre,
 			'Descripcion' => $this-> Descripcion,
-			'foto' => $this-> foto,
-			'Estado_actual_del_producto' => $this-> Estado_actual_del_producto,
-			'id_usuario' => $this-> id_usuario,
+            'foto' => $urlclean[0],
+            'foto2' => $urlclean[1],
+            'foto3' => $urlclean[2],
+			
             'id_tiposdeproductos' => $this-> id_tiposdeproductos,
             ]);
 

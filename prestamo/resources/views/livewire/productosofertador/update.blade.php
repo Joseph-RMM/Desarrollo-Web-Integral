@@ -23,28 +23,13 @@
                         <input wire:model="Descripcion" type="text" class="form-control" id="Descripcion" placeholder="Descripcion">@error('Descripcion') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
 
-                    <div class="form-group">
-                        <label for="foto"></label>
-                        <input wire:model="foto" type="text" class="form-control" id="foto" placeholder="Foto">@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
+                    <div class="field">
+                        <label>Añadir tres imagenes <b class="rojo">*</b></label>
+                        <br>
+                        <input wire:model="foto" type="file"  id="foto" placeholder="Sube aqui tu foto" multiple accept='image/x-png,image/gif,image/jpg,image/jpeg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="Estado_actual_del_producto"></label>
-                        <select wire:model="Estado_actual_del_producto" class='form-control'>
-                            <option value="">Estado del producto</option>
-                            <option value="P">Prestado</option>
-                            <option value="D">Disponible</option>
-                    </div>
-                    <div class="form-group">
-                        <label for="id_usuario"></label>
-                        <select>
-                            <option value="">usuario</option>
-                            @foreach($users as $users)
-                                <option value="{{auth()->user()->id}}">{{auth()->user()->id}} </option>
-                            @endforeach
-                        </select>
 
-                        <input wire:model="id_usuario" type="text"  value="{{auth()->user()->id}}"  class="form-control" id="id_usuario" placeholder="Id Usuario">@error('id_usuario') <span class="error text-danger">{{ $message }}</span> @enderror
-                    </div>
+
 
                     <div class="form-group">
                         <select wire:model='id_tiposdeproductos' class='form-control'>
