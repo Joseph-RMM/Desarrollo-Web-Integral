@@ -25,34 +25,24 @@
 				<div class="table-responsive">
 					<table class="table table-bordered table-sm">
 						<thead class="thead">
-							<tr> 
-								<td>#</td> 
+							<tr> 								
 								<th>Id Productossolicitado</th>
 								<th>Fecha Entrega</th>
 								<th>Fecha Devolucion</th>
-<<<<<<< HEAD
 								<th>Direccion</th>
 								<th>Mensaje</th>
 								<th>Celular</th>
 								<th>Parentesco</th>							
-=======
-								
-								<th>Telefono</th>
-								<th>Celular</th>
-								<th>Parentesco</th>
-								
->>>>>>> e15a04822731f940dd36fc234a6e172f5a744c7d
 								<td>ACTIONS</td>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($productossolicitados as $row)
-							<tr>
-								<td>{{ $loop->iteration }}</td> 
+							<tr>								
 								<td width="40"><img class="card-img-top" src="{{ $row->foto }}"></td>
 								<td>{{ $row->fecha_entrega }}</td>
 								<td>{{ $row->fecha_devolucion }}</td>
-								
+								<td>{{ $row->direccion }}</td>
 								<td>{{ $row->telefono }}</td>
 								<td>{{ $row->celular }}</td>
 								<td>{{ $row->parentesco }}</td>
