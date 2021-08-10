@@ -30,7 +30,7 @@
 								<th>Fecha Devolucion</th>
 								<th>Direccion</th>
 								<th>Mensaje</th>
-								<th>Celular</th>
+								<th>Solicitud</th>
 								<th>Parentesco</th>							
 								<td>Acciones</td>
 							</tr>
@@ -50,9 +50,9 @@
 								
 								<button type="button" wire:click.prevent="destroy({{ $row->id }})" class="btn btn-danger">Eliminar</button>
 								<br>
-								<button type="button" wire:click.prevent="acceptRequestLoan({{ $row->productoid }})" class="btn btn-warning">@if( $row->Estado_actual_del_producto==='D') Aceptar @else Terminar @endif</button>
+								<button type="button" wire:click.prevent="acceptRequestLoan({{ $row->productoid }} , {{$row->id}})" class="btn btn-warning">@if( $row->celular==='Pendiente') Aceptar @else Terminar @endif</button>
 								<br>
-								<button type="button" wire:click.prevent="cancel()" class="btn btn-info">Info</button>					 
+								<button type="button" action="{{ url('/productossolicitados') }}" method="post" class="btn btn-info">Informacion</button>					 
 										
 								
 								</td>

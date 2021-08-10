@@ -16,24 +16,19 @@
                         <label class="negro"> <strong>Direccion: </strong></label>
                         <br>
                         <input wire:model="direccion" class="form-control" type="text" id="direccion">@error('direccion') <span class="error text-danger">{{ $message }}</span> @enderror
-                    </div> 
-                    <div class="col-md-4">
-                        <label class="negro"> <strong>Nùmero celular:: </strong></label>
-                        <br>
-                        <input wire:model="celular" class="form-control" type="tel" id="celular">@error('celular') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-4">
+                        <label class="negro"> <strong>Parentesco familiar: </strong></label>                        
+                        <br>
+                        <input wire:model="parentesco" class="form-control" type="text" id="parentesco">@error('parentesco') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>                
+                    <div class="col-md-12">
                         <br>
                         <label class="negro"> <strong>Mensaje de prestamo </strong></label>
                         <br>
                         <input wire:model="telefono" class="form-control" type="text" id="telefono">@error('telefono') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
-                    <div class="col-md-4">
-                        <br>
-                        <label class="negro"> <strong>Parentesco familiar: </strong></label>
-                        <br>
-                        <input wire:model="parentesco" class="form-control" type="text" id="parentesco">@error('parentesco') <span class="error text-danger">{{ $message }}</span> @enderror
-                    </div>
+                    
                     <div class="col-md-6">
                     <br> <br>
                         <label class="negro"> <strong>Fecha de entrega: </strong></label>
