@@ -53,14 +53,19 @@ class Detallesdelprestamo extends Component
 	
     private function resetInput()
     {		
+		$this->selected_id = null;
 		$this->id_tiposdeproductos = null;
 		$this->fecha_entrega = null;
 		$this->fecha_devolucion = null;
 		$this->direccion = null;
 		$this->telefono = null;
+		$this->mensaje = null;
 		$this->celular = null;
 		$this->parentesco = null;
 		$this->nombre = null;
+		$this->nombreproducto = null;
+		$this->email = null;
+		$this->fotomodal = null;				
     }
 
     public function store()
