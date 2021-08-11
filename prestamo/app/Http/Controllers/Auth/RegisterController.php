@@ -46,26 +46,33 @@ class RegisterController extends Controller
     
     protected $messages = [       
         'name.required' => 'El Nombre es requerido',
-        'name.min' => 'El Nombre es demasiado corto',
-        'name.max' => 'El Nombre es demasiado largo',
+        'name.min' => 'El Nombre es de minimo tres caracteres',
+        'name.max' => 'El Nombre es de maximo cincuenta caracteres',
         'lastname.required' => 'El apellido es requerido',
-        'lastname.min' => 'El apellido es demasiado corto',
-        'lastname.max' => 'El apellido es demasiado largo',
+        'lastname.min' => 'El apellido debe ser de minimo de tres caracteres',
+        'lastname.max' => 'El apellido debe ser de maximo de cincuenta y uno  caracteres',
         'tel.required' => 'El  telefono es requerido',
         'tel.digits' => 'El  telefono es a diez digitos',
+        'tel.unique' => 'El  telefono ya se encuentra registrado',
         'email.required' => 'El  correo es requerido',
         'email.email' => 'El  correo no es valido',
         'email.unique' => 'El  correo ya se encuentra registrado',
         'email.regex' => 'Correo invalido (correos aceptados: live, gmail, yahoo, hotmail, outlook)',
         'password.required' => 'La contraseña es obligatoria',
         'password.min' => 'La contraseña debe ser de al menos 8 caracteres',
+        'password.max' => 'La contraseña debe ser maximo de 8 caracteres',
         'password_confirmation.required' => 'Debes repetir tu contraseña',
+        'password.regex' => 'Debe tener por lo menos 1 minuscula, 1 mayuscula 1 numeros y 1 caracterer especial @#$...',
         'password_confirmation.min' => 'La contraseña debe ser de al menos 8 caracteres',
         'password_confirmation.same' => 'Las contraseñas no son iguales',
-        'Muni.required' => 'Debes seleccionar el municipio al que perteneces'
+        'Muni.required' => 'Debes seleccionar el municipio al que perteneces',
     ];
     
-
+    public function hydrate()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -75,12 +82,12 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required','string','min:3','max:50'],
+            'name' => ['required','string','min:3','max:40'],
             'lastname' => ['required','string','min:3','max:51'],
-            'tel' => ['required','digits:10'],
+            'tel' => ['required','unique:users','digits:10'],
             'email' => ['required','string','email','unique:users','regex:/(.*)@(live|gmail|yahoo|hotmail|outlook)\.com/i'],
-            'password' => ['required','string','min:8'],
-            'password_confirmation'=> ['required','string','min:8','same:password'],
+            'password' => ['required','string','min:8','max:40','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/'],
+            'password_confirmation'=> ['required','string','min:8','max:40','same:password'],
             'Muni'=>['required','numeric']
         ],$this->messages);
     }

@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-lg-10 col-md-10 col-sm-2">
 				<div class="usuario-white">
-					<b>Productos solicitado</b>
+					<b>Productos solicitado</b>						
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6">
@@ -13,18 +13,20 @@
 			</div>
 		</div>
 	</div>
+	@include('livewire.detallesdelprestamo.detailsmodal')
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th scope="col">Foto</th>
-					<th scope="col">Fecha Entrega</th>
-					<th scope="col">Fecha Devolucion</th>
-					<th scope="col">Direccion</th>
-					<th scope="col">Mensaje</th>
-					<th scope="col">Solicitud</th>
-					<th scope="col">Parentesco</th>
-					<th scope="col">Acciones</th>
+					<th>Foto</th>
+					<th>Fecha Entrega</th>
+					<th>Fecha Devolucion</th>
+					<th>Nombre Usuario</th>
+					<th>Direccion</th>
+					<th>Mensaje</th>
+					<th>Solicitud</th>
+					<th>Parentesco</th>							
+					<td>Acciones</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,18 +35,19 @@
 					<td width="90"><img class="card-img-top" src="{{ $row->foto }}"></td>
 					<td>{{ $row->fecha_entrega }}</td>
 					<td>{{ $row->fecha_devolucion }}</td>
+					<td>{{ $row->name }}</td>
 					<td>{{ $row->direccion }}</td>
 					<td>{{ $row->telefono }}</td>
 					<td>{{ $row->celular }}</td>
 					<td>{{ $row->parentesco }}</td>
 					<td>
-						<button type="button" wire:click.prevent="destroy({{ $row->id }})" class="btn btn-danger">Eliminar</button>
-						<br>
-						<button type="button" wire:click.prevent="acceptRequestLoan({{ $row->productoid }} , {{$row->id}})" class="btn btn-warning">@if( $row->celular==='Pendiente') Aceptar @else Terminar @endif</button>
-						<br>
-						<button type="button" action="{{ url('/productossolicitados') }}" method="post" class="btn btn-info">Informacion</button>
+						<button type="button" wire:click.prevent="acceptRequestLoan({{ $row->productoid }} , {{$row->id}})" class="button-rojo button5">@if( $row->celular==='Pendiente') <i class="fas fa-check-circle"></i> @else <i class="fas fa-times-circle"></i> @endif</button>
+						
+						<button type="button" wire:click.prevent="edit({{ $row->id }})" data-dismiss="modal" data-toggle="modal" data-target="#SendRequestModal" class="button-verde button5" ><i class="fas fa-question-circle"></i></button> 
+
+						<button type="button" class="button-rojo button5" onclick="confirm('Confirm Delete Solicitude id {{$row->id}}? \nDeleted Solicitudes cannot be recovered!')||event.stopImmediatePropagation()" wire:click.prevent="destroy({{ $row->id }})"><i class="fas fa-trash-alt"></i></button>
 					</td>
-				</tr>
+					</tr>
 				@endforeach
 			</tbody>
 		</table>

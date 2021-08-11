@@ -27,8 +27,8 @@ class Productossolicitados extends Migration
             $table->string('celular');
             $table->string('parentesco');
             //solicitado
-            //$table->unsignedBigInteger('id_solicitud');
-            //$table->foreign('id_solicitud')->references('id')->on('solicitudes');
+            $table->unsignedBigInteger('id_usuariosolicitante');
+            $table->foreign('id_usuariosolicitante')->references('id')->on('users');
                         
             $table->timestamps();
         });
