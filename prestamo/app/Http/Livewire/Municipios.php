@@ -60,7 +60,7 @@ class Municipios extends Component
 
         $this->resetInput();
 		$this->emit('closeModal');
-		session()->flash('message', 'Municipio Successfully created.');
+		session()->flash('message', 'El Municipio se creo correctamente');
     }
 
     public function edit($id)
@@ -76,7 +76,7 @@ class Municipios extends Component
     public function update()
     {
         $this->validate([
-		'name' => 'required|string|min:4|unique:Municipios',
+		'name' => 'required|string|min:4|max:40|unique:Municipios',
         ]);
 
         if ($this->selected_id) {
@@ -88,7 +88,7 @@ class Municipios extends Component
             $this->resetInput();
             $this->emit('closeupdateModal');
             $this->updateMode = false;
-			session()->flash('message', 'Municipio Successfully updated.');
+			session()->flash('message', 'El Municipio se actualizo correctamente');
         }
     }
 
@@ -97,6 +97,7 @@ class Municipios extends Component
         if ($id) {
             $record = Municipio::where('id', $id);
             $record->delete();
+            session()->flash('message', 'El Municipio se elimino correctamente');
         }
     }
 }

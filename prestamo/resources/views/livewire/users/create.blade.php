@@ -32,7 +32,7 @@
                                     <label>Teléfono <b class="rojo">*</b></label>
                                     <input wire:model="tel" type="text" id="tel" placeholder="Tel">@error('tel') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
-                                <div class="field">
+                                <div class="field"><br>
                                     <label>Correo electrónico <b class="rojo">*</b></label>
                                     <input wire:model="email" type="email" id="email" placeholder="Email" autocomplete="off">@error('email') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div><br>
@@ -52,9 +52,11 @@
                                     <input wire:model="password" type="password" id="password" placeholder="Password">@error('password') <span class="error text-danger">{{ $message }}</span> @enderror
                                 </div>
                                 <div class="field">
+                                <br>
                                     <label>Confirmar contraseña <b class="rojo">*</b></label>
                                     <input wire:model="password_confirmation" type="password" id="password_confirmation" placeholder="Password Confirmation">@error('password_confirmation') <span class="error text-danger">{{ $message }}</span> @enderror
-                                </div>
+                                    
+                                </div><br> <br>
                             </form>
                         </div>
                     </div>
@@ -63,7 +65,7 @@
             </div> <!-- modal-body -->
             <div class="modal-footer">
 
-                <button type="button" class="cancelar" data-dismiss="modal">
+                <button type="button" wire:click.prevent="cancel()" class="cancelar" data-dismiss="modal">
                     Cancelar
                 </button>
 

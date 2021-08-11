@@ -81,7 +81,7 @@ class RegisterController extends Controller
             'email' => ['required','string','email','unique:users','regex:/(.*)@(live|gmail|yahoo|hotmail|outlook)\.com/i'],
             'password' => ['required','string','min:8'],
             'password_confirmation'=> ['required','string','min:8','same:password'],
-            'Muni'=>['required','numeric','min:1']
+            'Muni'=>['required','numeric']
         ],$this->messages);
     }
 
