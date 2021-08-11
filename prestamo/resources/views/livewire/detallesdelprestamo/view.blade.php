@@ -63,6 +63,11 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6">
+				@if (session()->has('message'))
+				<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
+				@endif
+			</div>
 		</div>
 	</div>
 </div>

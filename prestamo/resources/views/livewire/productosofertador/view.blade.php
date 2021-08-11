@@ -29,7 +29,7 @@
     <div class="container contenedor">
         @include('livewire.productos.create')
         @include('livewire.productosofertador.vista')
-        @include('livewire\productosofertador\update')
+        @include('livewire.productosofertador.update')
         <center>
             <div class="row">
                 @foreach($productos as $row)
