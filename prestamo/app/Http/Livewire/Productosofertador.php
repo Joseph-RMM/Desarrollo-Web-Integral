@@ -30,7 +30,7 @@ class Productosofertador extends Component
         //dd('Rad');=
 
         $validatedData=$this->validate([
-            'foto' => 'image|max:1024'
+            'foto' => 'image|max:3072'
         ]);
 
 
@@ -106,8 +106,8 @@ class Productosofertador extends Component
         //}
         $this->validate([
             'nombre' => 'required|min:4',
-            'Descripcion' => 'required|min:20',
-            'foto.*' => 'image|max:1024',
+            'Descripcion' => 'min:20|max:200',
+            'foto.*' => 'image|max:3072',
             'foto' => 'min:3|max:3',
             
             'id_tiposdeproductos' => 'required',
@@ -160,9 +160,9 @@ class Productosofertador extends Component
     public function update()
     {
         $this->validate([
-            'nombre' => 'required|min:4',
-            'Descripcion' => 'required|min:20',
-            'foto.*' => 'image|max:1024',
+            'nombre' => 'min:4|max:30',
+            'Descripcion' => 'min:20|max:200',
+            'foto.*' => 'image|max:3072',
             'foto' => 'min:3|max:3',
 		
         'id_tiposdeproductos' => 'required',

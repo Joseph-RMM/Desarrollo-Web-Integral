@@ -13,7 +13,7 @@ class ProdutobuscadorController extends Controller
      */
     public function index()
     {
-        return view('buscador');
+        //return view('buscador');
     }
 
     /**

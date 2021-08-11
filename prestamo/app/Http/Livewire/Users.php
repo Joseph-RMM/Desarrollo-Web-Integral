@@ -76,7 +76,7 @@ class Users extends Component
         'email.regex' => 'Correo invalido (correos aceptados: live, gmail, yahoo, hotmail, outlook)',
         'password.required' => 'La contraseña es obligatoria',
         'password.min' => 'La contraseña debe ser de al menos 8 caracteres',
-        'password.max' => 'La contraseña debe ser maximo de 8 caracteres',
+        'password.max' => 'La contraseña debe ser maximo de 40 caracteres',
         'password_confirmation.required' => 'Debes repetir tu contraseña',
         'password.regex' => 'Debe tener por lo menos 1 minuscula, 1 mayuscula 1 numeros y 1 caracterer especial @#$...',
         'password_confirmation.min' => 'La contraseña debe ser de al menos 8 caracteres',
@@ -90,7 +90,26 @@ class Users extends Component
             'lastname' => ['required','string','min:3','max:51'],
             'tel' => ['required','unique:users','digits:10'],
             'email' => ['required','string','email','unique:users','regex:/(.*)@(live|gmail|yahoo|hotmail|outlook)\.com/i'],
-            'password' => ['required','string','min:8','max:40','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/'],
+            'password' => [
+                'required',
+                'string',
+                'min:8',
+                'max:40',             
+                'regex:/[a-z]/',      
+                'regex:/[A-Z]/',      
+                'regex:/[0-9]/',      
+                'regex:/[@$!%*#?&]/'       
+            ],
+            'contraseña' => [
+                'required',
+                'string',
+                'min:8',
+                'max:40',             
+                'regex:/[a-z]/',      
+                'regex:/[A-Z]/',      
+                'regex:/[0-9]/',      
+                'regex:/[@$!%*#?&]/'       
+            ],
             'password_confirmation'=> ['required','string','min:8','max:40','same:password'],
             'Muni'=>['required','numeric']
         ]);

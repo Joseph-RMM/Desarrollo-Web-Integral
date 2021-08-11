@@ -1,23 +1,27 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="alert alert-dark" role="alert">
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-4">
-                <div class="usuario-white">
+    
 
+                <div class="alert colordark" role="alert">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-1">
+                            <div class="usuario-white">
+                                <b>     
+                                    <br>
+                                </b>
+                            </div>
+            
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-1">
+                            @if (session()->has('message'))
+                            <div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
+                            @endif
+                        </div>
 
-                    <!-- <b>Bienvenido</b>-->
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-8">
-
-                <div class="usuario-white">
-                    <input type="text" class="form-control">
-                    <!-- <b>Bienvenido</b>-->
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
 <div class="container">

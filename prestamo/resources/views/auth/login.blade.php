@@ -1,4 +1,12 @@
 @extends('layouts.app')
+<div class="float-left">
+     </a>
+    <a href="{{ url('/productosinvitado') }}" class="nav-link">Productos </a>
+</div>
+<div class="float-left">
+    <a href="{{ url('/terminosYcondiciones') }}" class="nav-link">Terminos y condiciones </a>
+    
+</div>
 
 @section('content')
 

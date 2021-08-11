@@ -28,7 +28,7 @@ class ProdutosellerController extends Controller
      */
     public function index(Request $request)
     {
-       return view('ofertador');
+      // return view('ofertador');
         //consulta para mostar la lista de produstos ordenados disponibles
         /* $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
         $keyWord = '%'.$this->keyWord .'%';

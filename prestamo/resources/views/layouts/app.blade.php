@@ -39,15 +39,18 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ config('app.stream', 'Family Dx') }}
+                <a class="float-left" >
+                    {{ config('app.stream', 'FamilyBenefits')  }}
+                    
                 </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+
                     @auth()
                     <ul class="navbar-nav mr-auto">
                         @can('admin.home')
@@ -69,26 +72,18 @@
                         @endcan
                         @can('seller.home')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
+                            <a href="{{ url('/productosseller') }}" class="nav-link"> Mis productos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/productosseller') }}" class="nav-link"> Mis productos Ofertador</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/productossellerb') }}" class="nav-link">Buscador productos</a>
+                            <a href="{{ url('/productossellerb') }}" class="nav-link">Buscar productos</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/solicitudes') }}" class="nav-link">Mis amigos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/productossolicitados') }}" class="nav-link">solicitud de prestamo buscador</a>
+                            <a href="{{ url('/detallesdelproducto') }}" class="nav-link">Detalles de mis prestamos</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/detallesdelproducto') }}" class="nav-link">Detalle del prestamo ofertador</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/productosinvitado') }}" class="nav-link">Productos invitados</a>
-                        </li>
+
                         
                         @endcan
 
