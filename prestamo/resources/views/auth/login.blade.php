@@ -23,6 +23,7 @@
     <div class="col-lg-4">
         <div class="wrapper">
             <div class="form-container">
+               
                 <!--<div class="card-header">{{ __('Login') }}</div>-->
                 <div class="slide-controls">
                     <input type="radio" name="slide" id="login" checked>
@@ -53,6 +54,8 @@
                             </span>
                             @enderror
                         </div>
+                        <br>
+                        <br>
                         <br>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>

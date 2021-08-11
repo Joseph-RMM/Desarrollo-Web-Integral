@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Producto</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar Producto</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span wire:click.prevent="cancel()" aria-hidden="true">×</span>
                 </button>
@@ -11,29 +11,35 @@
             <div class="modal-body">
                 <form>
                     <input type="hidden" wire:model="selected_id">
-
-                    <div class="form-group">
-                        <label for="nombre"></label>
+                    
+                    <div class="field">
+                        <label>Nombre del producto <b class="rojo">*</b></label>
+                            <br>
                         <input wire:model="nombre" type="text" class="form-control" id="nombre" placeholder="nombre">@error('nombre') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
+                    <br>
 
 
-                    <div class="form-group">
-                        <label for="Descripcion"></label>
+                    <div class="field">
+                        <label>Descripción <b class="rojo">*</b></label>
+                            <br>
                         <input wire:model="Descripcion" type="text" class="form-control" id="Descripcion" placeholder="Descripcion">@error('Descripcion') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
 
+                    <br>
                     <div class="field">
                         <label>Añadir tres imagenes <b class="rojo">*</b></label>
                         <br>
                         <input wire:model="foto" type="file"  id="foto" placeholder="Sube aqui tu foto" multiple accept='image/x-png,image/gif,image/jpg,image/jpeg' />@error('foto') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
 
-
+                    <br>
 
                     <div class="form-group">
+                        <label>Categoria<b class="rojo">*</b></label>
+                        <br>
                         <select wire:model='id_tiposdeproductos' class='form-control'>
-                            <option value="">Clasificacion de producto</option>
+                            
                             @foreach($tiposdeproductos as $tiposdeproductos)
                                 <option value="{{$tiposdeproductos->id}}">{{$tiposdeproductos->clasificacion}} </option>
                             @endforeach

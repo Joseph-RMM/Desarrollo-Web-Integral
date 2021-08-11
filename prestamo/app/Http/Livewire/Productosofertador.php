@@ -107,8 +107,8 @@ class Productosofertador extends Component
             //$product['foto']=$request->file(key:'foto')->store(path:'fotos');
         //}
         $this->validate([
-            'nombre' => 'required|min:4',
-            'Descripcion' => 'min:20|max:200',
+            'nombre' =>['required','min:4','max:10'] ,
+            'Descripcion' => ['required','min:4','max:200'],
             'foto.*' => 'image|max:3072',
             'foto' => 'min:3|max:3',
             
@@ -125,6 +125,7 @@ class Productosofertador extends Component
         }
         //$urlclean=Storage::url($namefoto);
         Producto::create([
+            
             'nombre' => $this->nombre,
             'Descripcion' => $this->Descripcion,
             'Estado_actual_del_producto' => 'D',

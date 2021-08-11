@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-lg-10 col-md-10 col-sm-2">
 				<div class="usuario-white">
-					<b>Productos solicitado</b>						
+					<b>Detalles de mis productos prestados</b>						
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-6">
