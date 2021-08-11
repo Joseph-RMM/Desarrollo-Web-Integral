@@ -79,6 +79,7 @@ class Productosbuscador extends Component
     }
     private function resetInput()
     {
+        $this->selected_id = null;       
         $this->nombre = null;
 		$this->Descripcion = null;
 		$this->foto = null;
@@ -143,17 +144,18 @@ class Productosbuscador extends Component
 
     public function edit($id)
     {
-        $record = Producto::findOrFail($id);
-
+        $record = Producto::join('tiposdeproductos','productos.id_tiposdeproductos','=','tiposdeproductos.id')
+        ->where('productos.id','=',$id)
+        ->get();
         $this->selected_id = $id;
-        $this->nombre = $record-> nombre;
-		$this->Descripcion = $record-> Descripcion;
-		$this->foto1 = $record-> foto;
-        $this->foto2 = $record-> foto2;
-        $this->foto3 = $record-> foto3;
-		$this->Estado_actual_del_producto = $record-> Estado_actual_del_producto;
-		$this->id_usuario = $record-> id_usuario;
-        $this->id_tiposdeproductos = $record-> id_tiposdeproductos;
+        $this->nombre = $record[0]-> nombre;
+		$this->Descripcion = $record[0]-> Descripcion;
+		$this->foto1 = $record[0]-> foto;
+        $this->foto2 = $record[0]-> foto2;
+        $this->foto3 = $record[0]-> foto3;
+		$this->Estado_actual_del_producto = $record[0]-> Estado_actual_del_producto;
+		$this->id_usuario = $record[0]-> id_usuario;
+        $this->id_tiposdeproductos = $record[0]-> clasificacion;
         //$this->desabilitar='disabled="disabled"';
         $this->updateMode = true;
         $usersc = User::join('productos','users.id','=','productos.id_usuario')

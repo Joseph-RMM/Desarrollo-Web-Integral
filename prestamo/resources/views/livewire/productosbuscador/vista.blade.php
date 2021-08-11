@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header mx">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button wire:click.prevent="cancel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span class="rojo" aria-hidden="true">X</span>
                 </button>
             </div>
@@ -47,7 +47,7 @@
                             <div class="col-sm"></div>
                             <div class="col-sm">
                                 <label class="muynegro"> Estado </label>
-                                <p class="verduras">{{$Estado_actual_del_producto}} </p>
+                                <p class="verduras">Disponible </p>
                             </div>
                         </div>
                         <label class="muynegro">Descripcion</label>

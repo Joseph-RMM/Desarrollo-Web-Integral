@@ -47,7 +47,11 @@
                             <div class="col-sm"></div>
                             <div class="col-sm">
                                 <label class="muynegro"> Estado </label>
-                                <p class="verduras">{{$Estado_actual_del_producto}} </p>
+                                <p class="verduras">@if($Estado_actual_del_producto==='D')
+                                    Disponible
+                                @else
+                                    Prestado
+                                @endif </p>
                             </div>
                         </div>
                         <label class="muynegro">Descripcion</label>

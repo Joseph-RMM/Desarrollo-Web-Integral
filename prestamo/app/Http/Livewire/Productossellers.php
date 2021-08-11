@@ -46,7 +46,7 @@ class Productossellers extends Component
 
         //consulta para mostar la lista de produstos ordenados disponibles
         $productos=Producto::where("Estado_actual_del_producto","=","D")->orderByDesc('id')->get();
-        $keyWord = '%'.$this->keyWord .'%';
+        
                 
         //return view('livewire.productossellers.index', compact('productos'));
         
@@ -61,6 +61,7 @@ class Productossellers extends Component
 
     private function resetInput()
     {
+        $this->selected_id = null;
         $this->nombre = null;
 		$this->Descripcion = null;
 		$this->foto = null;
@@ -69,7 +70,7 @@ class Productossellers extends Component
         $this->foto3 = null;
 		$this->Estado_actual_del_producto = null;
 		$this->id_usuario = null;
-        $this->id_tiposdeproductos = null;
+        $this->id_tiposdeproductos = null;        
     }
 
     public function store(Request $request)
@@ -117,17 +118,19 @@ class Productossellers extends Component
 
     public function edit($id)
     {
-        $record = Producto::findOrFail($id);
-
+        //$record = Producto::findOrFail($id);
+        $record = Producto::join('tiposdeproductos','productos.id_tiposdeproductos','=','tiposdeproductos.id')
+        ->where('productos.id','=',$id)
+        ->get();
         $this->selected_id = $id;
-        $this->nombre = $record-> nombre;
-		$this->Descripcion = $record-> Descripcion;
-		$this->foto1 = $record-> foto;
-        $this->foto2 = $record-> foto2;
-        $this->foto3 = $record-> foto3;
-		$this->Estado_actual_del_producto = $record-> Estado_actual_del_producto;
-		$this->id_usuario = $record-> id_usuario;
-        $this->id_tiposdeproductos = $record-> id_tiposdeproductos;
+        $this->nombre = $record[0]-> nombre;
+		$this->Descripcion = $record[0]-> Descripcion;
+		$this->foto1 = $record[0]-> foto;
+        $this->foto2 = $record[0]-> foto2;
+        $this->foto3 = $record[0]-> foto3;
+		$this->Estado_actual_del_producto = $record[0]-> Estado_actual_del_producto;
+		$this->id_usuario = $record[0]-> id_usuario;
+        $this->id_tiposdeproductos = $record[0]-> clasificacion;
 
         $this->updateMode = true;
     }

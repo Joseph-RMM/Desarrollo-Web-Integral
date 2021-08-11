@@ -104,9 +104,7 @@ class Detallesdelprestamo extends Component
 		'direccion','telefono','celular','parentesco','name','tel','email','nombre','foto')
 		->where('productossolicitados.id','=',$idproductossolicitados)		
 		->get();
-		/*foreach ($records as $record){
-			$record=$records;
-		}*/
+		
         $this->selected_id = $idproductossolicitados; 
 		$this->id_tiposdeproductos = $record[0]-> id_tiposdeproductos;
 		$this->fecha_entrega = $record[0]-> fecha_entrega;
@@ -119,47 +117,19 @@ class Detallesdelprestamo extends Component
 		$this->nombre = $record[0]-> name;
 		$this->nombreproducto = $record[0]-> nombre;
 		$this->email = $record[0]-> email;
-		$this->fotomodal = $record[0]-> foto;
-		
-		
-        $this->updateMode = true;
+		$this->fotomodal = $record[0]-> foto;			   
     }
-
-    public function update()
-    {
-        $this->validate([
-		'id_tiposdeproductos' => 'required',
-		'fecha_entrega' => 'required',
-		'fecha_devolucion' => 'required',
-		'direccion' => 'required',
-		'telefono' => 'required',
-		'celular' => 'required',
-		'parentesco' => 'required'
-        ]);
-
-        if ($this->selected_id) {
-			$record = Productossolicitado::find($this->selected_id);
-            $record->update([ 
-			'id_tiposdeproductos' => $this-> id_tiposdeproductos,
-			'fecha_entrega' => $this-> fecha_entrega,
-			'fecha_devolucion' => $this-> fecha_devolucion,
-			'direccion' => $this-> direccion,
-			'telefono' => $this-> telefono,
-			'celular' => $this-> celular,
-			'parentesco' => $this-> parentesco
-            ]);
-
-            $this->resetInput();
-            $this->updateMode = false;
-			session()->flash('message', 'Productossolicitado Successfully updated.');
-        }
-    }
-
+      
     public function destroy($id)
     {
         if ($id) {
-            $record = Productossolicitado::where('id', $id);
-            $record->delete();
+            $record = Productossolicitado::findOrFail($id);
+			if(($record->celular)==='Pendiente'){
+            	$record->delete();
+				session()->flash('message', 'El Producto se elimino correctamente');
+			}else{
+				session()->flash('message', 'No puedes eliminar aun esta prestado');
+			}
         }
     }
 	public function acceptRequestLoan($idproduct,$idrequest){
@@ -192,7 +162,5 @@ class Detallesdelprestamo extends Component
 		$this->updateMode = false;       
 		$this->resetInput();    	       
 	}
-	public function action($id){
-
-	}
+	
 }
