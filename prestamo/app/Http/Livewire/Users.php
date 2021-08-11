@@ -90,26 +90,7 @@ class Users extends Component
             'lastname' => ['required','string','min:3','max:51'],
             'tel' => ['required','unique:users','digits:10'],
             'email' => ['required','string','email','unique:users','regex:/(.*)@(live|gmail|yahoo|hotmail|outlook)\.com/i'],
-            'password' => [
-                'required',
-                'string',
-                'min:8',
-                'max:40',             
-                'regex:/[a-z]/',      
-                'regex:/[A-Z]/',      
-                'regex:/[0-9]/',      
-                'regex:/[@$!%*#?&]/'       
-            ],
-            'contraseña' => [
-                'required',
-                'string',
-                'min:8',
-                'max:40',             
-                'regex:/[a-z]/',      
-                'regex:/[A-Z]/',      
-                'regex:/[0-9]/',      
-                'regex:/[@$!%*#?&]/'       
-            ],
+            'password' => ['required','string','min:8','max:40','regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/'],
             'password_confirmation'=> ['required','string','min:8','max:40','same:password'],
             'Muni'=>['required','numeric']
         ]);

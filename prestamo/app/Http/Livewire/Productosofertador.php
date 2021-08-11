@@ -107,12 +107,12 @@ class Productosofertador extends Component
             //$product['foto']=$request->file(key:'foto')->store(path:'fotos');
         //}
         $this->validate([
-            'nombre' =>['required','min:4','max:10'] ,
-            'Descripcion' => ['required','min:4','max:200'],
+            'nombre' => 'min:4|max:30',
+            'Descripcion' => 'min:20|max:200',
             'foto.*' => 'image|max:3072',
             'foto' => 'min:3|max:3',
-            
-            'id_tiposdeproductos' => 'required',
+		
+        'id_tiposdeproductos' => 'required',
 
 
         ]);
