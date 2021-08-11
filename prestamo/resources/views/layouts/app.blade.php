@@ -135,26 +135,29 @@
                                 @endif
                             
                             </a>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                                @forelse (auth()->user()->unreadNotifications as $notification)
-                                    <a href="{{ url('/solicitudes') }}" class="dropdown-item">
-                                        <i class="fas fa-users mr-2"></i> {{$notification->data['name']}}
-                                        <br>
-                                        <i class="fas fa-envelope mr-2"></i> {{$notification->data['Mensaje']}}
-                                        <span class="xl-1 float-right text-muted text-sm">Te ha enviado una solicitud de amistad</span>
-                                        <span class="xl-1 float-right text-muted text-sm">{{$notification->created_at->diffForHumans()}}</span>
-                                    </a>  
-                                    @empty
-                                    <span class="ml-3 pull-right text-muted text-sm">Sin notificaciones nuevas</span>
-                                @endforelse
-                                
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" aria-labelledby="alertsDropdown">
+                                	<h6 class="dropdown-header">
+                                		Centro de notificaciones
+                                	</h6>
+                                	@forelse (auth()->user()->unreadNotifications as $notification)
+                                	<a class="dropdown-item d-flex align-items-center" href="{{ url('/solicitudes') }}">                                
 
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-divider"></div>
-                            <a href="{{route('marcar')}}" clas="dropdown-item dropdown-footer">marcar como leidas</a>
-                            <div class="dropdown-divider"></div>
-                            <div class="dropdown-divider"></div>
-                            
+                                		<div>
+                                			<span class="font-weight-bold">Te ha enviado una solicitud de amistad</span>
+                                			<div class="small text-gray-500"> <strong><i class="far fa-clock"></i></strong> {{$notification->created_at->diffForHumans()}}</div>
+                                			<div class="small text-gray-500"> <strong><i class="fas fa-user-plus"></i></strong> {{$notification->data['name']}}</div>
+                                			<div class="small text-gray-500"> <strong><i class="fab fa-facebook-messenger"></i></strong> {{$notification->data['Mensaje']}}</div>
+                                		</div>
+                                	</a>
+                                	@empty
+                                	<a class="dropdown-item d-flex align-items-center" href="#">
+                                		<div>
+                                			<span class="font-weight-bold">Sin notificaciones nuevas</span>
+                                		</div>
+                                	</a>
+                                	@endforelse
+                                	<a class="dropdown-item text-center small text-gray-500" href="{{route('marcar')}}">Marcar como leidas</a>
+                            </div>
                         </li>
 
                         <!-- Productos -->

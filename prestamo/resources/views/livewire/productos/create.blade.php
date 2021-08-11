@@ -35,7 +35,7 @@
 
 
                                 <div class="field">
-                                    <label>Id tipo producto <b class="rojo">*</b></label>
+                                    <label>Tipo producto <b class="rojo">*</b></label>
                                     <br>
                                     <select wire:model='id_tiposdeproductos' >
                                         <option value="">Clasificacion de producto</option>

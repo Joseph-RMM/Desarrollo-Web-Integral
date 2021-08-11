@@ -42,11 +42,11 @@
             @foreach($users as $row)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $row->name }}</td>
+                    <td>{{ $row->usersname}}</td>
                     <td>{{ $row->lastname }}</td>
                     <td>{{ $row->tel }}</td>
                     <td>{{ $row->email }}</td>
-                    <td>{{ $row->id_municipio }}</td>
+                    <td>{{ $row->municipiosname }}</td>
                     <td>
                         <button onclick="confirm('Confirm Delete User id {{$row->id}}? \nDeleted Users cannot be recovered!')||event.stopImmediatePropagation()" wire:click="destroy({{$row->id}})" class="button-rojo button5"><i class="fas fa-trash-alt"></i></button>
                         <button type="button" wire:click="edit({{$row->id}})" class="button-verde button5" data-toggle="modal" data-target="#updateModall" ><i class="fas fa-pencil-alt"></i></button>

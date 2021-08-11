@@ -84,10 +84,13 @@ class Productos extends Component
     protected $messages = [        
         'nombre.required' => 'El Nombre es requerido',
         'nombre.min' => 'El Nombre debe ser de minimo cuatro caracteres',
+        'nombre.max' => 'El Nombre debe ser de maximo veinte caracteres',
         'Descripcion.required' => 'La descripcion es requerida',
         'Descripcion.min' => 'La descripcion es de minimo veinte caracteres',
+        'Descripcion.max' => 'La descripcion es de maximo cien caracteres',
         'foto.min' => 'Debes subir tres fotos',
         'foto.max' => 'Debes subir solo tres fotos',
+        'foto.image' => 'Solo se aceptan fotos',
         'id_tiposdeproductos.required' => 'Debes seleccionar una categoria',
     ];
 
@@ -99,11 +102,11 @@ class Productos extends Component
             //$product['foto']=$request->file(key:'foto')->store(path:'fotos');
         //}
         $this->validate([
-            'nombre' => 'required|min:4',
-            'Descripcion' => 'required|min:20',
-            'foto.*' => 'image|max:1024',
+            'nombre' => 'required|min:4|max:20',
+            'Descripcion' => 'required|min:20|max:100',
+            'foto.*' => 'image|max:4096',
             'foto' => 'min:3|max:3',            
-            'id_tiposdeproductos' => 'required',
+            'id_tiposdeproductos' => 'required|digits:1',
         ]);
 
         $urlclean = [];

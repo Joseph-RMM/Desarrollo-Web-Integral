@@ -60,7 +60,7 @@ class Tiposdeproductos extends Component
 
         $this->resetInput();
 		$this->emit('closeModal');
-		session()->flash('message', 'Tiposdeproducto Successfully created.');
+		session()->flash('message', 'Categoria creada correctamente');
     }
 
     public function edit($id)
@@ -77,7 +77,7 @@ class Tiposdeproductos extends Component
     public function update()
     {
         $this->validate([
-            'clasificacion' => 'required|string|min:4|unique:tiposdeproductos',
+            'clasificacion' => 'required|string|min:4|max:40|unique:tiposdeproductos',
         ]);
 
         if ($this->selected_id) {
@@ -88,7 +88,8 @@ class Tiposdeproductos extends Component
 
             $this->resetInput();
             $this->updateMode = false;
-			session()->flash('message', 'Tiposdeproducto Successfully updated.');
+            $this->emit('closeupdateModal');
+			session()->flash('message', 'Se edito correctamente la Categoria');
         }
     }
 
@@ -97,6 +98,7 @@ class Tiposdeproductos extends Component
         if ($id) {
             $record = Tiposdeproducto::where('id', $id);
             $record->delete();
+            session()->flash('message', 'Se elimino correctamente la categoria');
         }
     }
 }

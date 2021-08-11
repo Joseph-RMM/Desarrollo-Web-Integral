@@ -238,9 +238,7 @@ class Productosbuscador extends Component
         'direccion.max' => 'La direccion es muy larga',             
         'telefono.required' => 'El mensaje de prestamo es requerido',
         'telefono.min' => 'El mensaje de prestamo es muy corto',       
-        'telefono.max' => 'El mensaje de prestamo es muy largo',   
-        'celular.required' => 'El celular es requerido',
-        'celular.digits' => 'El celular es a diez digitos',       
+        'telefono.max' => 'El mensaje de prestamo es muy largo',                
         'parentesco.required' => 'El parentescco es requerido', 
         'parentesco.min' => 'El parentescco es muy corto',
         'parentesco.max' => 'El parentescco es muy largo',
@@ -249,8 +247,7 @@ class Productosbuscador extends Component
         'fecha_entrega' => 'required|date|before:fecha_devolucion|after_or_equal:today',
         'fecha_devolucion' => 'required|date|after:today|after:fecha_entrega',
         'direccion' => 'required|string|min:30|max:80',
-        'telefono' => 'required|string|min:30|max:90',
-        'celular' => 'required|digits:10',
+        'telefono' => 'required|string|min:30|max:90',      
         'parentesco' => 'required|min:3|max:20'                
     ];
     public function updated($field)
@@ -268,7 +265,7 @@ class Productosbuscador extends Component
                     'fecha_devolucion' => $this-> fecha_devolucion,
                     'direccion' => $this-> direccion,
                     'telefono' => $this-> telefono,
-                    'celular' => $this-> celular,
+                    'celular' => 'Pendiente',
                     'parentesco' => $this-> parentesco
                     //'id_solicitud' => $this-> id_solicitud
                 ]); 

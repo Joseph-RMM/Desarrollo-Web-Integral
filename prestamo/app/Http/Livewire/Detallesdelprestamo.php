@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Productossolicitado;
 use App\Models\Producto;
+use Illuminate\Support\Facades\DB;
 
 class Detallesdelprestamo extends Component
 {
@@ -24,6 +25,7 @@ class Detallesdelprestamo extends Component
 						->Where('productos.id_usuario','=',auth()->user()->id)														
 						->select('fecha_entrega','fecha_devolucion','direccion','telefono','celular','parentesco',
 						'productossolicitados.id','foto','productos.id as productoid','Estado_actual_del_producto')
+						->orderByDesc('productossolicitados.updated_at')
 						->paginate(10),
         ]);
 		/*$keyWord = '%'.$this->keyWord .'%';
@@ -137,27 +139,37 @@ class Detallesdelprestamo extends Component
             $record->delete();
         }
     }
-	public function acceptRequestLoan($id){
-		$record = Producto::findOrFail($id);
+	public function acceptRequestLoan($idproduct,$idrequest){
+		$record = Producto::findOrFail($idproduct);
+		$recordtwo = Productossolicitado::findOrFail($idrequest);
+		//celular es estado de la solicitud
+		//$record = DB::table('productossolicitados')
+		//->join('productos','productossolicitados.id_tiposdeproductos','=','productos.id')
+		//->Where('productossolicitados.id','=',$id)															
+		//->select('celular','Estado_actual_del_producto')->get();
+		$pcolicitado=$recordtwo->celular;
 		$this->Estado_actual_del_producto= $record->Estado_actual_del_producto;
 
 		$this->updateMode = true;
 		if($this->Estado_actual_del_producto==='D'){
-        	$record->update([ 
-			'Estado_actual_del_producto' => 'P',
-        	]);
+        	$record->update([ 'Estado_actual_del_producto' => 'P']);
+        	$recordtwo->update([ 'celular' => 'Aceptado']);
 			$this->statusproduct=true;
 			session()->flash('message', 'La solicitud ha sido Aceptada');
 		}
-		else if($this->Estado_actual_del_producto==='P')
+		else if($this->Estado_actual_del_producto==='P' && $pcolicitado==='Aceptado')
 		{
-			$record->update([ 
-				'Estado_actual_del_producto' => 'D'
-			]);
+			$record->update([ 'Estado_actual_del_producto' => 'D']);
+			$recordtwo->update(['celular'=>'Pendiente']);
 			$this->statusproduct=false;
 			session()->flash('message', 'Has terminado el prestamo');
+		}else{
+			session()->flash('message', 'El producto ya se encuentra prestado');
 		}
 		$this->updateMode = false;       
 		$this->resetInput();    	       
+	}
+	public function action($id){
+
 	}
 }
