@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\Solicitude;
 use App\Notifications\solicitudesn;
 use App\Models\Productossolicitado;
+
 class Productosbuscador extends Component
 {
 	protected $paginationTheme = 'bootstrap';
@@ -28,6 +29,7 @@ class Productosbuscador extends Component
     public $desabilitar=false;
     public $disableform=false;
     public $requestmessage,$colorbutton;
+    private $id_usuariosolicitante;
     public $fecha_entrega, $fecha_devolucion, $direccion, $telefono, $celular, $parentesco, $id_solicitud;
     public $testingvar="";
     use WithPagination;
@@ -153,7 +155,7 @@ class Productosbuscador extends Component
 		$this->id_usuario = $record-> id_usuario;
         $this->id_tiposdeproductos = $record-> id_tiposdeproductos;
         //$this->desabilitar='disabled="disabled"';
-        //$this->updateMode = true;
+        $this->updateMode = true;
         $usersc = User::join('productos','users.id','=','productos.id_usuario')
         ->join('solicitudes','users.id','=','solicitudes.id_usuariosolicitante')
         ->where('productos.id','=', $id)
@@ -256,9 +258,10 @@ class Productosbuscador extends Component
         $this->validateOnly($field,$this->rules,$this->messages);
     }    
     public function sendRequestProduct($id)
-    {    
+    {     
         if(!$this->disableform){
             $this->validate();        
+            $usermanda=auth()->user()->id;
                 Productossolicitado::create([                     
                     'id_tiposdeproductos' => $id,
                     'fecha_entrega' => $this-> fecha_entrega,
@@ -266,8 +269,8 @@ class Productosbuscador extends Component
                     'direccion' => $this-> direccion,
                     'telefono' => $this-> telefono,
                     'celular' => 'Pendiente',
-                    'parentesco' => $this-> parentesco
-                    //'id_solicitud' => $this-> id_solicitud
+                    'id_usuariosolicitante' => $usermanda,
+                    'parentesco' => $this-> parentesco,
                 ]); 
                              
             $this->resetInput();

@@ -54,25 +54,7 @@
                         <p class="paraeltitulo"><u>{{ $Descripcion }}</u></p><br>
 
                         <button wire:loading.attr="disabled" wire:click="sendFriendRequest({{$selected_id}})" {{ $desabilitar ? "disabled": ""}} class="btn btn-{{$colorbutton}}"><i class="fas fa-user-friends"></i>{{ $requestmessage }}</button>
-                        <style>.preloader {
-                                  width: 30px;
-                                  height: 30px;
-                                  border: 5px solid #eee;
-                                  border-top: 5px solid #666;
-                                  border-radius: 50%;
-                                  animation-name: girar;
-                                  animation-duration: 2s;
-                                  animation-iteration-count: infinite;
-                                }
-                                @keyframes girar {
-                                  from {
-                                    transform: rotate(0deg);
-                                  }
-                                  to {
-                                    transform: rotate(360deg);
-                                  }
-                                }
-                        </style>
+                       
                         <div wire:loading class="preloader">                        
                         </div>
                     </div>

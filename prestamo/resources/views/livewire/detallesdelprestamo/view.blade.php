@@ -13,12 +13,12 @@
 						@if (session()->has('message'))
 						<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
 						@endif
-						<div>
+						{{--<div>
 							<input wire:model='keyWord' type="text" class="form-control" name="search" id="search" placeholder="Search Productossolicitados">
-						</div>
+						</div>--}}
 					</div>
 				</div>
-				
+				@include('livewire.detallesdelprestamo.detailsmodal')
 				<div class="card-body">
 
 				<div class="table-responsive">
@@ -28,6 +28,7 @@
 								<th>Foto</th>
 								<th>Fecha Entrega</th>
 								<th>Fecha Devolucion</th>
+								<th>Nombre Usuario</th>
 								<th>Direccion</th>
 								<th>Mensaje</th>
 								<th>Solicitud</th>
@@ -41,6 +42,7 @@
 								<td width="90"><img class="card-img-top" src="{{ $row->foto }}"></td>
 								<td>{{ $row->fecha_entrega }}</td>
 								<td>{{ $row->fecha_devolucion }}</td>
+								<td>{{ $row->name }}</td>
 								<td>{{ $row->direccion }}</td>
 								<td>{{ $row->telefono }}</td>
 								<td>{{ $row->celular }}</td>
@@ -51,10 +53,8 @@
 								<button type="button" wire:click.prevent="destroy({{ $row->id }})" class="btn btn-danger">Eliminar</button>
 								<br>
 								<button type="button" wire:click.prevent="acceptRequestLoan({{ $row->productoid }} , {{$row->id}})" class="btn btn-warning">@if( $row->celular==='Pendiente') Aceptar @else Terminar @endif</button>
-								<br>
-								<button type="button" action="{{ url('/productossolicitados') }}" method="post" class="btn btn-info">Informacion</button>					 
-										
-								
+								<br>												 
+								<button wire:click.prevent="edit({{ $row->id }})" data-dismiss="modal" data-toggle="modal" data-target="#SendRequestModal" class="btn btn-info" >Informacion</button>               														
 								</td>
 							@endforeach
 						</tbody>

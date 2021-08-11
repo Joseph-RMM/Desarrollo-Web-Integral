@@ -135,10 +135,10 @@ class Solicitudes extends Component
 
     public function destroy($id)
     {
-        echo($id);
+        //echo($id);
         $record=Solicitude::find($id);
         
-        $psolicitado = Productossolicitado::where('id_solicitud', $id)->delete();
+        //$psolicitado = Productossolicitado::where('id_solicitud', $id)->delete();
         //$psolicitado->delete();
         $record->delete();
         

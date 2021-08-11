@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Productossolicitado;
 use App\Models\Producto;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class Detallesdelprestamo extends Component
@@ -14,22 +15,24 @@ class Detallesdelprestamo extends Component
 
 	protected $paginationTheme = 'bootstrap';
     public $selected_id, $keyWord, $id_tiposdeproductos, $fecha_entrega, $fecha_devolucion, $direccion, $telefono, $celular, $parentesco;
-    public $updateMode = false;
-	public $foto;
-	public $Estado_actual_del_producto,$statusproduct;
+	public $nombre, $Descripcion,$foto1, $foto2, $foto3;
+	public $updateMode = false;
+	public $foto,$fotomodal,$mensaje;
+	public $Estado_actual_del_producto,$statusproduct,$nombreproducto,$email;
+
     public function render()
-    {
+    {		
 		
         return view('livewire.detallesdelprestamo.view', [
-            'productossolicitados' => Productossolicitado::join('productos','productossolicitados.id_tiposdeproductos','=','productos.id')
-						->Where('productos.id_usuario','=',auth()->user()->id)														
-						->select('fecha_entrega','fecha_devolucion','direccion','telefono','celular','parentesco',
-						'productossolicitados.id','foto','productos.id as productoid','Estado_actual_del_producto')
+            'productossolicitados' => producto::join('productossolicitados','productos.id','=','productossolicitados.id_tiposdeproductos')
+						->join('users','productossolicitados.id_usuariosolicitante','=','users.id')	
+						->orWhere('productos.id_usuario','=',auth()->user()->id)														
+						->select('fecha_entrega','fecha_devolucion','direccion','telefono','celular','parentesco','name',
+						'productossolicitados.id','foto','productos.id as productoid','Estado_actual_del_producto')						
 						->orderByDesc('productossolicitados.updated_at')
 						->paginate(10),
         ]);
-		/*$keyWord = '%'.$this->keyWord .'%';
-        return view('livewire.detallesdelprestamo.view', [
+		/*return view('livewire.detallesdelprestamo.view', [
             'productossolicitados' => Productossolicitado::latest()
 						->orWhere('id_tiposdeproductos', 'LIKE', $keyWord)
 						->orWhere('fecha_entrega', 'LIKE', $keyWord)
@@ -57,6 +60,7 @@ class Detallesdelprestamo extends Component
 		$this->telefono = null;
 		$this->celular = null;
 		$this->parentesco = null;
+		$this->nombre = null;
     }
 
     public function store()
@@ -78,7 +82,7 @@ class Detallesdelprestamo extends Component
 			'direccion' => $this-> direccion,
 			'telefono' => $this-> telefono,
 			'celular' => $this-> celular,
-			'parentesco' => $this-> parentesco,
+			'parentesco' => $this-> parentesco,			
         ]);
         
         $this->resetInput();
@@ -86,18 +90,32 @@ class Detallesdelprestamo extends Component
 		session()->flash('message', 'Productossolicitado Successfully created.');
     }
 
-    public function edit($id)
+    public function edit($idproductossolicitados)
     {
-        $record = Productossolicitado::findOrFail($id);
-
-        $this->selected_id = $id; 
-		$this->id_tiposdeproductos = $record-> id_tiposdeproductos;
-		$this->fecha_entrega = $record-> fecha_entrega;
-		$this->fecha_devolucion = $record-> fecha_devolucion;
-		$this->direccion = $record-> direccion;
-		$this->telefono = $record-> telefono;
-		$this->celular = $record-> celular;
-		$this->parentesco = $record-> parentesco;
+        //$record = Productossolicitado::findOrFail($idproductossolicitados);
+		$record = producto::join('productossolicitados','productos.id','=','productossolicitados.id_tiposdeproductos')
+		->join('users','productossolicitados.id_usuariosolicitante','=','users.id')		
+		->select('productossolicitados.id_tiposdeproductos','fecha_entrega','fecha_devolucion',
+		'direccion','telefono','celular','parentesco','name','tel','email','nombre','foto')
+		->where('productossolicitados.id','=',$idproductossolicitados)		
+		->get();
+		/*foreach ($records as $record){
+			$record=$records;
+		}*/
+        $this->selected_id = $idproductossolicitados; 
+		$this->id_tiposdeproductos = $record[0]-> id_tiposdeproductos;
+		$this->fecha_entrega = $record[0]-> fecha_entrega;
+		$this->fecha_devolucion = $record[0]-> fecha_devolucion;
+		$this->direccion = $record[0]-> direccion;
+		$this->telefono = $record[0]-> tel;
+		$this->mensaje = $record[0]-> telefono;
+		$this->celular = $record[0]-> celular;
+		$this->parentesco = $record[0]-> parentesco;
+		$this->nombre = $record[0]-> name;
+		$this->nombreproducto = $record[0]-> nombre;
+		$this->email = $record[0]-> email;
+		$this->fotomodal = $record[0]-> foto;
+		
 		
         $this->updateMode = true;
     }
